@@ -248,16 +248,14 @@ void LoadObj(unsigned int &program, unsigned int &obj_VAO)
     glGenVertexArrays(1, &obj_VAO);
     glBindVertexArray(obj_VAO);
     float v[FaceDataTemp.size() * 3];
-    val = FaceDataTemp.size() * 3;
-    int k = 0;
+    val = FaceDataTemp.size();
     for (int i = 0; i < FaceDataTemp.size(); i++)
     {
         v[i * 3] = VertexDataTemp[FaceDataTemp[i] * 3];
         v[i * 3 + 1] = VertexDataTemp[FaceDataTemp[i] * 3 + 1];
         v[i * 3 + 2] = VertexDataTemp[FaceDataTemp[i] * 3 + 2];
-
-        k += 6;
     }
+    cout << VertexDataTemp.size() << " " << FaceDataTemp.size() << endl;
 
     GLuint vertex_VBO;
     glGenBuffers(1, &vertex_VBO);
