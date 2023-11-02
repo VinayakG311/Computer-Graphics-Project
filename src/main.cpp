@@ -199,7 +199,7 @@ void createCubeObject(unsigned int &program, unsigned int &cube_VAO)
 
 void LoadObj(unsigned int &program, unsigned int &obj_VAO)
 {
-    FILE *ObjFile = fopen("data.obj", "r");
+    FILE *ObjFile = fopen("BEAR.obj", "r");
     if (ObjFile == NULL)
     {
         cout << "Error Opening Obj File";
@@ -237,34 +237,32 @@ void LoadObj(unsigned int &program, unsigned int &obj_VAO)
         }
         if (!strcmp(data, "f"))
         {
-            fscanf(ObjFile, "%f %f %f %f\n", &faces[0], &faces[1], &faces[2], &faces[3]);
-            FaceDataTemp.push_back(faces[0] - 1);
-            FaceDataTemp.push_back(faces[1] - 1);
-            FaceDataTemp.push_back(faces[2] - 1);
-            FaceDataTemp.push_back(faces[3] - 1);
+            float f1, f2, f3, f4, f5, f6;
+            fscanf(ObjFile, "%f/%f %f/%f %f/%f \n", &f1, &f2, &f3, &f4, &f5, &f6);
+
+            FaceDataTemp.push_back(f1 - 1);
+            FaceDataTemp.push_back(f3 - 1);
+            FaceDataTemp.push_back(f5 - 1);
         }
     }
     glGenVertexArrays(1, &obj_VAO);
     glBindVertexArray(obj_VAO);
-    float v[FaceDataTemp.size() * 6];
-    val = FaceDataTemp.size() * 6;
+    float v[FaceDataTemp.size() * 3];
+    val = FaceDataTemp.size() * 3;
     int k = 0;
-    for (int i = 0; i < FaceDataTemp.size(); i += 4)
+    for (int i = 0; i < FaceDataTemp.size(); i++)
     {
+        v[i * 3] = VertexDataTemp[FaceDataTemp[i] * 3];
+        v[i * 3 + 1] = VertexDataTemp[FaceDataTemp[i] * 3 + 1];
+        v[i * 3 + 2] = VertexDataTemp[FaceDataTemp[i] * 3 + 2];
 
-        v[k] = VertexDataTemp[FaceDataTemp[i]];
-        v[k + 1] = VertexDataTemp[FaceDataTemp[i + 1]];
-        v[k + 2] = VertexDataTemp[FaceDataTemp[i + 2]];
-        v[k + 3] = VertexDataTemp[FaceDataTemp[i]];
-        v[k + 4] = VertexDataTemp[FaceDataTemp[i + 2]];
-        v[k + 5] = VertexDataTemp[FaceDataTemp[i + 3]];
         k += 6;
     }
 
     GLuint vertex_VBO;
     glGenBuffers(1, &vertex_VBO);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
-    glBufferData(GL_ARRAY_BUFFER, FaceDataTemp.size() * 6 * sizeof(float), v, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, FaceDataTemp.size() * 3 * sizeof(float), v, GL_STATIC_DRAW);
     glEnableVertexAttribArray(vVertex_attrib);
     glVertexAttribPointer(vVertex_attrib, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
