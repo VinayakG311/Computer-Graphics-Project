@@ -1,7 +1,7 @@
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o: \
-  /Users/vinayakgoel/Downloads/code-5/depends/imgui/imgui_impl_opengl3.cpp \
-  /Users/vinayakgoel/Downloads/code-5/depends/imgui/imgui.h \
-  /Users/vinayakgoel/Downloads/code-5/depends/imgui/imconfig.h \
+  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/depends/imgui/imgui_impl_opengl3.cpp \
+  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/depends/imgui/imgui.h \
+  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/depends/imgui/imconfig.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/float.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__config \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__config_site \
@@ -86,7 +86,7 @@ CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/malloc/_malloc_type.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_dev_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_mode_t.h \
-  /Users/vinayakgoel/Downloads/code-5/depends/imgui/imgui_impl_opengl3.h \
+  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/depends/imgui/imgui_impl_opengl3.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/TargetConditionals.h \
   /opt/homebrew/include/GL/glew.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/stdio.h \

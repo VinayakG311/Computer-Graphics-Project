@@ -57,10 +57,10 @@ RM = /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/vinayakgoel/Downloads/code-5
+CMAKE_SOURCE_DIR = /Users/vinayakgoel/Desktop/Computer-Graphics-Project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/vinayakgoel/Downloads/code-5/build
+CMAKE_BINARY_DIR = /Users/vinayakgoel/Desktop/Computer-Graphics-Project/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vinayakgoel/Downloads/code-5/build/CMakeFiles /Users/vinayakgoel/Downloads/code-5/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vinayakgoel/Desktop/Computer-Graphics-Project/build/CMakeFiles /Users/vinayakgoel/Desktop/Computer-Graphics-Project/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vinayakgoel/Downloads/code-5/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vinayakgoel/Desktop/Computer-Graphics-Project/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

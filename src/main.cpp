@@ -26,6 +26,7 @@ vector<glm::vec3> VertexData;
 vector<glm::vec4> FaceData;
 double oldX, oldY, currentX, currentY;
 bool isDragging = false;
+int val = 0;
 
 void createCubeObject(unsigned int &, unsigned int &);
 void LoadObj(unsigned int &, unsigned int &);
@@ -132,7 +133,8 @@ int main(int, char **)
         glBindVertexArray(VAO);
 
         glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_TRIANGLES, 0, 6 * 2 * 3);
+
+        glDrawArrays(GL_TRIANGLES, 0, val);
 
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
@@ -229,9 +231,9 @@ void LoadObj(unsigned int &program, unsigned int &obj_VAO)
         if (!strcmp(data, "v"))
         {
             fscanf(ObjFile, "%f %f %f\n", &vertices.x, &vertices.y, &vertices.z);
-            VertexDataTemp.push_back(vertices.x * 2.5);
-            VertexDataTemp.push_back(vertices.y * 2.5);
-            VertexDataTemp.push_back(vertices.z * 2.5);
+            VertexDataTemp.push_back(vertices.x);
+            VertexDataTemp.push_back(vertices.y);
+            VertexDataTemp.push_back(vertices.z);
         }
         if (!strcmp(data, "f"))
         {
@@ -244,19 +246,25 @@ void LoadObj(unsigned int &program, unsigned int &obj_VAO)
     }
     glGenVertexArrays(1, &obj_VAO);
     glBindVertexArray(obj_VAO);
-    float v[FaceDataTemp.size() * 4];
-    for (int i = 0; i < FaceDataTemp.size(); i++)
+    float v[FaceDataTemp.size() * 6];
+    val = FaceDataTemp.size() * 6;
+    int k = 0;
+    for (int i = 0; i < FaceDataTemp.size(); i += 4)
     {
 
-        v[i * 4] = VertexDataTemp[FaceDataTemp[i * 4]];
-        v[i * 4 + 1] = VertexDataTemp[FaceDataTemp[i * 4 + 1]];
-        v[i * 4 + 2] = VertexDataTemp[FaceDataTemp[i * 4 + 2]];
-        v[i * 4 + 3] = VertexDataTemp[FaceDataTemp[i * 4 + 3]];
+        v[k] = VertexDataTemp[FaceDataTemp[i]];
+        v[k + 1] = VertexDataTemp[FaceDataTemp[i + 1]];
+        v[k + 2] = VertexDataTemp[FaceDataTemp[i + 2]];
+        v[k + 3] = VertexDataTemp[FaceDataTemp[i]];
+        v[k + 4] = VertexDataTemp[FaceDataTemp[i + 2]];
+        v[k + 5] = VertexDataTemp[FaceDataTemp[i + 3]];
+        k += 6;
     }
+
     GLuint vertex_VBO;
     glGenBuffers(1, &vertex_VBO);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
-    glBufferData(GL_ARRAY_BUFFER, FaceDataTemp.size() * 4 * sizeof(float), v, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, FaceDataTemp.size() * 6 * sizeof(float), v, GL_STATIC_DRAW);
     glEnableVertexAttribArray(vVertex_attrib);
     glVertexAttribPointer(vVertex_attrib, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
