@@ -199,7 +199,7 @@ void createCubeObject(unsigned int &program, unsigned int &cube_VAO)
 
 void LoadObj(unsigned int &program, unsigned int &obj_VAO)
 {
-    FILE *ObjFile = fopen("BEAR.obj", "r");
+    FILE *ObjFile = fopen("BEAR2.obj", "r");
     if (ObjFile == NULL)
     {
         cout << "Error Opening Obj File";
