@@ -117,24 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Assignment03
+# Target rules for targets named Lab2
 
 # Build rule for target.
-Assignment03: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Assignment03
-.PHONY : Assignment03
+Lab2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Lab2
+.PHONY : Lab2
 
 # fast build rule for target.
-Assignment03/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/build
-.PHONY : Assignment03/fast
+Lab2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/build
+.PHONY : Lab2/fast
 
 depends/imgui/imgui.o: depends/imgui/imgui.cpp.o
 .PHONY : depends/imgui/imgui.o
 
 # target to build an object file
 depends/imgui/imgui.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui.cpp.o
 .PHONY : depends/imgui/imgui.cpp.o
 
 depends/imgui/imgui.i: depends/imgui/imgui.cpp.i
@@ -142,7 +142,7 @@ depends/imgui/imgui.i: depends/imgui/imgui.cpp.i
 
 # target to preprocess a source file
 depends/imgui/imgui.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui.cpp.i
 .PHONY : depends/imgui/imgui.cpp.i
 
 depends/imgui/imgui.s: depends/imgui/imgui.cpp.s
@@ -150,7 +150,7 @@ depends/imgui/imgui.s: depends/imgui/imgui.cpp.s
 
 # target to generate assembly for a file
 depends/imgui/imgui.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui.cpp.s
 .PHONY : depends/imgui/imgui.cpp.s
 
 depends/imgui/imgui_demo.o: depends/imgui/imgui_demo.cpp.o
@@ -158,7 +158,7 @@ depends/imgui/imgui_demo.o: depends/imgui/imgui_demo.cpp.o
 
 # target to build an object file
 depends/imgui/imgui_demo.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui_demo.cpp.o
 .PHONY : depends/imgui/imgui_demo.cpp.o
 
 depends/imgui/imgui_demo.i: depends/imgui/imgui_demo.cpp.i
@@ -166,7 +166,7 @@ depends/imgui/imgui_demo.i: depends/imgui/imgui_demo.cpp.i
 
 # target to preprocess a source file
 depends/imgui/imgui_demo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui_demo.cpp.i
 .PHONY : depends/imgui/imgui_demo.cpp.i
 
 depends/imgui/imgui_demo.s: depends/imgui/imgui_demo.cpp.s
@@ -174,7 +174,7 @@ depends/imgui/imgui_demo.s: depends/imgui/imgui_demo.cpp.s
 
 # target to generate assembly for a file
 depends/imgui/imgui_demo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui_demo.cpp.s
 .PHONY : depends/imgui/imgui_demo.cpp.s
 
 depends/imgui/imgui_draw.o: depends/imgui/imgui_draw.cpp.o
@@ -182,7 +182,7 @@ depends/imgui/imgui_draw.o: depends/imgui/imgui_draw.cpp.o
 
 # target to build an object file
 depends/imgui/imgui_draw.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui_draw.cpp.o
 .PHONY : depends/imgui/imgui_draw.cpp.o
 
 depends/imgui/imgui_draw.i: depends/imgui/imgui_draw.cpp.i
@@ -190,7 +190,7 @@ depends/imgui/imgui_draw.i: depends/imgui/imgui_draw.cpp.i
 
 # target to preprocess a source file
 depends/imgui/imgui_draw.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui_draw.cpp.i
 .PHONY : depends/imgui/imgui_draw.cpp.i
 
 depends/imgui/imgui_draw.s: depends/imgui/imgui_draw.cpp.s
@@ -198,7 +198,7 @@ depends/imgui/imgui_draw.s: depends/imgui/imgui_draw.cpp.s
 
 # target to generate assembly for a file
 depends/imgui/imgui_draw.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui_draw.cpp.s
 .PHONY : depends/imgui/imgui_draw.cpp.s
 
 depends/imgui/imgui_impl_glfw.o: depends/imgui/imgui_impl_glfw.cpp.o
@@ -206,7 +206,7 @@ depends/imgui/imgui_impl_glfw.o: depends/imgui/imgui_impl_glfw.cpp.o
 
 # target to build an object file
 depends/imgui/imgui_impl_glfw.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui_impl_glfw.cpp.o
 .PHONY : depends/imgui/imgui_impl_glfw.cpp.o
 
 depends/imgui/imgui_impl_glfw.i: depends/imgui/imgui_impl_glfw.cpp.i
@@ -214,7 +214,7 @@ depends/imgui/imgui_impl_glfw.i: depends/imgui/imgui_impl_glfw.cpp.i
 
 # target to preprocess a source file
 depends/imgui/imgui_impl_glfw.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui_impl_glfw.cpp.i
 .PHONY : depends/imgui/imgui_impl_glfw.cpp.i
 
 depends/imgui/imgui_impl_glfw.s: depends/imgui/imgui_impl_glfw.cpp.s
@@ -222,7 +222,7 @@ depends/imgui/imgui_impl_glfw.s: depends/imgui/imgui_impl_glfw.cpp.s
 
 # target to generate assembly for a file
 depends/imgui/imgui_impl_glfw.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui_impl_glfw.cpp.s
 .PHONY : depends/imgui/imgui_impl_glfw.cpp.s
 
 depends/imgui/imgui_impl_opengl3.o: depends/imgui/imgui_impl_opengl3.cpp.o
@@ -230,7 +230,7 @@ depends/imgui/imgui_impl_opengl3.o: depends/imgui/imgui_impl_opengl3.cpp.o
 
 # target to build an object file
 depends/imgui/imgui_impl_opengl3.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui_impl_opengl3.cpp.o
 .PHONY : depends/imgui/imgui_impl_opengl3.cpp.o
 
 depends/imgui/imgui_impl_opengl3.i: depends/imgui/imgui_impl_opengl3.cpp.i
@@ -238,7 +238,7 @@ depends/imgui/imgui_impl_opengl3.i: depends/imgui/imgui_impl_opengl3.cpp.i
 
 # target to preprocess a source file
 depends/imgui/imgui_impl_opengl3.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui_impl_opengl3.cpp.i
 .PHONY : depends/imgui/imgui_impl_opengl3.cpp.i
 
 depends/imgui/imgui_impl_opengl3.s: depends/imgui/imgui_impl_opengl3.cpp.s
@@ -246,7 +246,7 @@ depends/imgui/imgui_impl_opengl3.s: depends/imgui/imgui_impl_opengl3.cpp.s
 
 # target to generate assembly for a file
 depends/imgui/imgui_impl_opengl3.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui_impl_opengl3.cpp.s
 .PHONY : depends/imgui/imgui_impl_opengl3.cpp.s
 
 depends/imgui/imgui_widgets.o: depends/imgui/imgui_widgets.cpp.o
@@ -254,7 +254,7 @@ depends/imgui/imgui_widgets.o: depends/imgui/imgui_widgets.cpp.o
 
 # target to build an object file
 depends/imgui/imgui_widgets.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui_widgets.cpp.o
 .PHONY : depends/imgui/imgui_widgets.cpp.o
 
 depends/imgui/imgui_widgets.i: depends/imgui/imgui_widgets.cpp.i
@@ -262,7 +262,7 @@ depends/imgui/imgui_widgets.i: depends/imgui/imgui_widgets.cpp.i
 
 # target to preprocess a source file
 depends/imgui/imgui_widgets.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui_widgets.cpp.i
 .PHONY : depends/imgui/imgui_widgets.cpp.i
 
 depends/imgui/imgui_widgets.s: depends/imgui/imgui_widgets.cpp.s
@@ -270,15 +270,39 @@ depends/imgui/imgui_widgets.s: depends/imgui/imgui_widgets.cpp.s
 
 # target to generate assembly for a file
 depends/imgui/imgui_widgets.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depends/imgui/imgui_widgets.cpp.s
 .PHONY : depends/imgui/imgui_widgets.cpp.s
+
+src/camera/camera.o: src/camera/camera.cpp.o
+.PHONY : src/camera/camera.o
+
+# target to build an object file
+src/camera/camera.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/src/camera/camera.cpp.o
+.PHONY : src/camera/camera.cpp.o
+
+src/camera/camera.i: src/camera/camera.cpp.i
+.PHONY : src/camera/camera.i
+
+# target to preprocess a source file
+src/camera/camera.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/src/camera/camera.cpp.i
+.PHONY : src/camera/camera.cpp.i
+
+src/camera/camera.s: src/camera/camera.cpp.s
+.PHONY : src/camera/camera.s
+
+# target to generate assembly for a file
+src/camera/camera.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/src/camera/camera.cpp.s
+.PHONY : src/camera/camera.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -286,7 +310,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -294,32 +318,56 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/utils.o: src/utils.cpp.o
-.PHONY : src/utils.o
+src/mesh/mesh.o: src/mesh/mesh.cpp.o
+.PHONY : src/mesh/mesh.o
 
 # target to build an object file
-src/utils.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/utils.cpp.o
-.PHONY : src/utils.cpp.o
+src/mesh/mesh.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/src/mesh/mesh.cpp.o
+.PHONY : src/mesh/mesh.cpp.o
 
-src/utils.i: src/utils.cpp.i
-.PHONY : src/utils.i
+src/mesh/mesh.i: src/mesh/mesh.cpp.i
+.PHONY : src/mesh/mesh.i
 
 # target to preprocess a source file
-src/utils.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/utils.cpp.i
-.PHONY : src/utils.cpp.i
+src/mesh/mesh.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/src/mesh/mesh.cpp.i
+.PHONY : src/mesh/mesh.cpp.i
 
-src/utils.s: src/utils.cpp.s
-.PHONY : src/utils.s
+src/mesh/mesh.s: src/mesh/mesh.cpp.s
+.PHONY : src/mesh/mesh.s
 
 # target to generate assembly for a file
-src/utils.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/utils.cpp.s
-.PHONY : src/utils.cpp.s
+src/mesh/mesh.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/src/mesh/mesh.cpp.s
+.PHONY : src/mesh/mesh.cpp.s
+
+src/utils/utils.o: src/utils/utils.cpp.o
+.PHONY : src/utils/utils.o
+
+# target to build an object file
+src/utils/utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/src/utils/utils.cpp.o
+.PHONY : src/utils/utils.cpp.o
+
+src/utils/utils.i: src/utils/utils.cpp.i
+.PHONY : src/utils/utils.i
+
+# target to preprocess a source file
+src/utils/utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/src/utils/utils.cpp.i
+.PHONY : src/utils/utils.cpp.i
+
+src/utils/utils.s: src/utils/utils.cpp.s
+.PHONY : src/utils/utils.s
+
+# target to generate assembly for a file
+src/utils/utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/src/utils/utils.cpp.s
+.PHONY : src/utils/utils.cpp.s
 
 # Help Target
 help:
@@ -329,7 +377,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Assignment03"
+	@echo "... Lab2"
 	@echo "... depends/imgui/imgui.o"
 	@echo "... depends/imgui/imgui.i"
 	@echo "... depends/imgui/imgui.s"
@@ -348,12 +396,18 @@ help:
 	@echo "... depends/imgui/imgui_widgets.o"
 	@echo "... depends/imgui/imgui_widgets.i"
 	@echo "... depends/imgui/imgui_widgets.s"
+	@echo "... src/camera/camera.o"
+	@echo "... src/camera/camera.i"
+	@echo "... src/camera/camera.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/utils.o"
-	@echo "... src/utils.i"
-	@echo "... src/utils.s"
+	@echo "... src/mesh/mesh.o"
+	@echo "... src/mesh/mesh.i"
+	@echo "... src/mesh/mesh.s"
+	@echo "... src/utils/utils.o"
+	@echo "... src/utils/utils.i"
+	@echo "... src/utils/utils.s"
 .PHONY : help
 
 

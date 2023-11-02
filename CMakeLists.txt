@@ -1,6 +1,6 @@
  cmake_minimum_required(VERSION 3.5)
 
-project(Assignment03)
+project(Lab2)
 set(TARGET ${CMAKE_PROJECT_NAME})
 set(CMAKE_BUILD_TYPE Debug)
 
@@ -13,7 +13,9 @@ find_package(GLEW REQUIRED)
 
 set(SOURCES
 	"src/main.cpp"
-	"src/utils.cpp"
+	"src/mesh/mesh.cpp"
+	"src/utils/utils.cpp"
+	"src/camera/camera.cpp"
 	"depends/imgui/imgui_impl_glfw.cpp"
 	"depends/imgui/imgui_impl_opengl3.cpp"
 	"depends/imgui/imgui.cpp"
@@ -26,6 +28,7 @@ add_executable(${TARGET} ${SOURCES})
 
 target_include_directories(${TARGET} PRIVATE
 	${PROJECT_SOURCE_DIR}/src
+	${PROJECT_SOURCE_DIR}/src/utils
 	${PROJECT_SOURCE_DIR}/depends/imgui
 	${GLFW_INCLUDE_DIRS}
 	${OPENGL_INCLUDE_DIR}
