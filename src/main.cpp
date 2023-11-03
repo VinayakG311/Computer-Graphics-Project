@@ -13,11 +13,14 @@
 #include <iostream>
 using namespace std;
 
-GLfloat MeshVertices[1401 * 3];
-GLfloat cageVertices[1401*3];
+GLfloat MeshVertices[200000 * 3];
+GLfloat cageVertices[200000*3];
 
-GLuint meshFace[2723*3];
-GLuint cageFace[2723*3];
+GLuint meshFace[200000*3];
+GLuint cageFace[200000*3];
+
+int numVertices;
+int numFaces;
 
 Mesh *testCubeMesh()
 {
@@ -47,14 +50,14 @@ Mesh *testCubeMesh()
 }
 Mesh *LoadObj()
 {
-	FILE *ObjFile = fopen("BEAR2.obj", "r");
+	FILE *ObjFile = fopen("polygon.obj", "r");
 	if (ObjFile == NULL)
 	{
 		cout << "Error Opening Obj File";
 	}
 
-	GLfloat VertexDataTemp[1401 * 3];
-	GLuint FaceDataTemp[2723 * 3];
+	GLfloat VertexDataTemp[200000 * 3];
+	GLuint FaceDataTemp[200000 * 3];
 	int i = 0, j = 0;
 	while (true)
 	{
@@ -71,9 +74,9 @@ Mesh *LoadObj()
 		if (!strcmp(data, "v"))
 		{
 			fscanf(ObjFile, "%f %f %f\n", &vertices.x, &vertices.y, &vertices.z);
-			VertexDataTemp[i++] = (vertices.x)*0.1f;
-			VertexDataTemp[i++] = (vertices.y)*0.1f;
-			VertexDataTemp[i++] = (vertices.z)*0.1f;
+			VertexDataTemp[i++] = (vertices.x)*0.042;
+			VertexDataTemp[i++] = (vertices.y)*0.042;
+			VertexDataTemp[i++] = (vertices.z)*0.042;
 		}
 
 		
@@ -81,22 +84,27 @@ Mesh *LoadObj()
 		if (!strcmp(data, "f"))
 		{
 			float f1, f2, f3, f4, f5, f6;
-			fscanf(ObjFile, "%f/%f %f/%f %f/%f\n", &f1, &f2, &f3, &f4, &f5, &f6);
+			fscanf(ObjFile, "%f %f %f\n", &f1, &f2, &f3);
 
 			FaceDataTemp[j++] = (f1 - 1);
+			FaceDataTemp[j++] = (f2 - 1);
 			FaceDataTemp[j++] = (f3 - 1);
-			FaceDataTemp[j++] = (f5 - 1);
 		}
 		
 	}
 
-	for(int i = 0;i<1401*3;i++){
+	for(int i = 0;i<200000*3;i++){
 			MeshVertices[i] = VertexDataTemp[i];
 		}
 
-	for(int i = 0;i<2723*3;i++){
+	for(int i = 0;i<200000*3;i++){
 		meshFace[i] = FaceDataTemp[i];
 	}
+
+
+numVertices = i;
+numFaces = j;
+	
 	cout << i << " " << j << endl;
 	// float v[j * 3];
 
@@ -110,11 +118,12 @@ Mesh *LoadObj()
 }
 
 Mesh* createCage(){
-	for(int i = 0;i<1401*3;i++){
+
+	for(int i = 0;i<200000*3;i++){
 		cageVertices[i] = MeshVertices[i];
 	}
 
-	for(int i = 0;i<1401*3;i+=3){
+	for(int i = 0;i<200000*3;i+=3){
 		float cageX = cageVertices[i];
 		float cageY = cageVertices[i+1];
 		float cageZ = cageVertices[i+2];
@@ -128,13 +137,13 @@ Mesh* createCage(){
 		else if(cageX>=0 && cageY<=0){
 			cageX+=0.3;
 			cageY-=0.3;
-			cageZ-=0.8;
+			cageZ-=10;
 		}
 
 		else if(cageX<=0 && cageY>=0){
 			cageX-=0.3;
 			cageY+=0.3;
-			cageZ-=0.8;
+			cageZ-=10;
 		}
 
 		else if(cageX<=0 && cageY<=0){
@@ -143,16 +152,14 @@ Mesh* createCage(){
 			cageZ-=0.8;
 		}
 		
-		cageVertices[i] = cageX*5000;
-		cageVertices[i+1] = cageY*5000;
-		cageVertices[i+2] = cageZ*5000;
+		// cageVertices[i] = cageX;
+		// cageVertices[i+1] = cageY;
+		// cageVertices[i+2] = cageZ;
 		
 	}
 
-	return new Mesh(cageVertices,meshFace, 1401, 2723);
-
+	return new Mesh(cageVertices,meshFace, 200000, 200000);
 }
-
 
 int main(int, char **)
 {
@@ -178,7 +185,7 @@ int main(int, char **)
 	Mesh *cage = createCage();
 	// Render a sphere using parametric representation.
 	//  ParametricMesh *mesh = new ParametricMesh(100);
-	createCage();
+	// createCage();
 
 
 	glUseProgram(shader_program);
@@ -225,8 +232,9 @@ int main(int, char **)
 		glClearColor(WHITE.x, WHITE.y, WHITE.z, WHITE.w);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		// mesh->draw(shader_program);
-		// cage->draw(shader_program);
+		mesh->draw(shader_program);
+
+		cage->draw(shader_program);
 
 		glBindVertexArray(VAO_Cage);
     glDrawArrays(GL_LINES, 0, sizeof(cageVertices)/3); 
