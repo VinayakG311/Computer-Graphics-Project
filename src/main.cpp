@@ -13,11 +13,11 @@
 #include <iostream>
 using namespace std;
 
-GLfloat MeshVertices[1401 * 3];
-GLfloat cageVertices[1401 * 3];
+// GLfloat MeshVertices[1452 * 3];
+// GLfloat cageVertices[1452 * 3];
 
-GLuint meshFace[2723 * 3];
-GLuint cageFace[2723 * 3];
+// GLuint meshFace[2724 * 3];
+// GLuint cageFace[2724 * 3];
 vector<float> v;
 int numVertices;
 int numFaces;
@@ -50,14 +50,14 @@ Mesh *testCubeMesh()
 }
 Mesh *LoadObj()
 {
-    FILE *ObjFile = fopen("BEAR2.obj", "r");
+    FILE *ObjFile = fopen("3.obj", "r");
     if (ObjFile == NULL)
     {
         cout << "Error Opening Obj File";
     }
 
-    GLfloat VertexDataTemp[1401 * 3];
-    GLuint FaceDataTemp[2723 * 3];
+    GLfloat VertexDataTemp[1452 * 3];
+    GLuint FaceDataTemp[2724 * 3];
     int i = 0, j = 0;
     while (true)
     {
@@ -81,8 +81,8 @@ Mesh *LoadObj()
 
         if (!strcmp(data, "f"))
         {
-            float f1, f2, f3, f4, f5, f6;
-            fscanf(ObjFile, "%f/%f %f/%f %f/%f\n", &f1, &f4, &f2, &f5, &f3, &f6);
+            float f1, f2, f3, f4, f5, f6, f7, f8, f9;
+            fscanf(ObjFile, "%f/%f/%f %f/%f/%f %f/%f/%f \n", &f1, &f4, &f7, &f2, &f5, &f8, &f3, &f6, &f9);
 
             FaceDataTemp[j++] = (f1 - 1);
             FaceDataTemp[j++] = (f2 - 1);
@@ -90,18 +90,18 @@ Mesh *LoadObj()
         }
     }
 
-    for (int i = 0; i < 1401 * 3; i++)
-    {
-        MeshVertices[i] = VertexDataTemp[i];
-    }
+    // for (int i = 0; i < 1401 * 3; i++)
+    // {
+    //     MeshVertices[i] = VertexDataTemp[i];
+    // }
 
-    for (int i = 0; i < 2723 * 3; i++)
-    {
-        meshFace[i] = FaceDataTemp[i];
-    }
+    // for (int i = 0; i < 2723 * 3; i++)
+    // {
+    //     meshFace[i] = FaceDataTemp[i];
+    // }
 
-    numVertices = i;
-    numFaces = j;
+    // numVertices = i;
+    // numFaces = j;
 
     cout << i << " " << j << endl;
     // float v[j * 3];
@@ -126,47 +126,6 @@ void createCage()
     v.push_back(-1.0f);
     v.push_back(1.0f);
     v.push_back(0.0f);
-
-    // for (int i = 0; i < 200000 * 3; i += 3)
-    // {
-    //     float cageX = cageVertices[i];
-    //     float cageY = cageVertices[i + 1];
-    //     float cageZ = cageVertices[i + 2];
-
-    //     if (cageX >= 0 && cageY >= 0)
-    //     {
-    //         cageX += 0.3;
-    //         cageY += 0.3;
-    //         cageZ -= 0.8;
-    //     }
-
-    //     else if (cageX >= 0 && cageY <= 0)
-    //     {
-    //         cageX += 0.3;
-    //         cageY -= 0.3;
-    //         cageZ -= 10;
-    //     }
-
-    //     else if (cageX <= 0 && cageY >= 0)
-    //     {
-    //         cageX -= 0.3;
-    //         cageY += 0.3;
-    //         cageZ -= 10;
-    //     }
-
-    //     else if (cageX <= 0 && cageY <= 0)
-    //     {
-    //         cageX -= 0.3;
-    //         cageY -= 0.3;
-    //         cageZ -= 0.8;
-    //     }
-
-    //     // cageVertices[i] = cageX;
-    //     // cageVertices[i+1] = cageY;
-    //     // cageVertices[i+2] = cageZ;
-    // }
-
-    // return new Mesh(cageVertices, meshFace, 200000, 200000);
 }
 
 int main(int, char **)
@@ -186,9 +145,9 @@ int main(int, char **)
     cam->setProjectionTransformation(shader_program);
     cam->setViewTransformation(shader_program);
 
-    // LoadObj();
     Mesh *mesh = LoadObj();
-    createCage();
+    //   LoadObj();
+    //  createCage();
     // Mesh *cage = createCage();
     // Render a sphere using parametric representation.
     //  ParametricMesh *mesh = new ParametricMesh(100);
@@ -208,11 +167,6 @@ int main(int, char **)
     glEnable(GL_BLEND);
     while (!glfwWindowShouldClose(window))
     {
-        glBindVertexArray(VAO_Cage);
-        glBindBuffer(GL_ARRAY_BUFFER, VBO_Cage);
-        glBufferData(GL_ARRAY_BUFFER, v.size() * sizeof(float), &v[0], GL_DYNAMIC_DRAW);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
-        glEnableVertexAttribArray(0); // Enable first attribute buffer (vertices)
 
         // Start the Dear ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
@@ -237,12 +191,12 @@ int main(int, char **)
         glClearColor(WHITE.x, WHITE.y, WHITE.z, WHITE.w);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // mesh->draw(shader_program);
+        mesh->draw(shader_program);
 
         //   cage->draw(shader_program);
 
-        glBindVertexArray(VAO_Cage);
-        glDrawArrays(GL_LINE_STRIP, 0, sizeof(v) / 3);
+        // glBindVertexArray(VAO_Cage);
+        // glDrawArrays(GL_LINE_STRIP, 0, sizeof(v) / 3);
 
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         glfwSwapBuffers(window);
