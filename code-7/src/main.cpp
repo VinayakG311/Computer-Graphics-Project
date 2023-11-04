@@ -20,8 +20,8 @@ int screen_width = 640, screen_height = 640;
 GLint vModel_uniform, vView_uniform, vProjection_uniform;
 GLint vColor_uniform;
 glm::mat4 modelT, viewT, projectionT;
-int val; // The model, view and projection transformations
-vector<float> v;
+int val, val2; // The model, view and projection transformations
+// vector<float> v;
 double oldX, oldY, currentX, currentY;
 bool isDragging = false;
 
@@ -34,9 +34,9 @@ GLfloat min_y_coord = INT_MAX;
 GLfloat min_z_coord = INT_MAX;
 GLfloat max_z_coord = INT_MIN;
 
-void createCubeObject(unsigned int &, unsigned int &);
-void LoadObj(unsigned int &, unsigned int &);
-void createCage(unsigned int &, unsigned int &);
+void LoadObj(char *, unsigned int &, unsigned int &);
+void LoadObj2(unsigned int &, unsigned int &);
+vector<float> createCage(unsigned int &, unsigned int &, GLfloat, GLfloat, GLfloat, GLfloat);
 
 void setupModelTransformation(unsigned int &);
 void setupViewTransformation(unsigned int &);
@@ -63,16 +63,24 @@ int main(int, char **)
 
     glUseProgram(shaderProgram);
 
-    unsigned int VAO, VAO2;
+    unsigned int VAO, VAO2, VAO3, VAO4;
     glGenVertexArrays(1, &VAO);
     glGenVertexArrays(1, &VAO2);
+    glGenVertexArrays(1, &VAO3);
 
     setupModelTransformation(shaderProgram);
     setupViewTransformation(shaderProgram);
     setupProjectionTransformation(shaderProgram);
 
     //  createCubeObject(shaderProgram, VAO);
-    LoadObj(shaderProgram, VAO2);
+    char d[6] = "3.obj";
+    char d1[6] = "4.obj";
+    LoadObj(d, shaderProgram, VAO2);
+
+    vector<float> v1 = createCage(shaderProgram, VAO, min_x_coord, min_y_coord, max_y_coord, max_x_coord);
+    LoadObj2(shaderProgram, VAO3);
+
+    vector<float> v2 = createCage(shaderProgram, VAO4, min_x_coord, min_y_coord, max_y_coord, max_x_coord);
     // createCage(shaderProgram, VAO);
     //  createCage(shaderProgram, VAO);
     oldX = oldY = currentX = currentY = 0.0;
@@ -86,7 +94,6 @@ int main(int, char **)
         // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
         // glEnableVertexAttribArray(0);
         glfwPollEvents();
-        createCage(shaderProgram, VAO);
 
         // Get current mouse position
         int leftButtonState = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
@@ -148,11 +155,19 @@ int main(int, char **)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         glBindVertexArray(VAO);
-        glDrawArrays(GL_LINES, 0, sizeof(v) / 3);
+
+        glDrawArrays(GL_LINES, 0, sizeof(v1) / 3);
+        glBindVertexArray(VAO4);
+
+        glDrawArrays(GL_LINES, 0, sizeof(v2) / 3);
         glBindVertexArray(VAO2);
 
         glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
         glDrawArrays(GL_TRIANGLES, 0, val);
+        glBindVertexArray(VAO3);
+
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, val2);
         //
 
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -165,7 +180,7 @@ int main(int, char **)
 
     return 0;
 }
-void createCage(unsigned int &program, unsigned int &obj_VAO)
+vector<float> createCage(unsigned int &program, unsigned int &obj_VAO, GLfloat min_x_coord, GLfloat min_y_coord, GLfloat max_y_coord, GLfloat max_x_coord)
 {
     glUseProgram(program);
 
@@ -177,6 +192,7 @@ void createCage(unsigned int &program, unsigned int &obj_VAO)
         exit(0);
     }
     // std::cout<<min_x_coord<<" "<<min_y_coord<<" ";
+    vector<float> v;
     v.push_back(min_x_coord);
     v.push_back(min_y_coord);
     v.push_back(0.0f);
@@ -184,25 +200,25 @@ void createCage(unsigned int &program, unsigned int &obj_VAO)
     v.push_back(max_y_coord);
     v.push_back(0.0f);
 
-    v.push_back(min_x_coord-0.2);
-    v.push_back(max_y_coord+0.2);
+    v.push_back(min_x_coord - 0.2);
+    v.push_back(max_y_coord + 0.2);
     v.push_back(0.0f);
-    v.push_back(max_x_coord+0.2);
-    v.push_back(max_y_coord+0.2);
-    v.push_back(0.0f);
-
-    v.push_back(max_x_coord+0.2);
-    v.push_back(max_y_coord+0.2);
-    v.push_back(0.0f);
-    v.push_back(max_x_coord+0.2);
-    v.push_back(min_y_coord-0.2);
+    v.push_back(max_x_coord + 0.2);
+    v.push_back(max_y_coord + 0.2);
     v.push_back(0.0f);
 
-    v.push_back(max_x_coord+0.2);
-    v.push_back(min_y_coord-0.2);
+    v.push_back(max_x_coord + 0.2);
+    v.push_back(max_y_coord + 0.2);
     v.push_back(0.0f);
-    v.push_back(min_x_coord-0.2);
-    v.push_back(min_y_coord-0.2);
+    v.push_back(max_x_coord + 0.2);
+    v.push_back(min_y_coord - 0.2);
+    v.push_back(0.0f);
+
+    v.push_back(max_x_coord + 0.2);
+    v.push_back(min_y_coord - 0.2);
+    v.push_back(0.0f);
+    v.push_back(min_x_coord - 0.2);
+    v.push_back(min_y_coord - 0.2);
     // v.push_back(0.0f);
     // v.push_back(8.0);
     // v.push_back(11.0);
@@ -220,9 +236,16 @@ void createCage(unsigned int &program, unsigned int &obj_VAO)
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+    return v;
 }
-void createCubeObject(unsigned int &program, unsigned int &cube_VAO)
+void LoadObj2(unsigned int &program, unsigned int &obj_VAO)
 {
+    FILE *ObjFile = fopen("4.obj", "r");
+    if (ObjFile == NULL)
+    {
+        cout << "Error Opening Obj File";
+        return;
+    }
     glUseProgram(program);
 
     // Bind shader variables
@@ -233,46 +256,69 @@ void createCubeObject(unsigned int &program, unsigned int &cube_VAO)
         exit(0);
     }
 
-    // Cube data
-    GLfloat cube_vertices[] = {10, 10, -10, -10, 10, -10, -10, -10, -10, 10, -10, -10, // Front
-                               10, 10, 10, -10, 10, 10, -10, -10, 10, 10, -10, 10};    // Back
-    GLushort cube_indices[] = {
-        0, 1, 2, 0, 2, 3, // Front
-        4, 7, 5, 5, 7, 6, // Back
-        1, 6, 2, 1, 5, 6, // Left
-        0, 3, 4, 4, 7, 3, // Right
-        0, 4, 1, 4, 5, 1, // Top
-        2, 6, 3, 3, 6, 7  // Bottom
-    };
-
-    // Generate VAO object
-    glGenVertexArrays(1, &cube_VAO);
-    glBindVertexArray(cube_VAO);
-
-    // Create VBOs for the VAO
-    // Position information (data + format)
-    int nVertices = (6 * 2) * 3; //(6 faces) * (2 triangles each) * (3 vertices each)
-    GLfloat *expanded_vertices = new GLfloat[nVertices * 3];
-    for (int i = 0; i < nVertices; i++)
+    vector<float> VertexDataTemp;
+    vector<float> FaceDataTemp;
+    while (true)
     {
-        expanded_vertices[i * 3] = cube_vertices[cube_indices[i] * 3];
-        expanded_vertices[i * 3 + 1] = cube_vertices[cube_indices[i] * 3 + 1];
-        expanded_vertices[i * 3 + 2] = cube_vertices[cube_indices[i] * 3 + 2];
+        char data[1024];
+        int recv = fscanf(ObjFile, "%s\n", data);
+        if (recv < 0)
+        {
+            break;
+        }
+
+        glm::vec3 vertices;
+        glm::vec4 faces;
+        if (!strcmp(data, "v"))
+        {
+            fscanf(ObjFile, "%f %f %f\n", &vertices.x, &vertices.y, &vertices.z);
+            VertexDataTemp.push_back(vertices.x * 2);
+            VertexDataTemp.push_back(vertices.y * 2);
+            VertexDataTemp.push_back(vertices.z * 2);
+            max_x_coord = max(max_x_coord, vertices.x * 2);
+            max_y_coord = max(max_y_coord, vertices.y * 2);
+
+            min_x_coord = min(min_x_coord, vertices.x * 2);
+            min_y_coord = min(min_y_coord, vertices.y * 2);
+
+            max_z_coord = max(max_z_coord, vertices.z * 2);
+            min_z_coord = min(min_z_coord, vertices.z * 2);
+        }
+        if (!strcmp(data, "f"))
+        {
+            float f1, f2, f3, f4, f5, f6, f7, f8, f9;
+            fscanf(ObjFile, "%f/%f/%f %f/%f/%f %f/%f/%f \n", &f1, &f4, &f7, &f2, &f5, &f8, &f3, &f6, &f9);
+
+            FaceDataTemp.push_back(f1 - 1);
+            FaceDataTemp.push_back(f2 - 1);
+            FaceDataTemp.push_back(f3 - 1);
+        }
     }
+    glGenVertexArrays(1, &obj_VAO);
+    glBindVertexArray(obj_VAO);
+    float v[FaceDataTemp.size() * 3];
+    val2 = FaceDataTemp.size();
+    for (int i = 0; i < FaceDataTemp.size(); i++)
+    {
+        v[i * 3] = VertexDataTemp[FaceDataTemp[i] * 3];
+        v[i * 3 + 1] = VertexDataTemp[FaceDataTemp[i] * 3 + 1];
+        v[i * 3 + 2] = VertexDataTemp[FaceDataTemp[i] * 3 + 2];
+    }
+    //  cout << VertexDataTemp.size() << " " << FaceDataTemp.size() << endl;
+
     GLuint vertex_VBO;
     glGenBuffers(1, &vertex_VBO);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
-    glBufferData(GL_ARRAY_BUFFER, nVertices * 3 * sizeof(GLfloat), expanded_vertices, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(vVertex_attrib);
-    glVertexAttribPointer(vVertex_attrib, 3, GL_FLOAT, GL_FALSE, 0, 0);
-    delete[] expanded_vertices;
+    glBufferData(GL_ARRAY_BUFFER, FaceDataTemp.size() * 3 * sizeof(float), v, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0); // Unbind the VAO to disable changes outside this function.
 }
-void LoadObj(unsigned int &program, unsigned int &obj_VAO)
+void LoadObj(char *path, unsigned int &program, unsigned int &obj_VAO)
 {
-    FILE *ObjFile = fopen("3.obj", "r");
+    FILE *ObjFile = fopen(path, "r");
     if (ObjFile == NULL)
     {
         cout << "Error Opening Obj File";
@@ -308,14 +354,14 @@ void LoadObj(unsigned int &program, unsigned int &obj_VAO)
             VertexDataTemp.push_back(vertices.y * 2);
             VertexDataTemp.push_back(vertices.z * 2);
 
-            max_x_coord = max(max_x_coord,vertices.x*2);
-            max_y_coord = max(max_y_coord,vertices.y*2);
+            max_x_coord = max(max_x_coord, vertices.x * 2);
+            max_y_coord = max(max_y_coord, vertices.y * 2);
 
-            min_x_coord = min(min_x_coord,vertices.x*2);
-            min_y_coord = min(min_y_coord,vertices.y*2);
+            min_x_coord = min(min_x_coord, vertices.x * 2);
+            min_y_coord = min(min_y_coord, vertices.y * 2);
 
-            max_z_coord = max(max_z_coord,vertices.z*2);
-            min_z_coord = min(min_z_coord,vertices.z*2);
+            max_z_coord = max(max_z_coord, vertices.z * 2);
+            min_z_coord = min(min_z_coord, vertices.z * 2);
         }
         if (!strcmp(data, "f"))
         {
@@ -324,7 +370,7 @@ void LoadObj(unsigned int &program, unsigned int &obj_VAO)
 
             FaceDataTemp.push_back((f1 - 1));
             FaceDataTemp.push_back((f2 - 1));
-           FaceDataTemp.push_back((f3 - 1));
+            FaceDataTemp.push_back((f3 - 1));
         }
     }
     glGenVertexArrays(1, &obj_VAO);
