@@ -34,14 +34,20 @@ GLfloat min_y_coord = INT_MAX;
 GLfloat min_z_coord = INT_MAX;
 GLfloat max_z_coord = INT_MIN;
 
-void LoadObj(char *, unsigned int &, unsigned int &);
+int LoadObj(char *, unsigned int &, unsigned int &);
 void LoadObj2(unsigned int &, unsigned int &);
-vector<float> createCage(unsigned int &, unsigned int &, GLfloat, GLfloat, GLfloat, GLfloat);
-
+int createCage(unsigned int &, unsigned int &, vector<float>&);
 void setupModelTransformation(unsigned int &);
 void setupViewTransformation(unsigned int &);
 void setupProjectionTransformation(unsigned int &);
 glm::vec3 getTrackBallVector(double x, double y);
+
+vector<float> cage1;
+vector<float> cage2;
+vector<float> cage3;
+vector<float> cage4;
+vector<float> cage5;
+vector<float> cage6;
 
 int main(int, char **)
 {
@@ -63,24 +69,63 @@ int main(int, char **)
 
     glUseProgram(shaderProgram);
 
-    unsigned int VAO, VAO2, VAO3, VAO4;
+    unsigned int VAO, VAO2, VAO3, VAO4, VAO5,VAO6;
     glGenVertexArrays(1, &VAO);
     glGenVertexArrays(1, &VAO2);
     glGenVertexArrays(1, &VAO3);
+    glGenVertexArrays(1, &VAO4);
+    glGenVertexArrays(1, &VAO5);
+    glGenVertexArrays(1, &VAO6);
+
+    unsigned int cage1_VAO,cage2_VAO,cage3_VAO,cage4_VAO,cage5_VAO,cage6_VAO;
+
+    glGenVertexArrays(1,&cage1_VAO);
+    glGenVertexArrays(1,&cage2_VAO);
+    glGenVertexArrays(1,&cage3_VAO);
+    glGenVertexArrays(1,&cage4_VAO);
+    glGenVertexArrays(1,&cage5_VAO);
+    glGenVertexArrays(1,&cage6_VAO);
+
 
     setupModelTransformation(shaderProgram);
     setupViewTransformation(shaderProgram);
     setupProjectionTransformation(shaderProgram);
 
     //  createCubeObject(shaderProgram, VAO);
-    char d[6] = "3.obj";
-    char d1[6] = "4.obj";
-    LoadObj(d, shaderProgram, VAO2);
+    char* file1 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/body.obj";
+    char* file2 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/lh.obj";
+    char* file3 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rh.obj";
+    char* file4 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/head.obj";
+    char* file5 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rl.obj";
+    char* file6 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/ll.obj";
 
-    vector<float> v1 = createCage(shaderProgram, VAO, min_x_coord, min_y_coord, max_y_coord, max_x_coord);
-    LoadObj2(shaderProgram, VAO3);
+    int mesh1size = LoadObj(file1, shaderProgram, VAO);
+    int cage1size = createCage(shaderProgram,cage1_VAO,cage1);
 
-    vector<float> v2 = createCage(shaderProgram, VAO4, min_x_coord, min_y_coord, max_y_coord, max_x_coord);
+
+    int mesh2size = LoadObj(file2, shaderProgram, VAO2);
+    int cage2size = createCage(shaderProgram,cage2_VAO,cage2);
+
+
+    int mesh3size = LoadObj(file3, shaderProgram, VAO3);
+    int cage3size = createCage(shaderProgram,cage3_VAO,cage3);
+
+    int mesh4size = LoadObj(file4, shaderProgram, VAO4);
+    int cage4size = createCage(shaderProgram,cage4_VAO,cage4);
+
+
+    int mesh5size = LoadObj(file5, shaderProgram, VAO5);
+    int cage5size = createCage(shaderProgram,cage5_VAO,cage5);
+
+    int mesh6size = LoadObj(file6, shaderProgram, VAO6);
+    int cage6size = createCage(shaderProgram,cage6_VAO,cage6);
+
+
+
+    // vector<float> v1 = createCage(shaderProgram, VAO, min_x_coord, min_y_coord, max_y_coord, max_x_coord);
+    // // LoadObj2(shaderProgram, VAO3);
+
+    // vector<float> v2 = createCage(shaderProgram, VAO4, min_x_coord, min_y_coord, max_y_coord, max_x_coord);
     // createCage(shaderProgram, VAO);
     //  createCage(shaderProgram, VAO);
     oldX = oldY = currentX = currentY = 0.0;
@@ -155,19 +200,54 @@ int main(int, char **)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         glBindVertexArray(VAO);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh1size);
 
-        glDrawArrays(GL_LINES, 0, sizeof(v1) / 3);
-        glBindVertexArray(VAO4);
-
-        glDrawArrays(GL_LINES, 0, sizeof(v2) / 3);
+        
         glBindVertexArray(VAO2);
-
         glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_TRIANGLES, 0, val);
+        glDrawArrays(GL_TRIANGLES, 0, mesh2size);
+
+
         glBindVertexArray(VAO3);
-
         glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_TRIANGLES, 0, val2);
+        glDrawArrays(GL_TRIANGLES, 0, mesh3size);
+
+        
+        glBindVertexArray(VAO4);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh4size);
+
+        
+        glBindVertexArray(VAO5);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh5size);
+
+        
+        glBindVertexArray(VAO6);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh6size);
+
+        
+        glBindVertexArray(cage1_VAO);
+        glDrawArrays(GL_LINES, 0, cage1size / 3);
+
+        glBindVertexArray(cage2_VAO);
+        glDrawArrays(GL_LINES, 0, cage2size / 3);
+
+        glBindVertexArray(cage3_VAO);
+        glDrawArrays(GL_LINES, 0, cage3size / 3);
+
+        glBindVertexArray(cage4_VAO);
+        glDrawArrays(GL_LINES, 0, cage4size / 3);
+
+        glBindVertexArray(cage5_VAO);
+        glDrawArrays(GL_LINES, 0, cage5size / 3);
+
+        glBindVertexArray(cage6_VAO);
+        glDrawArrays(GL_LINES, 0, cage6size / 3);
+
+
         //
 
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -180,7 +260,7 @@ int main(int, char **)
 
     return 0;
 }
-vector<float> createCage(unsigned int &program, unsigned int &obj_VAO, GLfloat min_x_coord, GLfloat min_y_coord, GLfloat max_y_coord, GLfloat max_x_coord)
+int createCage(unsigned int &program, unsigned int &obj_VAO,vector<float> &cage)
 {
     glUseProgram(program);
 
@@ -193,32 +273,32 @@ vector<float> createCage(unsigned int &program, unsigned int &obj_VAO, GLfloat m
     }
     // std::cout<<min_x_coord<<" "<<min_y_coord<<" ";
     vector<float> v;
-    v.push_back(min_x_coord);
-    v.push_back(min_y_coord);
-    v.push_back(0.0f);
-    v.push_back(min_x_coord);
-    v.push_back(max_y_coord);
-    v.push_back(0.0f);
+    cage.push_back(min_x_coord);
+    cage.push_back(min_y_coord);
+    cage.push_back(0.0f);
+    cage.push_back(min_x_coord);
+    cage.push_back(max_y_coord);
+    cage.push_back(0.0f);
 
-    v.push_back(min_x_coord - 0.2);
-    v.push_back(max_y_coord + 0.2);
-    v.push_back(0.0f);
-    v.push_back(max_x_coord + 0.2);
-    v.push_back(max_y_coord + 0.2);
-    v.push_back(0.0f);
+    cage.push_back(min_x_coord - 0.2);
+    cage.push_back(max_y_coord + 0.2);
+    cage.push_back(0.0f);
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(max_y_coord + 0.2);
+    cage.push_back(0.0f);
 
-    v.push_back(max_x_coord + 0.2);
-    v.push_back(max_y_coord + 0.2);
-    v.push_back(0.0f);
-    v.push_back(max_x_coord + 0.2);
-    v.push_back(min_y_coord - 0.2);
-    v.push_back(0.0f);
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(max_y_coord + 0.2);
+    cage.push_back(0.0f);
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(min_y_coord - 0.2);
+    cage.push_back(0.0f);
 
-    v.push_back(max_x_coord + 0.2);
-    v.push_back(min_y_coord - 0.2);
-    v.push_back(0.0f);
-    v.push_back(min_x_coord - 0.2);
-    v.push_back(min_y_coord - 0.2);
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(min_y_coord - 0.2);
+    cage.push_back(0.0f);
+    cage.push_back(min_x_coord - 0.2);
+    cage.push_back(min_y_coord - 0.2);
     // v.push_back(0.0f);
     // v.push_back(8.0);
     // v.push_back(11.0);
@@ -231,12 +311,21 @@ vector<float> createCage(unsigned int &program, unsigned int &obj_VAO, GLfloat m
 
     glGenBuffers(1, &vertex_VBO);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
-    glBufferData(GL_ARRAY_BUFFER, v.size() * sizeof(GLfloat), &v[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, cage.size() * sizeof(GLfloat), &cage[0], GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
-    return v;
+
+    min_x_coord = INT_MAX;
+    min_y_coord = INT_MAX;
+    min_z_coord = INT_MAX;
+
+    max_x_coord = INT_MIN;
+    max_y_coord = INT_MIN;
+    max_z_coord = INT_MIN;
+
+    return cage.size();
 }
 void LoadObj2(unsigned int &program, unsigned int &obj_VAO)
 {
@@ -262,6 +351,7 @@ void LoadObj2(unsigned int &program, unsigned int &obj_VAO)
     {
         char data[1024];
         int recv = fscanf(ObjFile, "%s\n", data);
+        
         if (recv < 0)
         {
             break;
@@ -283,6 +373,8 @@ void LoadObj2(unsigned int &program, unsigned int &obj_VAO)
 
             max_z_coord = max(max_z_coord, vertices.z * 2);
             min_z_coord = min(min_z_coord, vertices.z * 2);
+
+        
         }
         if (!strcmp(data, "f"))
         {
@@ -316,13 +408,13 @@ void LoadObj2(unsigned int &program, unsigned int &obj_VAO)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0); // Unbind the VAO to disable changes outside this function.
 }
-void LoadObj(char *path, unsigned int &program, unsigned int &obj_VAO)
+int LoadObj(char* path, unsigned int &program, unsigned int &obj_VAO)
 {
     FILE *ObjFile = fopen(path, "r");
     if (ObjFile == NULL)
     {
         cout << "Error Opening Obj File";
-        return;
+        return -1;
     }
     glUseProgram(program);
 
@@ -340,6 +432,7 @@ void LoadObj(char *path, unsigned int &program, unsigned int &obj_VAO)
     {
         char data[1024];
         int recv = fscanf(ObjFile, "%s\n", data);
+        
         if (recv < 0)
         {
             break;
@@ -362,6 +455,8 @@ void LoadObj(char *path, unsigned int &program, unsigned int &obj_VAO)
 
             max_z_coord = max(max_z_coord, vertices.z * 2);
             min_z_coord = min(min_z_coord, vertices.z * 2);
+
+            
         }
         if (!strcmp(data, "f"))
         {
@@ -389,11 +484,13 @@ void LoadObj(char *path, unsigned int &program, unsigned int &obj_VAO)
     glGenBuffers(1, &vertex_VBO);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
     glBufferData(GL_ARRAY_BUFFER, FaceDataTemp.size() * 3 * sizeof(float), v, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    glEnableVertexAttribArray(vVertex_attrib);
+    glVertexAttribPointer(vVertex_attrib, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0); // Unbind the VAO to disable changes outside this function.
+
+    return FaceDataTemp.size();
 }
 
 void setupModelTransformation(unsigned int &program)
