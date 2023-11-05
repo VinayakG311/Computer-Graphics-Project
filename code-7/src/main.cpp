@@ -34,6 +34,8 @@ GLfloat min_y_coord = INT_MAX;
 GLfloat min_z_coord = INT_MAX;
 GLfloat max_z_coord = INT_MIN;
 
+vector<float> controlPoints;
+
 int LoadObj(char *, unsigned int &, unsigned int &);
 void LoadObj2(unsigned int &, unsigned int &);
 int createCage(unsigned int &, unsigned int &, vector<float> &);
@@ -77,7 +79,8 @@ int main(int, char **)
     glGenVertexArrays(1, &VAO5);
     glGenVertexArrays(1, &VAO6);
 
-    unsigned int cage1_VAO, cage2_VAO, cage3_VAO, cage4_VAO, cage5_VAO, cage6_VAO;
+    unsigned int cage1_VAO, cage2_VAO, cage3_VAO, cage4_VAO, cage5_VAO, cage6_VAO,VAO_controlPoints;
+    unsigned int VBO_controlPoints;
 
     glGenVertexArrays(1, &cage1_VAO);
     glGenVertexArrays(1, &cage2_VAO);
@@ -85,6 +88,7 @@ int main(int, char **)
     glGenVertexArrays(1, &cage4_VAO);
     glGenVertexArrays(1, &cage5_VAO);
     glGenVertexArrays(1, &cage6_VAO);
+    // glGenVertexArrays(1,&controlPoints_VAO);
 
     setupModelTransformation(shaderProgram);
     setupViewTransformation(shaderProgram);
@@ -92,12 +96,15 @@ int main(int, char **)
 
     //  createCubeObject(shaderProgram, VAO);
 
-    char *file1 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/body2d.obj";
-    char *file2 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/lh2d.obj";
-    char *file3 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rh2d.obj";
-    char *file4 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/head2d.obj";
-    char *file5 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rl2d.obj";
-    char *file6 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/ll2d.obj";
+    glGenBuffers(1, &VBO_controlPoints);
+    glGenVertexArrays(1, &VAO_controlPoints);
+    
+    char *file1 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/body2d.obj";
+    char *file2 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/lh2d.obj";
+    char *file3 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rh2d.obj";
+    char *file4 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/head2d.obj";
+    char *file5 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rl2d.obj";
+    char *file6 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/ll2d.obj";
 
     int mesh1size = LoadObj(file1, shaderProgram, VAO);
     int cage1size = createCage(shaderProgram, cage1_VAO, cage1);
@@ -116,6 +123,9 @@ int main(int, char **)
 
     int mesh6size = LoadObj(file6, shaderProgram, VAO6);
     int cage6size = createCage(shaderProgram, cage6_VAO, cage6);
+
+
+    
 
     // vector<float> v1 = createCage(shaderProgram, VAO, min_x_coord, min_y_coord, max_y_coord, max_x_coord);
     // // LoadObj2(shaderProgram, VAO3);
@@ -186,6 +196,12 @@ int main(int, char **)
             ImGui::End();
         }
 
+        glBindVertexArray(VAO_controlPoints);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO_controlPoints);
+        glBufferData(GL_ARRAY_BUFFER, controlPoints.size()*sizeof(GLfloat), &controlPoints[0], GL_DYNAMIC_DRAW);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+        glEnableVertexAttribArray(0);
+
         // Rendering
         ImGui::Render();
         int display_w, display_h;
@@ -219,23 +235,33 @@ int main(int, char **)
         glDrawArrays(GL_TRIANGLES, 0, mesh6size);
 
         glBindVertexArray(cage1_VAO);
-        glDrawArrays(GL_LINES, 0, cage1size / 3);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_LINE_STRIP, 0, cage1size / 3);
 
         glBindVertexArray(cage2_VAO);
-        glDrawArrays(GL_LINES, 0, cage2size / 3);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_LINE_STRIP, 0, cage2size / 3);
 
         glBindVertexArray(cage3_VAO);
-        glDrawArrays(GL_LINES, 0, cage3size / 3);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_LINE_STRIP, 0, cage3size / 3);
 
         glBindVertexArray(cage4_VAO);
-        glDrawArrays(GL_LINES, 0, cage4size / 3);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_LINE_STRIP, 0, cage4size / 3);
 
         glBindVertexArray(cage5_VAO);
-        glDrawArrays(GL_LINES, 0, cage5size / 3);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_LINE_STRIP, 0, cage5size / 3);
 
         glBindVertexArray(cage6_VAO);
-        glDrawArrays(GL_LINES, 0, cage6size / 3);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_LINE_STRIP, 0, cage6size / 3);
 
+
+       
+          glBindVertexArray(VAO_controlPoints);
+        glDrawArrays(GL_POINTS, 0, controlPoints.size()/3);
         //
 
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -261,11 +287,11 @@ int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage
     }
     // std::cout<<min_x_coord<<" "<<min_y_coord<<" ";
     vector<float> v;
-    cage.push_back(min_x_coord);
-    cage.push_back(min_y_coord);
+    cage.push_back(min_x_coord-0.2);
+    cage.push_back(min_y_coord-0.2);
     cage.push_back(0.0f);
-    cage.push_back(min_x_coord);
-    cage.push_back(max_y_coord);
+    cage.push_back(min_x_coord-0.2);
+    cage.push_back(max_y_coord+0.2);
     cage.push_back(0.0f);
 
     cage.push_back(min_x_coord - 0.2);
@@ -287,10 +313,87 @@ int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage
     cage.push_back(0.0f);
     cage.push_back(min_x_coord - 0.2);
     cage.push_back(min_y_coord - 0.2);
+    cage.push_back(0.0f);
     // v.push_back(0.0f);
     // v.push_back(8.0);
     // v.push_back(11.0);
     // v.push_back(0.0);
+
+    vector<float> cubicBezier;
+
+    bool first = true;
+    int sz  = cage.size(); // Contains 3 points/vertex. Ignore Z
+    float x[4], y[4];
+    float delta_t = 1.0/(100.0- 1.0);
+    float t;
+    float prevX,prevY;
+    for(int i=0; i<(sz-3); i+=3) {
+        x[0] = cage[i];
+        y[0] = cage[i+1];
+        x[3] = cage[i+3];
+        y[3] = cage[i+4];
+
+
+        if(first){ // If first segment, then no previous control point to enforce C1 continuity
+            x[1] = x[0]+(x[3]-x[0])/3.0;
+            y[1] = y[0]+(y[3]-y[0])/3.0;
+            
+        }
+        else{ // Modifying second control point to enforce C1 continuity
+            x[1] = 2*x[0]-prevX;
+            y[1] = 2*y[0]-prevY;
+            
+        }
+        
+        x[2] = x[0]+2*(x[3]-x[0])/3.0;
+        y[2] = y[0]+2*(y[3]-y[0])/3.0;
+        prevX = x[2];
+        prevY = y[2];
+        
+        // Outward tangent line from x[0]. 
+        
+            
+        // Storing 3rd control point of the segment to enforce C1 continuity while joining with the next segment according to the relation P1 = 2*P0-P2 
+        prevX = x[2];
+        prevY = y[2];
+        
+        first = false; 
+
+        cubicBezier.push_back(x[0]);
+        cubicBezier.push_back(y[0]);
+        cubicBezier.push_back(0.0);
+        t = 0.0;
+        t = 0.0;
+        for (float j=1; j<(100-1); j++)
+        {
+            t += delta_t;
+            float currX = (pow(1-t,3)*x[0])+(3*t*pow(1-t,2)*x[1])+(3*pow(t,2)*(1-t)*x[2])+(pow(t,3)*x[3]);
+            float currY = (pow(1-t,3)*y[0])+(3*t*pow(1-t,2)*y[1])+(3*pow(t,2)*(1-t)*y[2])+(pow(t,3)*y[3]);
+
+            if(currX > max_x_coord || currX < min_x_coord || currY > max_y_coord || currY < min_y_coord){
+                continue;
+            }
+            controlPoints.push_back(currX);
+            controlPoints.push_back(currY);
+            controlPoints.push_back(0.0f);
+
+            cubicBezier.push_back(currX);
+            cubicBezier.push_back(currY);
+            cubicBezier.push_back(0.0f);
+           
+        // No need to add the last point for this segment, since it will be added as first point in next.
+        
+        }
+        // No need to add the last point for this segment, since it will be added as first point in next.
+    }
+    // However, add last point of entire piecewise curve here (i.e, the last control point)
+    cubicBezier.push_back(x[3]);
+    cubicBezier.push_back(y[3]);
+    cubicBezier.push_back(0.0);
+
+
+    
+
 
     glGenVertexArrays(1, &obj_VAO);
     glBindVertexArray(obj_VAO);
@@ -299,7 +402,7 @@ int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage
 
     glGenBuffers(1, &vertex_VBO);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
-    glBufferData(GL_ARRAY_BUFFER, cage.size() * sizeof(GLfloat), &cage[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, cubicBezier.size() * sizeof(GLfloat), &cubicBezier[0], GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -313,7 +416,7 @@ int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage
     max_y_coord = INT_MIN;
     max_z_coord = INT_MIN;
 
-    return cage.size();
+    return cubicBezier.size();
 }
 void LoadObj2(unsigned int &program, unsigned int &obj_VAO)
 {
