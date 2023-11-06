@@ -37,7 +37,6 @@ GLfloat max_z_coord = INT_MIN;
 vector<float> controlPoints;
 
 int LoadObj(char *, unsigned int &, unsigned int &);
-void LoadObj2(unsigned int &, unsigned int &);
 int createCage(unsigned int &, unsigned int &, vector<float> &);
 void setupModelTransformation(unsigned int &);
 void setupViewTransformation(unsigned int &);
@@ -99,12 +98,12 @@ int main(int, char **)
     glGenBuffers(1, &VBO_controlPoints);
     glGenVertexArrays(1, &VAO_controlPoints);
 
-    char *file1 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/body2d.obj";
-    char *file2 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/lh2d.obj";
-    char *file3 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rh2d.obj";
-    char *file4 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/head2d.obj";
-    char *file5 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rl2d.obj";
-    char *file6 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/ll2d.obj";
+    char *file1 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/body.obj";
+    char *file2 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/lh.obj";
+    char *file3 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rh.obj";
+    char *file4 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/head.obj";
+    char *file5 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rl.obj";
+    char *file6 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/ll.obj";
 
     int mesh1size = LoadObj(file1, shaderProgram, VAO);
     int cage1size = createCage(shaderProgram, cage1_VAO, cage1);
@@ -271,34 +270,71 @@ int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage
         exit(0);
     }
     // std::cout<<min_x_coord<<" "<<min_y_coord<<" ";
+    cout << min_z_coord << " " << max_z_coord << endl;
     vector<float> v;
     cage.push_back(min_x_coord - 0.2);
     cage.push_back(min_y_coord - 0.2);
-    cage.push_back(0.0f);
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(0.0f);
+    cage.push_back(min_z_coord - 0.2);
 
     cage.push_back(min_x_coord - 0.2);
     cage.push_back(max_y_coord + 0.2);
-    cage.push_back(0.0f);
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(0.0f);
+    cage.push_back(min_z_coord - 0.2);
 
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(0.0f);
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(0.0f);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(0.0f);
     cage.push_back(min_x_coord - 0.2);
     cage.push_back(min_y_coord - 0.2);
-    cage.push_back(0.0f);
+    cage.push_back(max_z_coord + 0.2);
+
+    cage.push_back(min_x_coord - 0.2);
+    cage.push_back(max_y_coord + 0.2);
+    cage.push_back(max_z_coord + 0.2);
+
+    cage.push_back(min_x_coord - 0.2);
+    cage.push_back(max_y_coord + 0.2);
+    cage.push_back(min_z_coord - 0.2);
+
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(max_y_coord + 0.2);
+    cage.push_back(min_z_coord - 0.2);
+
+    cage.push_back(min_x_coord - 0.2);
+    cage.push_back(max_y_coord + 0.2);
+    cage.push_back(max_z_coord + 0.2);
+
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(max_y_coord + 0.2);
+    cage.push_back(max_z_coord + 0.2);
+
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(max_y_coord + 0.2);
+    cage.push_back(min_z_coord - 0.2);
+
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(min_y_coord - 0.2);
+    cage.push_back(min_z_coord - 0.2);
+
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(max_y_coord + 0.2);
+    cage.push_back(max_z_coord + 0.2);
+
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(min_y_coord - 0.2);
+    cage.push_back(max_z_coord + 0.2);
+
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(min_y_coord - 0.2);
+    cage.push_back(min_z_coord - 0.2);
+
+    cage.push_back(min_x_coord - 0.2);
+    cage.push_back(min_y_coord - 0.2);
+    cage.push_back(min_z_coord - 0.2);
+
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(min_y_coord - 0.2);
+    cage.push_back(max_z_coord + 0.2);
+
+    cage.push_back(min_x_coord - 0.2);
+    cage.push_back(min_y_coord - 0.2);
+    cage.push_back(max_z_coord + 0.2);
     // v.push_back(0.0f);
     // v.push_back(8.0);
     // v.push_back(11.0);
@@ -308,7 +344,7 @@ int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage
 
     bool first = true;
     int sz = cage.size(); // Contains 3 points/vertex. Ignore Z
-    float x[4], y[4];
+    float x[4], y[4], z[4];
     float delta_t = 1.0 / (100.0 - 1.0);
     float t;
     float prevX, prevY;
@@ -317,71 +353,24 @@ int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage
     {
         x[0] = cage[i];
         y[0] = cage[i + 1];
+        z[0] = cage[i + 2];
         x[3] = cage[i + 3];
         y[3] = cage[i + 4];
-
-        if (first)
-        { // If first segment, then no previous control point to enforce C1 continuity
-            x[1] = x[0] + (x[3] - x[0]) / 3.0;
-            y[1] = y[0] + (y[3] - y[0]) / 3.0;
-        }
-        else
-        { // Modifying second control point to enforce C1 continuity
-            x[1] = 2 * x[0] - prevX;
-            y[1] = 2 * y[0] - prevY;
-        }
-
-        x[2] = x[0] + 2 * (x[3] - x[0]) / 3.0;
-        y[2] = y[0] + 2 * (y[3] - y[0]) / 3.0;
-        prevX = x[2];
-        prevY = y[2];
-
-        // Outward tangent line from x[0].
-
-        // Storing 3rd control point of the segment to enforce C1 continuity while joining with the next segment according to the relation P1 = 2*P0-P2
-        prevX = x[2];
-        prevY = y[2];
-
-        first = false;
-
+        z[3] = cage[i + 5];
         cubicBezier.push_back(x[0]);
         cubicBezier.push_back(y[0]);
-        cubicBezier.push_back(0.0);
+        cubicBezier.push_back(z[0]);
         controlPoints.push_back(x[0]);
         controlPoints.push_back(y[0]);
-        controlPoints.push_back(0.0f);
-        t = 0.0;
-        t = 0.0;
-        for (float j = 1; j < (100 - 1); j++)
-        {
-            t += delta_t;
-            float currX = (pow(1 - t, 3) * x[0]) + (3 * t * pow(1 - t, 2) * x[1]) + (3 * pow(t, 2) * (1 - t) * x[2]) + (pow(t, 3) * x[3]);
-            float currY = (pow(1 - t, 3) * y[0]) + (3 * t * pow(1 - t, 2) * y[1]) + (3 * pow(t, 2) * (1 - t) * y[2]) + (pow(t, 3) * y[3]);
-
-            if (currX > max_x_coord || currX < min_x_coord || currY > max_y_coord || currY < min_y_coord)
-            {
-                continue;
-            }
-
-            controlPoints.push_back(currX);
-            controlPoints.push_back(currY);
-            controlPoints.push_back(0.0f);
-
-            cubicBezier.push_back(currX);
-            cubicBezier.push_back(currY);
-            cubicBezier.push_back(0.0f);
-
-            // No need to add the last point for this segment, since it will be added as first point in next.
-        }
-        // No need to add the last point for this segment, since it will be added as first point in next.
+        controlPoints.push_back(z[0]);
     }
-    // However, add last point of entire piecewise curve here (i.e, the last control point)
+
     cubicBezier.push_back(x[3]);
     cubicBezier.push_back(y[3]);
-    cubicBezier.push_back(0.0);
+    cubicBezier.push_back(z[3]);
     controlPoints.push_back(x[3]);
     controlPoints.push_back(y[3]);
-    controlPoints.push_back(0.0f);
+    controlPoints.push_back(z[3]);
 
     glGenVertexArrays(1, &obj_VAO);
     glBindVertexArray(obj_VAO);
@@ -405,85 +394,6 @@ int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage
     max_z_coord = INT_MIN;
 
     return cubicBezier.size();
-}
-void LoadObj2(unsigned int &program, unsigned int &obj_VAO)
-{
-    FILE *ObjFile = fopen("4.obj", "r");
-    if (ObjFile == NULL)
-    {
-        cout << "Error Opening Obj File";
-        return;
-    }
-    glUseProgram(program);
-
-    // Bind shader variables
-    int vVertex_attrib = glGetAttribLocation(program, "vVertex");
-    if (vVertex_attrib == -1)
-    {
-        fprintf(stderr, "Could not bind location: vVertex\n");
-        exit(0);
-    }
-
-    vector<float> VertexDataTemp;
-    vector<float> FaceDataTemp;
-    while (true)
-    {
-        char data[1024];
-        int recv = fscanf(ObjFile, "%s\n", data);
-
-        if (recv < 0)
-        {
-            break;
-        }
-
-        glm::vec3 vertices;
-        glm::vec4 faces;
-        if (!strcmp(data, "v"))
-        {
-            fscanf(ObjFile, "%f %f %f\n", &vertices.x, &vertices.y, &vertices.z);
-            VertexDataTemp.push_back(vertices.x * 2);
-            VertexDataTemp.push_back(vertices.y * 2);
-            VertexDataTemp.push_back(vertices.z * 2);
-            max_x_coord = max(max_x_coord, vertices.x * 2);
-            max_y_coord = max(max_y_coord, vertices.y * 2);
-
-            min_x_coord = min(min_x_coord, vertices.x * 2);
-            min_y_coord = min(min_y_coord, vertices.y * 2);
-
-            max_z_coord = max(max_z_coord, vertices.z * 2);
-            min_z_coord = min(min_z_coord, vertices.z * 2);
-        }
-        if (!strcmp(data, "f"))
-        {
-            float f1, f2, f3, f4, f5, f6, f7, f8, f9;
-            fscanf(ObjFile, "%f/%f/%f %f/%f/%f %f/%f/%f \n", &f1, &f4, &f7, &f2, &f5, &f8, &f3, &f6, &f9);
-
-            FaceDataTemp.push_back(f1 - 1);
-            FaceDataTemp.push_back(f2 - 1);
-            FaceDataTemp.push_back(f3 - 1);
-        }
-    }
-    glGenVertexArrays(1, &obj_VAO);
-    glBindVertexArray(obj_VAO);
-    float v[FaceDataTemp.size() * 3];
-    val2 = FaceDataTemp.size();
-    for (int i = 0; i < FaceDataTemp.size(); i++)
-    {
-        v[i * 3] = VertexDataTemp[FaceDataTemp[i] * 3];
-        v[i * 3 + 1] = VertexDataTemp[FaceDataTemp[i] * 3 + 1];
-        v[i * 3 + 2] = VertexDataTemp[FaceDataTemp[i] * 3 + 2];
-    }
-    //  cout << VertexDataTemp.size() << " " << FaceDataTemp.size() << endl;
-
-    GLuint vertex_VBO;
-    glGenBuffers(1, &vertex_VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
-    glBufferData(GL_ARRAY_BUFFER, FaceDataTemp.size() * 3 * sizeof(float), v, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0); // Unbind the VAO to disable changes outside this function.
 }
 int LoadObj(char *path, unsigned int &program, unsigned int &obj_VAO)
 {
