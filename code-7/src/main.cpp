@@ -98,12 +98,12 @@ int main(int, char **)
     glGenBuffers(1, &VBO_controlPoints);
     glGenVertexArrays(1, &VAO_controlPoints);
 
-    char *file1 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/body.obj";
-    char *file2 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/lh.obj";
-    char *file3 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rh.obj";
-    char *file4 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/head.obj";
-    char *file5 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rl.obj";
-    char *file6 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/ll.obj";
+    char *file1 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/body2d.obj";
+    char *file2 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/lh2d.obj";
+    char *file3 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rh2d.obj";
+    char *file4 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/head-new2d.obj";
+    char *file5 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rl2d.obj";
+    char *file6 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/ll2d.obj";
 
     int mesh1size = LoadObj(file1, shaderProgram, VAO);
     int cage1size = createCage(shaderProgram, cage1_VAO, cage1);
@@ -284,7 +284,6 @@ int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage
     cage.push_back(max_y_coord + 0.2);
     cage.push_back(min_z_coord - 0.2);
 
-
     cage.push_back(max_x_coord + 0.2);
     cage.push_back(max_y_coord + 0.2);
     cage.push_back(min_z_coord - 0.2);
@@ -304,11 +303,6 @@ int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage
     cage.push_back(min_x_coord - 0.2);
     cage.push_back(min_y_coord - 0.2);
     cage.push_back(min_z_coord - 0.2);
-
-
-
-
-
 
     cage.push_back(min_x_coord - 0.2);
     cage.push_back(min_y_coord - 0.2);
@@ -321,7 +315,6 @@ int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage
     cage.push_back(min_x_coord - 0.2);
     cage.push_back(max_y_coord + 0.2);
     cage.push_back(max_z_coord + 0.2);
-
 
     cage.push_back(max_x_coord + 0.2);
     cage.push_back(max_y_coord + 0.2);
@@ -343,51 +336,45 @@ int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage
     cage.push_back(min_y_coord - 0.2);
     cage.push_back(max_z_coord + 0.2);
 
+    cage.push_back(min_x_coord - 0.2);
+    cage.push_back(min_y_coord - 0.2);
+    cage.push_back(min_z_coord - 0.2);
 
-    cage.push_back(min_x_coord-0.2);
-    cage.push_back(min_y_coord-0.2);
-    cage.push_back(min_z_coord-0.2);
+    cage.push_back(min_x_coord - 0.2);
+    cage.push_back(min_y_coord - 0.2);
+    cage.push_back(max_z_coord + 0.2);
 
-    cage.push_back(min_x_coord-0.2);
-    cage.push_back(min_y_coord-0.2);
-    cage.push_back(max_z_coord+0.2);
+    cage.push_back(min_x_coord - 0.2);
+    cage.push_back(max_y_coord + 0.2);
+    cage.push_back(min_z_coord - 0.2);
 
-    cage.push_back(min_x_coord-0.2);
-    cage.push_back(max_y_coord+0.2);
-    cage.push_back(min_z_coord-0.2);
+    cage.push_back(min_x_coord - 0.2);
+    cage.push_back(max_y_coord + 0.2);
+    cage.push_back(max_z_coord + 0.2);
 
-    cage.push_back(min_x_coord-0.2);
-    cage.push_back(max_y_coord+0.2);
-    cage.push_back(max_z_coord+0.2);
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(min_y_coord - 0.2);
+    cage.push_back(min_z_coord - 0.2);
 
-    cage.push_back(max_x_coord+0.2);
-    cage.push_back(min_y_coord-0.2);
-    cage.push_back(min_z_coord-0.2);
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(min_y_coord - 0.2);
+    cage.push_back(max_z_coord + 0.2);
 
-    cage.push_back(max_x_coord+0.2);
-    cage.push_back(min_y_coord-0.2);
-    cage.push_back(max_z_coord+0.2);
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(max_y_coord + 0.2);
+    cage.push_back(min_z_coord - 0.2);
 
-    cage.push_back(max_x_coord+0.2);
-    cage.push_back(max_y_coord+0.2);
-    cage.push_back(min_z_coord-0.2);
-
-    cage.push_back(max_x_coord+0.2);
-    cage.push_back(max_y_coord+0.2);
-    cage.push_back(max_z_coord+0.2);
-
-    
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(max_y_coord + 0.2);
+    cage.push_back(max_z_coord + 0.2);
 
     // cage.push_back(min_x_coord - 0.2);
     // cage.push_back(min_y_coord - 0.2);
     // cage.push_back(max_z_coord - 0.2);
-   
+
     // cage.push_back(min_x_coord - 0.2);
     // cage.push_back(max_y_coord + 0.2);
     // cage.push_back(max_z_coord - 0.2);
-
-    
-
 
     // cage.push_back(min_x_coord - 0.2);
     // cage.push_back(max_y_coord + 0.2);
