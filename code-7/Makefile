@@ -297,6 +297,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/main.o: src/cage.cpp.o
+.PHONY : src/cage.cpp.o
+
+# target to build an object file
+src/cage.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/cage.cpp.o
+.PHONY : src/cage.cpp.o
+
+src/main.i: src/cage.cpp.i
+.PHONY : src/cage.i
+
+# target to preprocess a source file
+src/cage.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/cage.cpp.i
+.PHONY : src/cage.cpp.i
+
+src/main.s: src/cage.cpp.s
+.PHONY : src/cage.s
+
+# target to generate assembly for a file
+src/cage.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/cage.cpp.s
+.PHONY : src/cage.cpp.s
+
 src/utils.o: src/utils.cpp.o
 .PHONY : src/utils.o
 
@@ -354,6 +378,10 @@ help:
 	@echo "... src/utils.o"
 	@echo "... src/utils.i"
 	@echo "... src/utils.s"
+	@echo "... src/cage.o"
+	@echo "... src/cage.i"
+	@echo "... src/cage.s"
+
 .PHONY : help
 
 

@@ -1080,4 +1080,5 @@ CMakeFiles/Assignment03.dir/src/main.cpp.o: \
   /opt/homebrew/include/glm/gtx/../gtc/constants.hpp \
   /opt/homebrew/include/glm/gtx/dual_quaternion.inl \
   /opt/homebrew/include/glm/gtx/../geometric.hpp \
-  /opt/homebrew/include/glm/gtx/string_cast.inl
+  /opt/homebrew/include/glm/gtx/string_cast.inl \
+  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/cage.hpp

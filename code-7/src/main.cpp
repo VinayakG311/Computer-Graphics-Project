@@ -14,6 +14,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/string_cast.hpp>
 #include <iostream>
+#include <cage.hpp>
 using namespace std;
 // Globals
 int screen_width = 640, screen_height = 640;
@@ -49,9 +50,11 @@ vector<float> cage3;
 vector<float> cage4;
 vector<float> cage5;
 vector<float> cage6;
+int grid1[7][7], grid2[7][7], grid3[7][7], grid4[7][7], grid5[7][7], grid6[7][7];
 
 int main(int, char **)
 {
+
     // Setup window
     GLFWwindow *window = setupWindow(screen_width, screen_height);
     ImGuiIO &io = ImGui::GetIO(); // Create IO object
@@ -269,8 +272,7 @@ int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage
         fprintf(stderr, "Could not bind location: vVertex\n");
         exit(0);
     }
-    // std::cout<<min_x_coord<<" "<<min_y_coord<<" ";
-    cout << min_z_coord << " " << max_z_coord << endl;
+
     vector<float> v;
     cage.push_back(min_x_coord - 0.2);
     cage.push_back(min_y_coord - 0.2);
@@ -367,67 +369,25 @@ int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage
     cage.push_back(max_x_coord + 0.2);
     cage.push_back(max_y_coord + 0.2);
     cage.push_back(max_z_coord + 0.2);
-
-    // cage.push_back(min_x_coord - 0.2);
-    // cage.push_back(min_y_coord - 0.2);
-    // cage.push_back(max_z_coord - 0.2);
-
-    // cage.push_back(min_x_coord - 0.2);
-    // cage.push_back(max_y_coord + 0.2);
-    // cage.push_back(max_z_coord - 0.2);
-
-    // cage.push_back(min_x_coord - 0.2);
-    // cage.push_back(max_y_coord + 0.2);
-    // cage.push_back(min_z_coord - 0.2);
-
-    // cage.push_back(max_x_coord + 0.2);
-    // cage.push_back(max_y_coord + 0.2);
-    // cage.push_back(min_z_coord - 0.2);
-
-    // cage.push_back(min_x_coord - 0.2);
-    // cage.push_back(max_y_coord + 0.2);
-    // cage.push_back(max_z_coord + 0.2);
-
-    // cage.push_back(max_x_coord + 0.2);
-    // cage.push_back(max_y_coord + 0.2);
-    // cage.push_back(max_z_coord + 0.2);
-
-    // cage.push_back(max_x_coord + 0.2);
-    // cage.push_back(max_y_coord + 0.2);
-    // cage.push_back(min_z_coord - 0.2);
-
-    // cage.push_back(max_x_coord + 0.2);
-    // cage.push_back(min_y_coord - 0.2);
-    // cage.push_back(min_z_coord - 0.2);
-
-    // cage.push_back(max_x_coord + 0.2);
-    // cage.push_back(max_y_coord + 0.2);
-    // cage.push_back(max_z_coord + 0.2);
-
-    // cage.push_back(max_x_coord + 0.2);
-    // cage.push_back(min_y_coord - 0.2);
-    // cage.push_back(max_z_coord + 0.2);
-
-    // cage.push_back(max_x_coord + 0.2);
-    // cage.push_back(min_y_coord - 0.2);
-    // cage.push_back(min_z_coord - 0.2);
-
-    // cage.push_back(min_x_coord - 0.2);
-    // cage.push_back(min_y_coord - 0.2);
-    // cage.push_back(min_z_coord - 0.2);
-
-    // cage.push_back(max_x_coord + 0.2);
-    // cage.push_back(min_y_coord - 0.2);
-    // cage.push_back(max_z_coord + 0.2);
-
-    // cage.push_back(min_x_coord - 0.2);
-    // cage.push_back(min_y_coord - 0.2);
-    // cage.push_back(max_z_coord + 0.2);
-    // // v.push_back(0.0f);
-    // v.push_back(8.0);
-    // v.push_back(11.0);
-    // v.push_back(0.0);
-
+    int grid[100][100];
+    int stepx = (max_x_coord - min_x_coord) / 100;
+    int stepy = (max_y_coord - min_y_coord) / 100;
+    for (int i = min_x_coord; i <= max_x_coord; i += stepx)
+    {
+        for (int j = min_y_coord; j <= max_y_coord; j += stepy)
+        {
+            if (i == max_x_coord || i == min_x_coord || j == min_y_coord || j == max_y_coord)
+            {
+                // Exterior/Boundary
+                grid[i][j] = 1;
+            }
+            else
+            {
+                // Interior
+                grid[i][j] = -1;
+            }
+        }
+    }
     vector<float> cubicBezier;
 
     bool first = true;

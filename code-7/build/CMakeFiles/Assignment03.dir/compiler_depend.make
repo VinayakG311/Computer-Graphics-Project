@@ -2000,6 +2000,7 @@ CMakeFiles/Assignment03.dir/src/main.cpp.o: /Users/vinayakgoel/Desktop/Computer-
   /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui.h \
   /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_impl_glfw.h \
   /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_impl_opengl3.h \
+  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/cage.hpp \
   /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/utils.h \
   /opt/homebrew/include/GL/glew.h \
   /opt/homebrew/include/GLFW/glfw3.h \
@@ -3598,6 +3599,8 @@ CMakeFiles/Assignment03.dir/src/utils.cpp.o: /Users/vinayakgoel/Desktop/Computer
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/sys/_pthread/_pthread_mutex_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/sys/_pthread/_pthread_condattr_t.h:
+
+/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/cage.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/cassert:
 
