@@ -107,7 +107,9 @@ int main(int, char **)
     char *file4 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/head-new2d.obj";
     char *file5 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rl2d.obj";
     char *file6 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/ll2d.obj";
-
+    Cage c;
+    int x = c.createCage(shaderProgram, cage1_VAO);
+    cout << x << endl;
     int mesh1size = LoadObj(file1, shaderProgram, VAO);
     int cage1size = createCage(shaderProgram, cage1_VAO, cage1);
 
@@ -372,22 +374,22 @@ int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage
     int grid[100][100];
     int stepx = (max_x_coord - min_x_coord) / 100;
     int stepy = (max_y_coord - min_y_coord) / 100;
-    for (int i = min_x_coord; i <= max_x_coord; i += stepx)
-    {
-        for (int j = min_y_coord; j <= max_y_coord; j += stepy)
-        {
-            if (i == max_x_coord || i == min_x_coord || j == min_y_coord || j == max_y_coord)
-            {
-                // Exterior/Boundary
-                grid[i][j] = 1;
-            }
-            else
-            {
-                // Interior
-                grid[i][j] = -1;
-            }
-        }
-    }
+    // for (int i = min_x_coord; i <= max_x_coord; i += stepx)
+    // {
+    //     for (int j = min_y_coord; j <= max_y_coord; j += stepy)
+    //     {
+    //         if (i == max_x_coord || i == min_x_coord || j == min_y_coord || j == max_y_coord)
+    //         {
+    //             // Exterior/Boundary
+    //             grid[i][j] = 1;
+    //         }
+    //         else
+    //         {
+    //             // Interior
+    //             grid[i][j] = -1;
+    //         }
+    //     }
+    // }
     vector<float> cubicBezier;
 
     bool first = true;
