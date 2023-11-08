@@ -273,30 +273,6 @@ depends/imgui/imgui_widgets.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.s
 .PHONY : depends/imgui/imgui_widgets.cpp.s
 
-src/main.o: src/main.cpp.o
-.PHONY : src/main.o
-
-# target to build an object file
-src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
-
-src/main.i: src/main.cpp.i
-.PHONY : src/main.i
-
-# target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
-
-src/main.s: src/main.cpp.s
-.PHONY : src/main.s
-
-# target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
-
 src/cage.o: src/cage.cpp.o
 .PHONY : src/cage.o
 
@@ -320,6 +296,30 @@ src/cage.s: src/cage.cpp.s
 src/cage.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/cage.cpp.s
 .PHONY : src/cage.cpp.s
+
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 src/utils.o: src/utils.cpp.o
 .PHONY : src/utils.o
@@ -372,16 +372,15 @@ help:
 	@echo "... depends/imgui/imgui_widgets.o"
 	@echo "... depends/imgui/imgui_widgets.i"
 	@echo "... depends/imgui/imgui_widgets.s"
+	@echo "... src/cage.o"
+	@echo "... src/cage.i"
+	@echo "... src/cage.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
 	@echo "... src/utils.o"
 	@echo "... src/utils.i"
 	@echo "... src/utils.s"
-	@echo "... src/cage.o"
-	@echo "... src/cage.i"
-	@echo "... src/cage.s"
-
 .PHONY : help
 
 

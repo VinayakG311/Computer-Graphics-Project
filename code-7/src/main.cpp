@@ -102,12 +102,12 @@ int main(int, char **)
     glGenBuffers(1, &VBO_controlPoints);
     glGenVertexArrays(1, &VAO_controlPoints);
 
-    char *file1 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/body2d.obj";
-    char *file2 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/lh2d.obj";
-    char *file3 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rh2d.obj";
-    char *file4 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/head-new2d.obj";
-    char *file5 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rl2d.obj";
-    char *file6 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/ll2d.obj";
+    char *file1 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/body2d.obj";
+    char *file2 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/lh2d.obj";
+    char *file3 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rh2d.obj";
+    char *file4 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/head-new2d.obj";
+    char *file5 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rl2d.obj";
+    char *file6 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/ll2d.obj";
 
     int mesh1size = LoadObj(file1, shaderProgram, VAO);
 
