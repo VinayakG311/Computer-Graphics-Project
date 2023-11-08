@@ -273,6 +273,30 @@ depends/imgui/imgui_widgets.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.s
 .PHONY : depends/imgui/imgui_widgets.cpp.s
 
+src/cage.o: src/cage.cpp.o
+.PHONY : src/cage.o
+
+# target to build an object file
+src/cage.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/cage.cpp.o
+.PHONY : src/cage.cpp.o
+
+src/cage.i: src/cage.cpp.i
+.PHONY : src/cage.i
+
+# target to preprocess a source file
+src/cage.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/cage.cpp.i
+.PHONY : src/cage.cpp.i
+
+src/cage.s: src/cage.cpp.s
+.PHONY : src/cage.s
+
+# target to generate assembly for a file
+src/cage.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/cage.cpp.s
+.PHONY : src/cage.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -348,6 +372,9 @@ help:
 	@echo "... depends/imgui/imgui_widgets.o"
 	@echo "... depends/imgui/imgui_widgets.i"
 	@echo "... depends/imgui/imgui_widgets.s"
+	@echo "... src/cage.o"
+	@echo "... src/cage.i"
+	@echo "... src/cage.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

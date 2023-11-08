@@ -14,6 +14,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/string_cast.hpp>
 #include <iostream>
+#include <vector>
 #include "cage.hpp"
 using namespace std;
 // Globals
@@ -102,37 +103,37 @@ int main(int, char **)
     glGenBuffers(1, &VBO_controlPoints);
     glGenVertexArrays(1, &VAO_controlPoints);
 
-    char *file1 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/body2d.obj";
-    char *file2 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/lh2d.obj";
-    char *file3 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rh2d.obj";
-    char *file4 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/head-new2d.obj";
-    char *file5 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rl2d.obj";
-    char *file6 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/ll2d.obj";
+    char *file1 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/body2d.obj";
+    char *file2 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/lh2d.obj";
+    char *file3 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rh2d.obj";
+    char *file4 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/head-new2d.obj";
+    char *file5 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rl2d.obj";
+    char *file6 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/ll2d.obj";
 
     int mesh1size = LoadObj(file1, shaderProgram, VAO);
 
     Cage c1 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
-    int cage1size = c1.createCage(shaderProgram, cage1_VAO);
+    int cage1size = c1.createCage(shaderProgram, cage1_VAO, controlPoints);
     setter();
     int mesh2size = LoadObj(file2, shaderProgram, VAO2);
     Cage c2 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
-    int cage2size = c2.createCage(shaderProgram, cage2_VAO);
+    int cage2size = c2.createCage(shaderProgram, cage2_VAO, controlPoints);
     setter();
     int mesh3size = LoadObj(file3, shaderProgram, VAO3);
     Cage c3 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
-    int cage3size = c3.createCage(shaderProgram, cage3_VAO);
+    int cage3size = c3.createCage(shaderProgram, cage3_VAO, controlPoints);
     setter();
     int mesh4size = LoadObj(file4, shaderProgram, VAO4);
     Cage c4 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
-    int cage4size = c4.createCage(shaderProgram, cage4_VAO);
+    int cage4size = c4.createCage(shaderProgram, cage4_VAO, controlPoints);
     setter();
     int mesh5size = LoadObj(file5, shaderProgram, VAO5);
     Cage c5 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
-    int cage5size = c5.createCage(shaderProgram, cage5_VAO);
+    int cage5size = c5.createCage(shaderProgram, cage5_VAO, controlPoints);
     setter();
     int mesh6size = LoadObj(file6, shaderProgram, VAO6);
     Cage c6 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
-    int cage6size = c6.createCage(shaderProgram, cage6_VAO);
+    int cage6size = c6.createCage(shaderProgram, cage6_VAO, controlPoints);
 
     // for (auto i : c6.cage)
     // {

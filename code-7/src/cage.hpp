@@ -6,15 +6,15 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/string_cast.hpp>
 #include <utils.h>
+
 // #include <utils/utils.hpp>
 // #include <iostream>
-// using namespace std;
+using namespace std;
 class Cage
 {
 private:
     int grid[101][101];
 
-    
     GLfloat max_x_coord = INT_MIN;
     GLfloat max_y_coord = INT_MIN;
     GLfloat max_z_coord = INT_MIN;
@@ -39,9 +39,8 @@ public:
         min_z_coord = min_z;
         max_z_coord = max_z;
     }
-    int createCage(unsigned int &program, unsigned int &obj_VAO);
-   
-    void createGrid();
-    
+    int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &points);
 
+    void createGrid();
+};
 #endif

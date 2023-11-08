@@ -13,6 +13,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o.d"
   "CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o"
   "CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o.d"
+  "CMakeFiles/Assignment03.dir/src/cage.cpp.o"
+  "CMakeFiles/Assignment03.dir/src/cage.cpp.o.d"
   "CMakeFiles/Assignment03.dir/src/main.cpp.o"
   "CMakeFiles/Assignment03.dir/src/main.cpp.o.d"
   "CMakeFiles/Assignment03.dir/src/utils.cpp.o"
