@@ -297,15 +297,15 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/main.o: src/cage.cpp.o
-.PHONY : src/cage.cpp.o
+src/cage.o: src/cage.cpp.o
+.PHONY : src/cage.o
 
 # target to build an object file
 src/cage.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/cage.cpp.o
 .PHONY : src/cage.cpp.o
 
-src/main.i: src/cage.cpp.i
+src/cage.i: src/cage.cpp.i
 .PHONY : src/cage.i
 
 # target to preprocess a source file
@@ -313,7 +313,7 @@ src/cage.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Assignment03.dir/build.make CMakeFiles/Assignment03.dir/src/cage.cpp.i
 .PHONY : src/cage.cpp.i
 
-src/main.s: src/cage.cpp.s
+src/cage.s: src/cage.cpp.s
 .PHONY : src/cage.s
 
 # target to generate assembly for a file

@@ -14,7 +14,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/string_cast.hpp>
 #include <iostream>
-#include <cage.hpp>
+#include "cage.hpp"
 using namespace std;
 // Globals
 int screen_width = 640, screen_height = 640;
@@ -38,11 +38,12 @@ GLfloat max_z_coord = INT_MIN;
 vector<float> controlPoints;
 
 int LoadObj(char *, unsigned int &, unsigned int &);
-int createCage(unsigned int &, unsigned int &, vector<float> &);
+
 void setupModelTransformation(unsigned int &);
 void setupViewTransformation(unsigned int &);
 void setupProjectionTransformation(unsigned int &);
 glm::vec3 getTrackBallVector(double x, double y);
+void setter();
 
 vector<float> cage1;
 vector<float> cage2;
@@ -107,27 +108,36 @@ int main(int, char **)
     char *file4 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/head-new2d.obj";
     char *file5 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rl2d.obj";
     char *file6 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/ll2d.obj";
-    Cage c;
-    int x = c.createCage(shaderProgram, cage1_VAO);
-    cout << x << endl;
+
     int mesh1size = LoadObj(file1, shaderProgram, VAO);
-    int cage1size = createCage(shaderProgram, cage1_VAO, cage1);
 
+    Cage c1 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
+    int cage1size = c1.createCage(shaderProgram, cage1_VAO);
+    setter();
     int mesh2size = LoadObj(file2, shaderProgram, VAO2);
-    int cage2size = createCage(shaderProgram, cage2_VAO, cage2);
-
+    Cage c2 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
+    int cage2size = c2.createCage(shaderProgram, cage2_VAO);
+    setter();
     int mesh3size = LoadObj(file3, shaderProgram, VAO3);
-    int cage3size = createCage(shaderProgram, cage3_VAO, cage3);
-
+    Cage c3 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
+    int cage3size = c3.createCage(shaderProgram, cage3_VAO);
+    setter();
     int mesh4size = LoadObj(file4, shaderProgram, VAO4);
-    int cage4size = createCage(shaderProgram, cage4_VAO, cage4);
-
+    Cage c4 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
+    int cage4size = c4.createCage(shaderProgram, cage4_VAO);
+    setter();
     int mesh5size = LoadObj(file5, shaderProgram, VAO5);
-    int cage5size = createCage(shaderProgram, cage5_VAO, cage5);
-
+    Cage c5 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
+    int cage5size = c5.createCage(shaderProgram, cage5_VAO);
+    setter();
     int mesh6size = LoadObj(file6, shaderProgram, VAO6);
-    int cage6size = createCage(shaderProgram, cage6_VAO, cage6);
+    Cage c6 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
+    int cage6size = c6.createCage(shaderProgram, cage6_VAO);
 
+    // for (auto i : c6.cage)
+    // {
+    //     cout << i << endl;
+    // }
     oldX = oldY = currentX = currentY = 0.0;
     int prevLeftButtonState = GLFW_RELEASE;
 
@@ -263,178 +273,8 @@ int main(int, char **)
 
     return 0;
 }
-int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage)
+void setter()
 {
-    glUseProgram(program);
-
-    // Bind shader variables
-    int vVertex_attrib = glGetAttribLocation(program, "vVertex");
-    if (vVertex_attrib == -1)
-    {
-        fprintf(stderr, "Could not bind location: vVertex\n");
-        exit(0);
-    }
-
-    vector<float> v;
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(min_z_coord - 0.2);
-
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(min_z_coord - 0.2);
-
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(min_z_coord - 0.2);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(min_z_coord - 0.2);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(min_z_coord - 0.2);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(min_z_coord - 0.2);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(min_z_coord - 0.2);
-
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(min_z_coord - 0.2);
-
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(max_z_coord + 0.2);
-
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(max_z_coord + 0.2);
-
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(max_z_coord + 0.2);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(max_z_coord + 0.2);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(max_z_coord + 0.2);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(max_z_coord + 0.2);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(max_z_coord + 0.2);
-
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(max_z_coord + 0.2);
-
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(min_z_coord - 0.2);
-
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(max_z_coord + 0.2);
-
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(min_z_coord - 0.2);
-
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(max_z_coord + 0.2);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(min_z_coord - 0.2);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(max_z_coord + 0.2);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(min_z_coord - 0.2);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(max_z_coord + 0.2);
-    int grid[100][100];
-    int stepx = (max_x_coord - min_x_coord) / 100;
-    int stepy = (max_y_coord - min_y_coord) / 100;
-    // for (int i = min_x_coord; i <= max_x_coord; i += stepx)
-    // {
-    //     for (int j = min_y_coord; j <= max_y_coord; j += stepy)
-    //     {
-    //         if (i == max_x_coord || i == min_x_coord || j == min_y_coord || j == max_y_coord)
-    //         {
-    //             // Exterior/Boundary
-    //             grid[i][j] = 1;
-    //         }
-    //         else
-    //         {
-    //             // Interior
-    //             grid[i][j] = -1;
-    //         }
-    //     }
-    // }
-    vector<float> cubicBezier;
-
-    bool first = true;
-    int sz = cage.size(); // Contains 3 points/vertex. Ignore Z
-    float x[4], y[4], z[4];
-    float delta_t = 1.0 / (100.0 - 1.0);
-    float t;
-    float prevX, prevY;
-
-    for (int i = 0; i < (sz - 3); i += 3)
-    {
-        x[0] = cage[i];
-        y[0] = cage[i + 1];
-        z[0] = cage[i + 2];
-        x[3] = cage[i + 3];
-        y[3] = cage[i + 4];
-        z[3] = cage[i + 5];
-        cubicBezier.push_back(x[0]);
-        cubicBezier.push_back(y[0]);
-        cubicBezier.push_back(z[0]);
-        controlPoints.push_back(x[0]);
-        controlPoints.push_back(y[0]);
-        controlPoints.push_back(z[0]);
-    }
-
-    cubicBezier.push_back(x[3]);
-    cubicBezier.push_back(y[3]);
-    cubicBezier.push_back(z[3]);
-    controlPoints.push_back(x[3]);
-    controlPoints.push_back(y[3]);
-    controlPoints.push_back(z[3]);
-
-    glGenVertexArrays(1, &obj_VAO);
-    glBindVertexArray(obj_VAO);
-    GLuint vertex_VBO;
-    // cout << v.size() << endl;
-
-    glGenBuffers(1, &vertex_VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
-    glBufferData(GL_ARRAY_BUFFER, cubicBezier.size() * sizeof(GLfloat), &cubicBezier[0], GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
-
     min_x_coord = INT_MAX;
     min_y_coord = INT_MAX;
     min_z_coord = INT_MAX;
@@ -442,8 +282,6 @@ int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &cage
     max_x_coord = INT_MIN;
     max_y_coord = INT_MIN;
     max_z_coord = INT_MIN;
-
-    return cubicBezier.size();
 }
 int LoadObj(char *path, unsigned int &program, unsigned int &obj_VAO)
 {

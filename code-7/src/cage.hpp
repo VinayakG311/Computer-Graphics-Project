@@ -8,21 +8,32 @@ using namespace std;
 class Cage
 {
 private:
-    int grid[100][100];
+    int grid[101][101];
 
     GLfloat max_x_coord = INT_MIN;
     GLfloat max_y_coord = INT_MIN;
-
+    GLfloat max_z_coord = INT_MIN;
     GLfloat min_x_coord = INT_MAX;
     GLfloat min_y_coord = INT_MAX;
-
     GLfloat min_z_coord = INT_MAX;
-    GLfloat max_z_coord = INT_MIN;
 
 public:
     vector<float> cage;
     vector<float> controlPoints;
-    Cage() {}
+    Cage(GLfloat max_x,
+         GLfloat max_y,
+         GLfloat min_x,
+         GLfloat min_y,
+         GLfloat min_z,
+         GLfloat max_z)
+    {
+        max_x_coord = max_x;
+        max_y_coord = max_y;
+        min_x_coord = min_x;
+        min_y_coord = min_y;
+        min_z_coord = min_z;
+        max_z_coord = max_z;
+    }
     int createCage(unsigned int &program, unsigned int &obj_VAO)
     {
         glUseProgram(program);
@@ -131,25 +142,7 @@ public:
         cage.push_back(max_x_coord + 0.2);
         cage.push_back(max_y_coord + 0.2);
         cage.push_back(max_z_coord + 0.2);
-        int grid[100][100];
-        int stepx = (max_x_coord - min_x_coord) / 100;
-        int stepy = (max_y_coord - min_y_coord) / 100;
-        // for (int i = min_x_coord; i <= max_x_coord; i += stepx)
-        // {
-        //     for (int j = min_y_coord; j <= max_y_coord; j += stepy)
-        //     {
-        //         if (i == max_x_coord || i == min_x_coord || j == min_y_coord || j == max_y_coord)
-        //         {
-        //             // Exterior/Boundary
-        //             grid[i][j] = 1;
-        //         }
-        //         else
-        //         {
-        //             // Interior
-        //             grid[i][j] = -1;
-        //         }
-        //     }
-        // }
+
         vector<float> cubicBezier;
 
         bool first = true;
@@ -195,14 +188,28 @@ public:
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(0);
 
-        min_x_coord = INT_MAX;
-        min_y_coord = INT_MAX;
-        min_z_coord = INT_MAX;
-
-        max_x_coord = INT_MIN;
-        max_y_coord = INT_MIN;
-        max_z_coord = INT_MIN;
-
         return cubicBezier.size();
+    }
+
+    void createGrid()
+    {
+        int stepx = (max_x_coord - min_x_coord) / 100;
+        int stepy = (max_y_coord - min_y_coord) / 100;
+        for (int i = min_x_coord; i <= max_x_coord; i += stepx)
+        {
+            for (int j = min_y_coord; j <= max_y_coord; j += stepy)
+            {
+                if (i == max_x_coord || i == min_x_coord || j == min_y_coord || j == max_y_coord)
+                {
+                    // Exterior/Boundary
+                    grid[i][j] = 1;
+                }
+                else
+                {
+                    // Interior
+                    grid[i][j] = -1;
+                }
+            }
+        }
     }
 };
