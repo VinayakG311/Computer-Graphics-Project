@@ -1,3 +1,0 @@
-/Users/vinayakarora/Computer-Graphics-Project/code-7/CMakeFiles/Assignment03.dir
-/Users/vinayakarora/Computer-Graphics-Project/code-7/CMakeFiles/edit_cache.dir
-/Users/vinayakarora/Computer-Graphics-Project/code-7/CMakeFiles/rebuild_cache.dir

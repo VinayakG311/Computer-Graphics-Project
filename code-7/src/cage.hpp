@@ -6,7 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/string_cast.hpp>
 #include <utils.h>
-
+#include <map>
 // #include <utils/utils.hpp>
 // #include <iostream>
 using namespace std;
@@ -19,6 +19,15 @@ private:
     GLfloat min_x_coord = INT_MAX;
     GLfloat min_y_coord = INT_MAX;
     GLfloat min_z_coord = INT_MAX;
+
+    GLfloat topboundayVertexX;
+    GLfloat topboundayVertexY;
+    GLfloat bottomboundayVertexX;
+    GLfloat bottomboundayVertexY;
+
+
+
+    map<int,vector<vector<float> > > harmonic;
 
 public:
     float grid[101][101];
@@ -37,6 +46,13 @@ public:
         min_y_coord = min_y;
         min_z_coord = min_z;
         max_z_coord = max_z;
+
+        topboundayVertexX = max_x_coord+0.2;
+        topboundayVertexY = max_y_coord+0.2;
+
+        bottomboundayVertexX = min_x_coord-0.2;
+        bottomboundayVertexY = min_y_coord-0.2;
+
         for (int i = 0; i <= 100; i++)
         {
             for (int j = 0; j <= 100; j++)
@@ -44,11 +60,27 @@ public:
                 grid[i][j] = 0;
             }
         }
+
+        for(int i = 0;i<4;i++){
+            vector<float> temp;
+             for (int j = 0; j <= 128; j++)
+                {
+                    vector<float> temp;
+                    for (int k = 0; k <= 128; k++)
+                        {
+                           temp.push_back(0);
+                        }
+
+                        harmonic[i].push_back(temp);
+                }
+        }
     }
     int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &points);
 
     void createGrid();
 
     bool RecomputeVertex(vector<GLfloat> &mesh);
+
+    void handleEdge(int curr,float x,float y);
 };
 #endif
