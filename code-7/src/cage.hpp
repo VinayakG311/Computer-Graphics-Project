@@ -49,6 +49,6 @@ public:
 
     void createGrid();
 
-    void RecomputeVertex(vector<GLfloat> &mesh);
+    bool RecomputeVertex(vector<GLfloat> &mesh);
 };
 #endif

@@ -228,7 +228,7 @@ void Cage::createGrid()
     }
 }
 
-void Cage::RecomputeVertex(vector<GLfloat> &mesh)
+bool Cage::RecomputeVertex(vector<GLfloat> &mesh)
 {
     int sz = mesh.size();
     for (int i = 0; i < mesh.size() / 3; i++)
@@ -249,4 +249,5 @@ void Cage::RecomputeVertex(vector<GLfloat> &mesh)
         mesh[i * 3] = new_x;
         mesh[i * 3 + 1] = new_y;
     }
+    return true;
 }

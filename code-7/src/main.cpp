@@ -26,7 +26,8 @@ int val, val2; // The model, view and projection transformations
 // vector<float> v;
 double oldX, oldY, currentX, currentY;
 bool isDragging = false;
-
+bool rotater = true;
+bool editer = false;
 GLfloat max_x_coord = INT_MIN;
 GLfloat max_y_coord = INT_MIN;
 
@@ -36,11 +37,19 @@ GLfloat min_y_coord = INT_MAX;
 GLfloat min_z_coord = INT_MAX;
 GLfloat max_z_coord = INT_MIN;
 vector<GLfloat> VertexData;
+bool controlPointsUpdated;
+bool controlPointsFinished;
+int selectedControlPoint;
+
+float selectionThreshold = 3.0f; // Select any control point within 3 pixels of vicinity.
+std::vector<float> rawControlPoints;
 
 vector<float> controlPoints;
 
 int LoadObj(char *, unsigned int &, unsigned int &);
-
+void editControlPoint(std::vector<float> &, float, float, int, int);
+bool searchNearestControlPoint(float, float);
+void mousemoved();
 void setupModelTransformation(unsigned int &);
 void setupViewTransformation(unsigned int &);
 void setupProjectionTransformation(unsigned int &);
@@ -118,12 +127,10 @@ int main(int, char **)
     // char *file6 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/ll2d.obj";
 
     int mesh1size = LoadObj(file1, shaderProgram, VAO);
-
     Cage c1 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
     int cage1size = c1.createCage(shaderProgram, cage1_VAO, controlPoints);
     setter();
     c1.createGrid();
-    c1.RecomputeVertex(VertexData);
     VertexData.clear();
     int mesh2size = LoadObj(file2, shaderProgram, VAO2);
     Cage c2 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
@@ -150,54 +157,94 @@ int main(int, char **)
     int cage6size = c6.createCage(shaderProgram, cage6_VAO, controlPoints);
     setter();
     c6.createGrid();
-    // for (auto i : c6.cage)
-    // {
-    //     cout << i << endl;
-    // }
+
     oldX = oldY = currentX = currentY = 0.0;
     int prevLeftButtonState = GLFW_RELEASE;
-
+    float x, y;
     while (!glfwWindowShouldClose(window))
     {
 
         glfwPollEvents();
+        if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_Z)))
+        { // Stop adding points
 
-        // Get current mouse position
-        int leftButtonState = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
-        double x, y;
-        glfwGetCursorPos(window, &x, &y);
-        if (leftButtonState == GLFW_PRESS && prevLeftButtonState == GLFW_RELEASE)
-        {
-            isDragging = true;
-            currentX = oldX = x;
-            currentY = oldY = y;
+            rotater = false;
+            editer = true;
         }
-        else if (leftButtonState == GLFW_PRESS && prevLeftButtonState == GLFW_PRESS)
-        {
-            currentX = x;
-            currentY = y;
+        if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_X)))
+        { // Stop adding points
+            rotater = true;
+
+            editer = false;
         }
-        else if (leftButtonState == GLFW_RELEASE && prevLeftButtonState == GLFW_PRESS)
+        if (editer)
         {
-            isDragging = false;
+            if (!ImGui::IsAnyItemActive())
+            {
+                if (ImGui::IsMouseClicked(ImGuiMouseButton_Left))
+                {
+                    x = io.MousePos.x;
+                    y = io.MousePos.y;
+                    searchNearestControlPoint(x, y);
+                }
+
+                if (ImGui::IsMouseDragging(ImGuiMouseButton_Left))
+                {
+                    if (selectedControlPoint >= 0)
+                    {
+                        x = io.MousePos.x;
+                        y = io.MousePos.y;
+                        editControlPoint(controlPoints, x, y, screen_width, screen_height);
+                        controlPointsUpdated = true;
+                    }
+                }
+
+                if (ImGui::IsMouseClicked(ImGuiMouseButton_Right))
+                { // Stop adding points
+                    controlPointsFinished = true;
+                }
+            }
         }
-
-        // Rotate based on mouse drag movement
-        prevLeftButtonState = leftButtonState;
-        if (isDragging && (currentX != oldX || currentY != oldY))
+        if (rotater)
         {
-            glm::vec3 va = getTrackBallVector(oldX, oldY);
-            glm::vec3 vb = getTrackBallVector(currentX, currentY);
 
-            float angle = acos(std::min(1.0f, glm::dot(va, vb)));
-            glm::vec3 axis_in_camera_coord = glm::cross(va, vb);
-            glm::mat3 camera2object = glm::inverse(glm::mat3(viewT * modelT));
-            glm::vec3 axis_in_object_coord = camera2object * axis_in_camera_coord;
-            modelT = glm::rotate(modelT, angle, axis_in_object_coord);
-            glUniformMatrix4fv(vModel_uniform, 1, GL_FALSE, glm::value_ptr(modelT));
+            // Get current mouse position
+            int leftButtonState = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
+            double x, y;
+            glfwGetCursorPos(window, &x, &y);
+            if (leftButtonState == GLFW_PRESS && prevLeftButtonState == GLFW_RELEASE)
+            {
+                isDragging = true;
+                currentX = oldX = x;
+                currentY = oldY = y;
+            }
+            else if (leftButtonState == GLFW_PRESS && prevLeftButtonState == GLFW_PRESS)
+            {
+                currentX = x;
+                currentY = y;
+            }
+            else if (leftButtonState == GLFW_RELEASE && prevLeftButtonState == GLFW_PRESS)
+            {
+                isDragging = false;
+            }
 
-            oldX = currentX;
-            oldY = currentY;
+            // Rotate based on mouse drag movement
+            prevLeftButtonState = leftButtonState;
+            if (isDragging && (currentX != oldX || currentY != oldY))
+            {
+                glm::vec3 va = getTrackBallVector(oldX, oldY);
+                glm::vec3 vb = getTrackBallVector(currentX, currentY);
+
+                float angle = acos(std::min(1.0f, glm::dot(va, vb)));
+                glm::vec3 axis_in_camera_coord = glm::cross(va, vb);
+                glm::mat3 camera2object = glm::inverse(glm::mat3(viewT * modelT));
+                glm::vec3 axis_in_object_coord = camera2object * axis_in_camera_coord;
+                modelT = glm::rotate(modelT, angle, axis_in_object_coord);
+                glUniformMatrix4fv(vModel_uniform, 1, GL_FALSE, glm::value_ptr(modelT));
+
+                oldX = currentX;
+                oldY = currentY;
+            }
         }
 
         // Start the Dear ImGui frame
@@ -445,4 +492,55 @@ glm::vec3 getTrackBallVector(double x, double y)
     else
         p = glm::normalize(p); // Nearest point, close to the sides of the trackball
     return p;
+}
+
+void mousemoved()
+{
+    // Get the control point that was edited using edit and search from below
+
+    // get the cage whose control point was edited
+
+    // use recompute for that cage
+
+    // and edit the meshes so that new mesh is rendered
+}
+bool searchNearestControlPoint(float x, float y)
+{
+    size_t npts = rawControlPoints.size() / 2;
+    if (npts > 0)
+    {
+        float _x, _y, dist2 = 0.0f;
+        float thresh2 = selectionThreshold * selectionThreshold;
+        for (size_t i = 0; i < npts; i++)
+        {
+            _x = rawControlPoints[2 * i];
+            _y = rawControlPoints[2 * i + 1];
+            dist2 = (x - _x) * (x - _x) + (y - _y) * (y - _y);
+            if (dist2 <= thresh2)
+            {
+                selectedControlPoint = i;
+                return 1;
+            }
+        }
+    }
+
+    selectedControlPoint = -1;
+    return 0;
+}
+
+void editControlPoint(std::vector<float> &points, float x, float y, int w, int h)
+{
+    if (selectedControlPoint < 0)
+        return;
+    if (selectedControlPoint >= points.size() / 3)
+        return;
+
+    float rescaled_x = -1.0 + ((1.0 * x - 0) / (w - 0)) * (1.0 - (-1.0));
+    float rescaled_y = -1.0 + ((1.0 * (h - y) - 0) / (h - 0)) * (1.0 - (-1.0));
+    points[selectedControlPoint * 3] = rescaled_x;
+    points[selectedControlPoint * 3 + 1] = rescaled_y;
+    points[selectedControlPoint * 3 + 2] = 0.0; // Z-coordinate
+
+    rawControlPoints[selectedControlPoint * 2] = x;
+    rawControlPoints[selectedControlPoint * 2 + 1] = y;
 }
