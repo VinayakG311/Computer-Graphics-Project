@@ -114,32 +114,32 @@ int main(int, char **)
     glGenBuffers(1, &VBO_controlPoints);
     glGenVertexArrays(1, &VAO_controlPoints);
 
-    // char *file1 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/body2d.obj";
-    // char *file2 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/lh2d.obj";
-    // char *file3 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rh2d.obj";
-    // char *file4 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/head-new2d.obj";
-    // char *file5 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rl2d.obj";
-    // char *file6 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/ll2d.obj";
+    char *file1 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/body2d.obj";
+    char *file2 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/lh2d.obj";
+    char *file3 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rh2d.obj";
+    char *file4 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/head-new2d.obj";
+    char *file5 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rl2d.obj";
+    char *file6 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/ll2d.obj";
 
-    char *file1 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/body2d.obj";
-    char *file2 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/lh2d.obj";
-    char *file3 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rh2d.obj";
-    char *file4 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/head-new2d.obj";
-    char *file5 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rl2d.obj";
-    char *file6 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/ll2d.obj";
+    // char *file1 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/body2d.obj";
+    // char *file2 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/lh2d.obj";
+    // char *file3 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rh2d.obj";
+    // char *file4 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/head-new2d.obj";
+    // char *file5 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rl2d.obj";
+    // char *file6 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/ll2d.obj";
 
     int mesh1size = LoadObj(file1, shaderProgram, VAO);
     Cage c1 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
     int cage1size = c1.createCage(shaderProgram, cage1_VAO, controlPoints);
     setter();
     c1.createGrid();
-    
+
     VertexData.clear();
     int mesh2size = LoadObj(file2, shaderProgram, VAO2);
     Cage c2 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
     int cage2size = c2.createCage(shaderProgram, cage2_VAO, controlPoints);
     setter();
-     c2.createGrid();
+    c2.createGrid();
     int mesh3size = LoadObj(file3, shaderProgram, VAO3);
     Cage c3 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
     int cage3size = c3.createCage(shaderProgram, cage3_VAO, controlPoints);
@@ -165,12 +165,11 @@ int main(int, char **)
     int prevLeftButtonState = GLFW_RELEASE;
     float x, y;
 
-
-    for(int i = 0;i<controlPoints.size();i++){
+    for (int i = 0; i < controlPoints.size(); i++)
+    {
         rawControlPoints.push_back(controlPoints[i]);
         // cout<<controlPoints[i]<<" ";
     }
-
 
     while (!glfwWindowShouldClose(window))
     {
@@ -192,24 +191,23 @@ int main(int, char **)
         {
             if (!ImGui::IsAnyItemActive())
             {
-                
+
                 if (ImGui::IsMouseClicked(ImGuiMouseButton_Left))
                 {
                     x = io.MousePos.x;
                     y = io.MousePos.y;
                     searchNearestControlPoint(x, y);
                     //  cout<<selectedControlPoint<<" ";
-                   
                 }
 
                 if (ImGui::IsMouseDragging(ImGuiMouseButton_Left))
                 {
-                   
+
                     if (selectedControlPoint >= 0)
                     {
                         x = io.MousePos.x;
                         y = io.MousePos.y;
-                        cout<<x<<" "<<y<<" ";
+                        cout << x << " " << y << " ";
                         editControlPoint(controlPoints, x, y, screen_width, screen_height);
                         controlPointsUpdated = true;
                     }
@@ -221,21 +219,19 @@ int main(int, char **)
                 }
             }
 
-
-
-            if(controlPointsUpdated){
-                 glBindVertexArray(VAO_controlPoints);
+            if (controlPointsUpdated)
+            {
+                glBindVertexArray(VAO_controlPoints);
                 glBindBuffer(GL_ARRAY_BUFFER, VBO_controlPoints);
-                glBufferData(GL_ARRAY_BUFFER, controlPoints.size()*sizeof(GLfloat), &controlPoints[0], GL_DYNAMIC_DRAW);
-                glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-                glEnableVertexAttribArray(0); //Enable first attribute buffer (ve
+                glBufferData(GL_ARRAY_BUFFER, controlPoints.size() * sizeof(GLfloat), &controlPoints[0], GL_DYNAMIC_DRAW);
+                glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+                glEnableVertexAttribArray(0); // Enable first attribute buffer (ve
                 // cout<<"Here"<<" ";
             }
 
             // if(controlPointsUpdated){
             //     computeCage();
             // }
-
         }
         if (rotater)
         {
@@ -541,7 +537,8 @@ bool searchNearestControlPoint(float x, float y)
     size_t npts = rawControlPoints.size() / 2;
     if (npts > 0)
     {
-        cout<<"Here"<<" ";
+        cout << "Here"
+             << " ";
         float _x, _y, dist2 = 0.0f;
         float thresh2 = selectionThreshold * selectionThreshold;
         for (size_t i = 0; i < npts; i++)
@@ -552,7 +549,7 @@ bool searchNearestControlPoint(float x, float y)
             if (dist2 <= thresh2)
             {
                 selectedControlPoint = i;
-                cout<<selectedControlPoint<<" ";
+                cout << selectedControlPoint << " ";
                 return 1;
             }
         }
@@ -578,7 +575,6 @@ void editControlPoint(std::vector<float> &points, float x, float y, int w, int h
     rawControlPoints[selectedControlPoint * 2] = x;
     rawControlPoints[selectedControlPoint * 2 + 1] = y;
 }
-
 
 // void computeCage(){
 

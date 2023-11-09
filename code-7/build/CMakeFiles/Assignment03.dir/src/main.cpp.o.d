@@ -1081,4 +1081,6 @@ CMakeFiles/Assignment03.dir/src/main.cpp.o: \
   /opt/homebrew/include/glm/gtx/dual_quaternion.inl \
   /opt/homebrew/include/glm/gtx/../geometric.hpp \
   /opt/homebrew/include/glm/gtx/string_cast.inl \
-  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/cage.hpp
+  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/cage.hpp \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/map \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__tree
