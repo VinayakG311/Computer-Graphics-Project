@@ -13,8 +13,6 @@ using namespace std;
 class Cage
 {
 private:
-    int grid[101][101];
-
     GLfloat max_x_coord = INT_MIN;
     GLfloat max_y_coord = INT_MIN;
     GLfloat max_z_coord = INT_MIN;
@@ -23,6 +21,7 @@ private:
     GLfloat min_z_coord = INT_MAX;
 
 public:
+    float grid[101][101];
     std::vector<float> cage;
     std::vector<float> controlPoints;
     Cage(GLfloat max_x,
@@ -38,6 +37,13 @@ public:
         min_y_coord = min_y;
         min_z_coord = min_z;
         max_z_coord = max_z;
+        for (int i = 0; i <= 100; i++)
+        {
+            for (int j = 0; j <= 100; j++)
+            {
+                grid[i][j] = 0;
+            }
+        }
     }
     int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &points);
 

@@ -161,24 +161,40 @@ int Cage::createCage(unsigned int &program, unsigned int &obj_VAO, vector<float>
     return cubicBezier.size();
 }
 
-// void Cage::createGrid()
-// {
-//     float stepx = (max_x_coord - min_x_coord) / 100;
-//     float stepy = (max_y_coord - min_y_coord) / 100;
-//     for (float i = min_x_coord; i <= max_x_coord; i += stepx)
-//     {
-//         for (float j = min_y_coord; j <= max_y_coord; j += stepy)
-//         {
-//             if (i == max_x_coord || i == min_x_coord || j == min_y_coord || j == max_y_coord)
-//             {
-//                 // Exterior/Boundary
-//                 grid[i][j] = 1;
-//             }
-//             else
-//             {
-//                 // Interior
-//                 grid[i][j] = -1;
-//             }
-//         }
-//     }
-// }
+void Cage::createGrid()
+{
+    float stepx = (max_x_coord - min_x_coord) / 100;
+    float stepy = (max_y_coord - min_y_coord) / 100;
+    bool breaker = false;
+    while (true)
+    {
+        if (breaker)
+        {
+            break;
+        }
+        for (int i = 0; i <= 100; i++)
+        {
+            for (int j = 0; j <= 100; j++)
+            {
+                float coord_x = min_x_coord + i * stepx;
+                float coord_y = min_y_coord + j * stepy;
+                if (coord_x == max_x_coord || coord_x == min_x_coord || coord_y == min_y_coord || coord_y == max_y_coord)
+                {
+                    // Exterior/Boundary
+
+                    grid[i][j] = 1;
+                }
+                else
+                {
+                    // Interior
+                    int prev = grid[i][j];
+                    grid[i][j] = (grid[i - 1][j] + grid[i][j - 1] + grid[i + 1][j] + grid[i][j + 1]) / 4;
+                    if (abs(grid[i][j] - prev) < 0.001)
+                    {
+                        breaker = true;
+                    }
+                }
+            }
+        }
+    }
+}

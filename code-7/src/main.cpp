@@ -115,6 +115,15 @@ int main(int, char **)
     Cage c1 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
     int cage1size = c1.createCage(shaderProgram, cage1_VAO, controlPoints);
     setter();
+    c1.createGrid();
+    // for (int i = 0; i <= 100; i++)
+    // {
+    //     for (int j = 0; j <= 100; j++)
+    //     {
+    //         cout << c1.grid[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
     int mesh2size = LoadObj(file2, shaderProgram, VAO2);
     Cage c2 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
     int cage2size = c2.createCage(shaderProgram, cage2_VAO, controlPoints);
