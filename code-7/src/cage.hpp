@@ -48,5 +48,7 @@ public:
     int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &points);
 
     void createGrid();
+
+    void RecomputeVertex(vector<GLfloat> &mesh);
 };
 #endif

@@ -189,7 +189,6 @@ void Cage::createGrid()
                     // Exterior/Boundary
 
                     grid[i][j] = 1;
-                    
                 }
                 else
                 {
@@ -199,38 +198,55 @@ void Cage::createGrid()
 
                     float check = 0;
                     int neighbors = 0;
-                    if(i>0){
-                        check+=grid[i-1][j];
+                    if (i > 0)
+                    {
+                        check += grid[i - 1][j];
                         neighbors++;
-                        
                     }
-                    if(j>0){
-                        check+=grid[i][j-1];
+                    if (j > 0)
+                    {
+                        check += grid[i][j - 1];
                         neighbors++;
-                        
                     }
-                    check+=(grid[i][j+1]+grid[i+1][j]);
-                    neighbors+=2;
-                   
+                    check += (grid[i][j + 1] + grid[i + 1][j]);
+                    neighbors += 2;
+
                     // grid[i][j] = (grid[i - 1][j] + grid[i][j - 1] + grid[i + 1][j] + grid[i][j + 1]) / 4;
 
                     grid[i][j] = check / (float)neighbors;
                     // std::cout<<grid[i][j]<<" ";
-                    changeInval+=abs(grid[i][j] - prev);
-                  
+                    changeInval += abs(grid[i][j] - prev);
                 }
             }
         }
         // std::cout<<changeInval<<" ";
-        if( ((changeInval) / (float)numOfcoord) < 0.001f ){
+        if (((changeInval) / (float)numOfcoord) < 0.001f)
+        {
             breaker = true;
             break;
         }
     }
+}
 
-    // for(int i = 0;i<100;i++){
-    //     for(int j = 0;j<100;j++){
-    //         std::cout<<grid[i][j]<<"\n";
-    //     }
-    // }
+void Cage::RecomputeVertex(vector<GLfloat> &mesh)
+{
+    int sz = mesh.size();
+    for (int i = 0; i < mesh.size() / 3; i++)
+    {
+        float stepx = (max_x_coord - min_x_coord) / 100;
+        float stepy = (max_y_coord - min_y_coord) / 100;
+        GLfloat old_x = mesh[i * 3];
+        GLfloat old_y = mesh[i * 3 + 1];
+
+        int map_x = (old_x - min_x_coord) / stepx;
+        int map_y = (old_y - min_y_coord) / stepy;
+        GLfloat new_x, new_y;
+        for (int j = 0; j < controlPoints.size() / 3; j++)
+        {
+            new_x += grid[map_x][map_y] * (controlPoints[j * 3]);
+            new_y += grid[map_x][map_y] * (controlPoints[j * 3 + 1]);
+        }
+        mesh[i * 3] = new_x;
+        mesh[i * 3 + 1] = new_y;
+    }
 }

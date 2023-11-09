@@ -35,6 +35,7 @@ GLfloat min_y_coord = INT_MAX;
 
 GLfloat min_z_coord = INT_MAX;
 GLfloat max_z_coord = INT_MIN;
+vector<GLfloat> VertexData;
 
 vector<float> controlPoints;
 
@@ -52,7 +53,6 @@ vector<float> cage3;
 vector<float> cage4;
 vector<float> cage5;
 vector<float> cage6;
-int grid1[7][7], grid2[7][7], grid3[7][7], grid4[7][7], grid5[7][7], grid6[7][7];
 
 int main(int, char **)
 {
@@ -103,19 +103,19 @@ int main(int, char **)
     glGenBuffers(1, &VBO_controlPoints);
     glGenVertexArrays(1, &VAO_controlPoints);
 
-    // char *file1 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/body2d.obj";
-    // char *file2 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/lh2d.obj";
-    // char *file3 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rh2d.obj";
-    // char *file4 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/head-new2d.obj";
-    // char *file5 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rl2d.obj";
-    // char *file6 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/ll2d.obj";
+    char *file1 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/body2d.obj";
+    char *file2 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/lh2d.obj";
+    char *file3 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rh2d.obj";
+    char *file4 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/head-new2d.obj";
+    char *file5 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rl2d.obj";
+    char *file6 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/ll2d.obj";
 
-     char *file1 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/body2d.obj";
-    char *file2 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/lh2d.obj";
-    char *file3 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rh2d.obj";
-    char *file4 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/head-new2d.obj";
-    char *file5 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rl2d.obj";
-    char *file6 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/ll2d.obj";
+    // char *file1 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/body2d.obj";
+    // char *file2 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/lh2d.obj";
+    // char *file3 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rh2d.obj";
+    // char *file4 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/head-new2d.obj";
+    // char *file5 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rl2d.obj";
+    // char *file6 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/ll2d.obj";
 
     int mesh1size = LoadObj(file1, shaderProgram, VAO);
 
@@ -123,34 +123,33 @@ int main(int, char **)
     int cage1size = c1.createCage(shaderProgram, cage1_VAO, controlPoints);
     setter();
     c1.createGrid();
-    for (int i = 0; i <= 100; i++)
-    {
-        for (int j = 0; j <= 100; j++)
-        {
-            cout << c1.grid[i][j] << " ";
-        }
-        cout << endl;
-    }
+    c1.RecomputeVertex(VertexData);
+    VertexData.clear();
     int mesh2size = LoadObj(file2, shaderProgram, VAO2);
     Cage c2 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
     int cage2size = c2.createCage(shaderProgram, cage2_VAO, controlPoints);
     setter();
+    c2.createGrid();
     int mesh3size = LoadObj(file3, shaderProgram, VAO3);
     Cage c3 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
     int cage3size = c3.createCage(shaderProgram, cage3_VAO, controlPoints);
     setter();
+    c3.createGrid();
     int mesh4size = LoadObj(file4, shaderProgram, VAO4);
     Cage c4 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
     int cage4size = c4.createCage(shaderProgram, cage4_VAO, controlPoints);
     setter();
+    c4.createGrid();
     int mesh5size = LoadObj(file5, shaderProgram, VAO5);
     Cage c5 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
     int cage5size = c5.createCage(shaderProgram, cage5_VAO, controlPoints);
     setter();
+    c5.createGrid();
     int mesh6size = LoadObj(file6, shaderProgram, VAO6);
     Cage c6 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
     int cage6size = c6.createCage(shaderProgram, cage6_VAO, controlPoints);
-
+    setter();
+    c6.createGrid();
     // for (auto i : c6.cage)
     // {
     //     cout << i << endl;
@@ -338,6 +337,9 @@ int LoadObj(char *path, unsigned int &program, unsigned int &obj_VAO)
             VertexDataTemp.push_back(vertices.x * 2);
             VertexDataTemp.push_back(vertices.y * 2);
             VertexDataTemp.push_back(vertices.z * 2);
+            VertexData.push_back(vertices.x * 2);
+            VertexData.push_back(vertices.y * 2);
+            VertexData.push_back(vertices.z * 2);
 
             max_x_coord = max(max_x_coord, vertices.x * 2);
             max_y_coord = max(max_y_coord, vertices.y * 2);
