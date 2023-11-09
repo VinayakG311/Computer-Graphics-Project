@@ -166,35 +166,71 @@ void Cage::createGrid()
     float stepx = (max_x_coord - min_x_coord) / 100;
     float stepy = (max_y_coord - min_y_coord) / 100;
     bool breaker = false;
+
+    float changeInval = 0;
+    int numOfcoord = 0;
+
     while (true)
     {
         if (breaker)
         {
             break;
         }
+        changeInval = 0.0f;
+        numOfcoord = 0;
         for (int i = 0; i <= 100; i++)
         {
             for (int j = 0; j <= 100; j++)
             {
-                float coord_x = min_x_coord + i * stepx;
-                float coord_y = min_y_coord + j * stepy;
+                float coord_x = (min_x_coord + i * stepx);
+                float coord_y = (min_y_coord + j * stepy);
                 if (coord_x == max_x_coord || coord_x == min_x_coord || coord_y == min_y_coord || coord_y == max_y_coord)
                 {
                     // Exterior/Boundary
 
                     grid[i][j] = 1;
+                    
                 }
                 else
                 {
                     // Interior
-                    int prev = grid[i][j];
-                    grid[i][j] = (grid[i - 1][j] + grid[i][j - 1] + grid[i + 1][j] + grid[i][j + 1]) / 4;
-                    if (abs(grid[i][j] - prev) < 0.001)
-                    {
-                        breaker = true;
+                    numOfcoord++;
+                    float prev = grid[i][j];
+
+                    float check = 0;
+                    int neighbors = 0;
+                    if(i>0){
+                        check+=grid[i-1][j];
+                        neighbors++;
+                        
                     }
+                    if(j>0){
+                        check+=grid[i][j-1];
+                        neighbors++;
+                        
+                    }
+                    check+=(grid[i][j+1]+grid[i+1][j]);
+                    neighbors+=2;
+                   
+                    // grid[i][j] = (grid[i - 1][j] + grid[i][j - 1] + grid[i + 1][j] + grid[i][j + 1]) / 4;
+
+                    grid[i][j] = check / (float)neighbors;
+                    // std::cout<<grid[i][j]<<" ";
+                    changeInval+=abs(grid[i][j] - prev);
+                  
                 }
             }
         }
+        // std::cout<<changeInval<<" ";
+        if( ((changeInval) / (float)numOfcoord) < 0.001f ){
+            breaker = true;
+            break;
+        }
     }
+
+    // for(int i = 0;i<100;i++){
+    //     for(int j = 0;j<100;j++){
+    //         std::cout<<grid[i][j]<<"\n";
+    //     }
+    // }
 }
