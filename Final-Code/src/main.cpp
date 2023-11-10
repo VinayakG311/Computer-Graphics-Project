@@ -127,12 +127,12 @@ int main(int, char **)
 
     glGenBuffers(1, &VBO1);
     glGenVertexArrays(1, &VAO1);
-    char *file1 = "../Final-Code/data/body2d.obj";
-    char *file2 = "../Final-Code/data/lh2d.obj";
-    char *file3 = "../Final-Code/data/rh2d.obj";
-    char *file4 = "../Final-Code/data/head-new2d.obj";
-    char *file5 = "../Final-Code/data/rl2d.obj";
-    char *file6 = "../Final-Code/data/ll2d.obj";
+    char *file1 = "../Final-Code/data/body.obj";
+    char *file2 = "../Final-Code/data/lh.obj";
+    char *file3 = "../Final-Code/data/rh.obj";
+    char *file4 = "../Final-Code/data/head-new.obj";
+    char *file5 = "../Final-Code/data/rl.obj";
+    char *file6 = "../Final-Code/data/ll.obj";
 
     int mesh1size = LoadObj(file1, shaderProgram, VAO, mesh1);                                       // Loading and storing mesh 1
     Cage c1 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 0); // Initializing cage class for mesh 1
