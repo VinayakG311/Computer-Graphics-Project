@@ -170,54 +170,57 @@ int Cage::createCage(unsigned int &program, unsigned int &obj_VAO, vector<float>
 // |                |
 // |________________|
 // 0                1
-
-void Cage::handleEdge(int currEdge, int i,int j,float x, float y)
+void Cage::handleEdge(int currEdge, int i, int j, float x, float y)
 {
-    float valy,valx;
+    float valy, valx;
     float dfx = max_x_coord - min_x_coord;
     float dfy = max_y_coord - min_y_coord;
+    
     if (currEdge == 0)
     {
+       
         // previos edge
-        if (x == min_x_coord && y != min_y_coord && y != max_y_coord)
+        if (x == min_x_coord && y < max_y_coord)
         {
-            harmonic[currEdge][i][j] = (max_y_coord - y)/dfy;
+            harmonic[currEdge][i][j] = (100-i) * 0.01;
         }
 
         // next edge
-        if (y == min_y_coord && x != min_x_coord && x != max_x_coord)
+        if (y == min_y_coord && x < max_x_coord)
         {
-            harmonic[currEdge][i][j] = (x-min_x_coord)/dfx;
+            
+            harmonic[currEdge][i][j] = (100 - j) * 0.01;
         }
     }
 
     else if (currEdge == 1)
     {
-        // prevEdge
-        if (y == min_y_coord && x != min_x_coord && x != max_x_coord)
+
+        if (y == min_y_coord && x<max_x_coord)
         {
-            harmonic[currEdge][i][j] = (max_x_coord-x)/dfx;
+            harmonic[currEdge][i][j] = (j) * 0.01;
         }
 
         // next edge
-        if (x == max_x_coord && y != min_y_coord && y != max_y_coord)
+        if (x == max_x_coord && y <max_y_coord)
         {
-            harmonic[currEdge][i][j] = (y-min_y_coord)/dfy;
+            harmonic[currEdge][i][j] = (100 - i) * 0.01;
         }
     }
 
     else if (currEdge == 2)
     {
         // prev edge
-        if (x == max_x_coord && y != min_y_coord && y != max_y_coord)
+    
+        if (x == max_x_coord && y < max_y_coord)
         {
-            harmonic[currEdge][i][j] = (max_y_coord-y)/dfy;
+            harmonic[currEdge][i][j] = (i) * 0.01;
         }
 
         // next edge
-        if (y == max_y_coord && x != min_x_coord && x != max_x_coord)
+        if (y == max_y_coord && x < max_x_coord)
         {
-            harmonic[currEdge][i][j] = (max_x_coord-x)/dfx;
+            harmonic[currEdge][i][j] = (j) * 0.01;
         }
     }
 
@@ -226,18 +229,85 @@ void Cage::handleEdge(int currEdge, int i,int j,float x, float y)
         // prev edge
         if (y == max_y_coord && x != min_x_coord && x != max_x_coord)
         {
-            harmonic[currEdge][i][j] = (x-min_x_coord)/dfx;
+            harmonic[currEdge][i][j] = (100 - j) * 0.01;
         }
 
         // next edge
         if (x == min_x_coord && y != min_y_coord && y != max_y_coord)
         {
-            harmonic[currEdge][i][j] = (max_y_coord - y)/dfy;
+            harmonic[currEdge][i][j] = (i) * 0.01;
         }
     }
 
     // cout<<harmonic[currEdge][x][y]<<endl;
 }
+// void Cage::handleEdge(int currEdge, int i,int j,float x, float y)
+// {
+//     float valy,valx;
+//     float dfx = max_x_coord - min_x_coord;
+//     float dfy = max_y_coord - min_y_coord;
+//     if (currEdge == 0)
+//     {
+//         // previos edge
+//         if (x == min_x_coord && y != min_y_coord && y != max_y_coord)
+//         {
+//             harmonic[currEdge][i][j] = (max_y_coord - y)/dfy;
+//         }
+
+//         // next edge
+//         if (y == min_y_coord && x != min_x_coord && x != max_x_coord)
+//         {
+//             harmonic[currEdge][i][j] = (x-min_x_coord)/dfx;
+//         }
+//     }
+
+//     else if (currEdge == 1)
+//     {
+//         // prevEdge
+//         if (y == min_y_coord && x != min_x_coord && x != max_x_coord)
+//         {
+//             harmonic[currEdge][i][j] = (max_x_coord-x)/dfx;
+//         }
+
+//         // next edge
+//         if (x == max_x_coord && y != min_y_coord && y != max_y_coord)
+//         {
+//             harmonic[currEdge][i][j] = (y-min_y_coord)/dfy;
+//         }
+//     }
+
+//     else if (currEdge == 2)
+//     {
+//         // prev edge
+//         if (x == max_x_coord && y != min_y_coord && y != max_y_coord)
+//         {
+//             harmonic[currEdge][i][j] = (max_y_coord-y)/dfy;
+//         }
+
+//         // next edge
+//         if (y == max_y_coord && x != min_x_coord && x != max_x_coord)
+//         {
+//             harmonic[currEdge][i][j] = (max_x_coord-x)/dfx;
+//         }
+//     }
+
+//     else if (currEdge == 3)
+//     {
+//         // prev edge
+//         if (y == max_y_coord && x != min_x_coord && x != max_x_coord)
+//         {
+//             harmonic[currEdge][i][j] = (x-min_x_coord)/dfx;
+//         }
+
+//         // next edge
+//         if (x == min_x_coord && y != min_y_coord && y != max_y_coord)
+//         {
+//             harmonic[currEdge][i][j] = (max_y_coord - y)/dfy;
+//         }
+//     }
+
+//     // cout<<harmonic[currEdge][x][y]<<endl;
+// }
 
 // void Cage::createGrid()
 // {
@@ -364,34 +434,35 @@ void Cage::createGrid()
             {
                 for (int j = 0; j <= 100; j++)
                 {
-                    float coord_x = (min_x_coord + i * stepx);
-                    float coord_y = (min_y_coord + j * stepy);
+                    float coord_x = (min_x_coord + j * stepx);
+                    float coord_y = (min_y_coord + i * stepy);
                     if ((coord_x == max_x_coord && coord_y == max_y_coord) || (coord_x == max_x_coord && coord_y == min_y_coord) || (coord_x == min_x_coord && coord_y == max_y_coord) || (coord_x == min_x_coord && coord_y == min_y_coord))
                     {
+                      
  
                             harmonic[k][i][j] = 1.0f;
                     }
-                    else if (coord_y == max_y_coord || coord_y == min_y_coord)
-                    {
-                       
-                            harmonic[k][i][j] = (100 - j) * 0.01;
-                    }
-                    else if(coord_x==max_x_coord || coord_x == min_x_coord)
-                    {
+                    // else if (coord_y == max_y_coord || coord_y == min_y_coord)
+                    // {
+                            
+                    //         harmonic[k][i][j] = (100 - i) * 0.01;
+                    // }
+                    // else if(coord_x==max_x_coord || coord_x == min_x_coord)
+                    // {
                         
-                        harmonic[k][i][j]= (100-i)*0.01;
-                    }
+                    //     harmonic[k][i][j]= (100-j)*0.01;
+                    // }
                
 
-                        // else if (coord_x == max_x_coord || coord_x == min_x_coord || coord_y == min_y_coord || coord_y == max_y_coord)
-                        // {
-                        //     // Exterior/Boundary
-                        //     // harmonic[k][i][j] = 1.0f;
+                        else if (coord_x == max_x_coord || coord_x == min_x_coord || coord_y == min_y_coord || coord_y == max_y_coord)
+                        {
+                            // Exterior/Boundary
+                            // harmonic[k][i][j] = 1.0f;
                            
-                        //      handleEdge(k,i,j,coord_x,coord_y);
+                             handleEdge(k,i,j,coord_x,coord_y);
                              
                             
-                        // }
+                        }
                         else
                         {
                             // Interior
@@ -429,14 +500,8 @@ void Cage::createGrid()
             }
         }
     }
-    
-    for (int j = 0; j <= 100; j++)
-    {
-        
-        cout << harmonic[0][0][j] << " ";
-        
-    
-    }
+
+
     
 }
 
