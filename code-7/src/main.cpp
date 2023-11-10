@@ -38,11 +38,8 @@ GLfloat min_z_coord = INT_MAX;
 GLfloat max_z_coord = INT_MIN;
 vector<GLfloat> VertexData;
 bool controlPointsUpdated = false;
-bool controlPointsFinished;
-int selectedControlPoint = 0;
 
-float selectionThreshold = 3.0f; // Select any control point within 3 pixels of vicinity.
-std::vector<float> rawControlPoints;
+int selectedControlPoint = 0;
 
 vector<float> controlPoints;
 
@@ -94,8 +91,8 @@ int main(int, char **)
     glGenVertexArrays(1, &VAO5);
     glGenVertexArrays(1, &VAO6);
 
-    unsigned int cage1_VAO, cage2_VAO, cage3_VAO, cage4_VAO, cage5_VAO, cage6_VAO, VAO_controlPoints;
-    unsigned int VBO_controlPoints;
+    unsigned int cage1_VAO, cage2_VAO, cage3_VAO, cage4_VAO, cage5_VAO, cage6_VAO, VAO_controlPoints, VAO1;
+    unsigned int VBO_controlPoints, VBO1;
 
     glGenVertexArrays(1, &cage1_VAO);
     glGenVertexArrays(1, &cage2_VAO);
@@ -114,49 +111,52 @@ int main(int, char **)
     glGenBuffers(1, &VBO_controlPoints);
     glGenVertexArrays(1, &VAO_controlPoints);
 
-    // char *file1 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/body2d.obj";
-    // char *file2 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/lh2d.obj";
-    // char *file3 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rh2d.obj";
-    // char *file4 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/head-new2d.obj";
-    // char *file5 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rl2d.obj";
-    // char *file6 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/ll2d.obj";
+    glGenBuffers(1, &VBO1);
+    glGenVertexArrays(1, &VAO1);
 
-    char *file1 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/body2d.obj";
-    char *file2 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/lh2d.obj";
-    char *file3 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rh2d.obj";
-    char *file4 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/head-new2d.obj";
-    char *file5 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rl2d.obj";
-    char *file6 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/ll2d.obj";
+    char *file1 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/body2d.obj";
+    char *file2 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/lh2d.obj";
+    char *file3 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rh2d.obj";
+    char *file4 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/head-new2d.obj";
+    char *file5 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/rl2d.obj";
+    char *file6 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/data/ll2d.obj";
+
+    // char *file1 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/body2d.obj";
+    // char *file2 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/lh2d.obj";
+    // char *file3 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rh2d.obj";
+    // char *file4 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/head-new2d.obj";
+    // char *file5 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/rl2d.obj";
+    // char *file6 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/ll2d.obj";
 
     int mesh1size = LoadObj(file1, shaderProgram, VAO);
-    Cage c1 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord,0);
+    Cage c1 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 0);
     int cage1size = c1.createCage(shaderProgram, cage1_VAO, controlPoints);
     setter();
     c1.createGrid();
 
     VertexData.clear();
     int mesh2size = LoadObj(file2, shaderProgram, VAO2);
-    Cage c2 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord,12);
+    Cage c2 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 12);
     int cage2size = c2.createCage(shaderProgram, cage2_VAO, controlPoints);
     setter();
     c2.createGrid();
     int mesh3size = LoadObj(file3, shaderProgram, VAO3);
-    Cage c3 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord,24);
+    Cage c3 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 24);
     int cage3size = c3.createCage(shaderProgram, cage3_VAO, controlPoints);
     setter();
     // c3.createGrid();
     int mesh4size = LoadObj(file4, shaderProgram, VAO4);
-    Cage c4 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord,36);
+    Cage c4 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 36);
     int cage4size = c4.createCage(shaderProgram, cage4_VAO, controlPoints);
     setter();
     // c4.createGrid();
     int mesh5size = LoadObj(file5, shaderProgram, VAO5);
-    Cage c5 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord,48);
+    Cage c5 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 48);
     int cage5size = c5.createCage(shaderProgram, cage5_VAO, controlPoints);
     setter();
     // c5.createGrid();
     int mesh6size = LoadObj(file6, shaderProgram, VAO6);
-    Cage c6 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord,60);
+    Cage c6 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 60);
     int cage6size = c6.createCage(shaderProgram, cage6_VAO, controlPoints);
     setter();
     // c6.createGrid();
@@ -164,12 +164,6 @@ int main(int, char **)
     oldX = oldY = currentX = currentY = 0.0;
     int prevLeftButtonState = GLFW_RELEASE;
     float x, y;
-
-    for (int i = 0; i < controlPoints.size(); i++)
-    {
-        rawControlPoints.push_back(controlPoints[i]);
-        // cout<<controlPoints[i]<<" ";
-    }
 
     while (!glfwWindowShouldClose(window))
     {
@@ -188,11 +182,8 @@ int main(int, char **)
             editer = false;
         }
 
-
-
         if (editer)
         {
-           
 
             if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_RightArrow)))
             {
@@ -211,42 +202,47 @@ int main(int, char **)
                 }
             }
 
-            if(ImGui::IsKeyPressed(GLFW_KEY_W)){
+            if (ImGui::IsKeyPressed(GLFW_KEY_W))
+            {
                 // controlPoints[0] = controlPoints[0]+2.5f;
-                controlPoints[1] = controlPoints[1]+2.5f;
+                controlPoints[1] = controlPoints[1] + 2.5f;
                 controlPointsUpdated = true;
                 // c1.max_y_coord = max(c1.max_y_coord,controlPoints[1]);
-                c1.min_y_coord = controlPoints[1];
+                c1.max_y_coord = controlPoints[1];
             }
 
-            else if(ImGui::IsKeyPressed(GLFW_KEY_A)){
+            else if (ImGui::IsKeyPressed(GLFW_KEY_A))
+            {
                 // controlPoints[0] = controlPoints[0]+2.5f;
-                controlPoints[0] = controlPoints[0]-2.5f;
+                controlPoints[0] = controlPoints[0] - 2.5f;
                 controlPointsUpdated = true;
                 // c1.min_x_coord = max(c1.min_x_coord,controlPoints[1]);
                 c1.min_x_coord = controlPoints[0];
             }
 
-             else if(ImGui::IsKeyPressed(GLFW_KEY_D)){
+            else if (ImGui::IsKeyPressed(GLFW_KEY_D))
+            {
                 // controlPoints[0] = controlPoints[0]+2.5f;
-                controlPoints[0] = controlPoints[0]+2.5f;
+                controlPoints[0] = controlPoints[0] + 2.5f;
                 controlPointsUpdated = true;
-                c1.min_x_coord = controlPoints[0];
+                c1.max_x_coord = controlPoints[0];
             }
 
-             else if(ImGui::IsKeyPressed(GLFW_KEY_S)){
+            else if (ImGui::IsKeyPressed(GLFW_KEY_S))
+            {
                 // controlPoints[0] = controlPoints[0]+2.5f;
-                controlPoints[1] = controlPoints[1]-2.5f;
+                controlPoints[1] = controlPoints[1] - 2.5f;
                 controlPointsUpdated = true;
                 c1.min_y_coord = controlPoints[1];
             }
 
-
             if (controlPointsUpdated)
             {
 
-                c1.createCage(shaderProgram, cage1_VAO, controlPoints);
+                cage1size = c1.createCage(shaderProgram, cage1_VAO, controlPoints);
+                controlPointsUpdated = false;
 
+                //  break;
                 // glBindVertexArray(VAO_controlPoints);
                 // glBindBuffer(GL_ARRAY_BUFFER, VBO_controlPoints);
                 // glBufferData(GL_ARRAY_BUFFER, controlPoints.size() * sizeof(GLfloat), &controlPoints[0], GL_DYNAMIC_DRAW);
@@ -256,10 +252,6 @@ int main(int, char **)
             }
         }
 
-
-
-
-       
         if (rotater)
         {
 
@@ -321,6 +313,12 @@ int main(int, char **)
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
         glEnableVertexAttribArray(0);
 
+        glBindVertexArray(VAO1);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO1);
+        glBufferData(GL_ARRAY_BUFFER, controlPoints.size() * sizeof(GLfloat), &controlPoints[0], GL_DYNAMIC_DRAW);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+        glEnableVertexAttribArray(0);
+
         // Rendering
         ImGui::Render();
         int display_w, display_h;
@@ -333,49 +331,53 @@ int main(int, char **)
         glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
         glDrawArrays(GL_TRIANGLES, 0, mesh1size);
 
-        glBindVertexArray(VAO2);
-        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_TRIANGLES, 0, mesh2size);
+        // glBindVertexArray(VAO2);
+        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        // glDrawArrays(GL_TRIANGLES, 0, mesh2size);
 
-        glBindVertexArray(VAO3);
-        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_TRIANGLES, 0, mesh3size);
+        // glBindVertexArray(VAO3);
+        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        // glDrawArrays(GL_TRIANGLES, 0, mesh3size);
 
-        glBindVertexArray(VAO4);
-        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_TRIANGLES, 0, mesh4size);
+        // glBindVertexArray(VAO4);
+        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        // glDrawArrays(GL_TRIANGLES, 0, mesh4size);
 
-        glBindVertexArray(VAO5);
-        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_TRIANGLES, 0, mesh5size);
+        // glBindVertexArray(VAO5);
+        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        // glDrawArrays(GL_TRIANGLES, 0, mesh5size);
 
-        glBindVertexArray(VAO6);
-        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_TRIANGLES, 0, mesh6size);
+        // glBindVertexArray(VAO6);
+        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        // glDrawArrays(GL_TRIANGLES, 0, mesh6size);
 
-        glBindVertexArray(cage1_VAO);
-        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_LINES, 0, cage1size / 3);
+        // glBindVertexArray(cage1_VAO);
+        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        // glDrawArrays(GL_LINES, 0, cage1size / 3);
 
-        glBindVertexArray(cage2_VAO);
-        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_LINES, 0, cage2size / 3);
+        // glBindVertexArray(cage2_VAO);
+        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        // glDrawArrays(GL_LINES, 0, cage2size / 3);
 
-        glBindVertexArray(cage3_VAO);
-        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_LINES, 0, cage3size / 3);
+        // glBindVertexArray(cage3_VAO);
+        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        // glDrawArrays(GL_LINES, 0, cage3size / 3);
 
-        glBindVertexArray(cage4_VAO);
-        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_LINES, 0, cage4size / 3);
+        // glBindVertexArray(cage4_VAO);
+        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        // glDrawArrays(GL_LINES, 0, cage4size / 3);
 
-        glBindVertexArray(cage5_VAO);
-        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_LINES, 0, cage5size / 3);
+        // glBindVertexArray(cage5_VAO);
+        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        // glDrawArrays(GL_LINES, 0, cage5size / 3);
 
-        glBindVertexArray(cage6_VAO);
+        // glBindVertexArray(cage6_VAO);
+        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        // glDrawArrays(GL_LINES, 0, cage6size / 3);
+
+        glBindVertexArray(VAO1);
         glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_LINES, 0, cage6size / 3);
+        glDrawArrays(GL_LINE_STRIP, 0, controlPoints.size() / 3);
 
         glBindVertexArray(VAO_controlPoints);
         for (int i = 0; i < controlPoints.size() / 3; i++)
@@ -570,50 +572,3 @@ void mousemoved()
 
     // and edit the meshes so that new mesh is rendered
 }
-bool searchNearestControlPoint(float x, float y)
-{
-    size_t npts = rawControlPoints.size() / 2;
-    if (npts > 0)
-    {
-        cout << "Here"
-             << " ";
-        float _x, _y, dist2 = 0.0f;
-        float thresh2 = selectionThreshold * selectionThreshold;
-        for (size_t i = 0; i < npts; i++)
-        {
-            _x = rawControlPoints[2 * i];
-            _y = rawControlPoints[2 * i + 1];
-            dist2 = (x - _x) * (x - _x) + (y - _y) * (y - _y);
-            if (dist2 <= thresh2)
-            {
-                selectedControlPoint = i;
-                cout << selectedControlPoint << " ";
-                return 1;
-            }
-        }
-    }
-
-    selectedControlPoint = -1;
-    return 0;
-}
-
-void editControlPoint(std::vector<float> &points, float x, float y, int w, int h)
-{
-    if (selectedControlPoint < 0)
-        return;
-    if (selectedControlPoint >= points.size() / 3)
-        return;
-
-    float rescaled_x = -1.0 + ((1.0 * x - 0) / (w - 0)) * (1.0 - (-1.0));
-    float rescaled_y = -1.0 + ((1.0 * (h - y) - 0) / (h - 0)) * (1.0 - (-1.0));
-    points[selectedControlPoint * 3] = rescaled_x;
-    points[selectedControlPoint * 3 + 1] = rescaled_y;
-    points[selectedControlPoint * 3 + 2] = 0.0; // Z-coordinate
-
-    rawControlPoints[selectedControlPoint * 2] = x;
-    rawControlPoints[selectedControlPoint * 2 + 1] = y;
-}
-
-// void computeCage(){
-
-// }

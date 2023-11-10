@@ -47,7 +47,7 @@ public:
          GLfloat min_x,
          GLfloat min_y,
          GLfloat min_z,
-         GLfloat max_z,int startInd)
+         GLfloat max_z, int startInd)
     {
         max_x_coord = max_x;
         max_y_coord = max_y;
@@ -88,7 +88,6 @@ public:
             }
         }
 
-
         // for(int i = 0;i<4;i++){
         //     for(int j = 0;j<=100;j++){
         //         for(int k = 0;k<=100;k++){
@@ -103,6 +102,6 @@ public:
 
     bool RecomputeVertex(vector<GLfloat> &mesh);
 
-    void handleEdge(int curr,int i,int j, float x, float y);
+    void handleEdge(int curr, int i, int j, float x, float y);
 };
 #endif

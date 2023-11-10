@@ -2,8 +2,7 @@
 
 int Cage::createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &points)
 {
-
-     glUseProgram(program);
+    glUseProgram(program);
 
     // Bind shader variables
     int vVertex_attrib = glGetAttribLocation(program, "vVertex");
@@ -13,9 +12,9 @@ int Cage::createCage(unsigned int &program, unsigned int &obj_VAO, vector<float>
         exit(0);
     }
 
+    if (firstRender)
+    {
 
-    if(firstRender){
-       
         std::vector<float> v;
         cage.push_back(min_x_coord - 0.2);
         cage.push_back(min_y_coord - 0.2);
@@ -112,7 +111,9 @@ int Cage::createCage(unsigned int &program, unsigned int &obj_VAO, vector<float>
         return cubicBezier.size();
     }
 
-    else{
+    else
+    {
+
         cage.clear();
         cage.push_back(min_x_coord - 0.2);
         cage.push_back(min_y_coord - 0.2);
@@ -166,7 +167,7 @@ int Cage::createCage(unsigned int &program, unsigned int &obj_VAO, vector<float>
         float t;
         float prevX, prevY;
 
-        for (int i = startInd; i < (startInd+12-3); i += 3)
+        for (int i = startInd; i < (startInd + 12 - 3); i += 3)
         {
             x[0] = cage[i];
             y[0] = cage[i + 1];
@@ -208,7 +209,6 @@ int Cage::createCage(unsigned int &program, unsigned int &obj_VAO, vector<float>
         // firstRender = false;
         return cubicBezier.size();
     }
-    
 }
 
 // 3_________________2
@@ -225,20 +225,20 @@ void Cage::handleEdge(int currEdge, int i, int j, float x, float y)
     float valy, valx;
     float dfx = max_x_coord - min_x_coord;
     float dfy = max_y_coord - min_y_coord;
-    
+
     if (currEdge == 0)
     {
-       
+
         // previos edge
         if (x == min_x_coord && y < max_y_coord)
         {
-            harmonic[currEdge][i][j] = (100-j) * 0.01;
+            harmonic[currEdge][i][j] = (100 - j) * 0.01;
         }
 
         // next edge
         if (y == min_y_coord && x < max_x_coord)
         {
-            
+
             harmonic[currEdge][i][j] = (100 - i) * 0.01;
         }
     }
@@ -246,31 +246,31 @@ void Cage::handleEdge(int currEdge, int i, int j, float x, float y)
     else if (currEdge == 1)
     {
 
-        if (y == min_y_coord && x<max_x_coord)
+        if (y == min_y_coord && x < max_x_coord)
         {
-            harmonic[currEdge][i][j] = (i) * 0.01;
+            harmonic[currEdge][i][j] = (i)*0.01;
         }
 
         // next edge
-        if (x == max_x_coord && y <max_y_coord)
+        if (x == max_x_coord && y < max_y_coord)
         {
-            harmonic[currEdge][i][j] = (j) * 0.01;
+            harmonic[currEdge][i][j] = (j)*0.01;
         }
     }
 
     else if (currEdge == 2)
     {
         // prev edge
-    
+
         if (x == max_x_coord && y < max_y_coord)
         {
-            harmonic[currEdge][i][j] = (100-j) * 0.01;
+            harmonic[currEdge][i][j] = (100 - j) * 0.01;
         }
 
         // next edge
         if (y == max_y_coord && x < max_x_coord)
         {
-            harmonic[currEdge][i][j] = (i) * 0.01;
+            harmonic[currEdge][i][j] = (i)*0.01;
         }
     }
 
@@ -285,7 +285,7 @@ void Cage::handleEdge(int currEdge, int i, int j, float x, float y)
         // next edge
         if (x == min_x_coord && y != min_y_coord && y != max_y_coord)
         {
-            harmonic[currEdge][i][j] = (j) * 0.01;
+            harmonic[currEdge][i][j] = (j)*0.01;
         }
     }
 
@@ -460,20 +460,18 @@ void Cage::createGrid()
 {
     float stepx = (max_x_coord - min_x_coord) / 100;
     float stepy = (max_y_coord - min_y_coord) / 100;
-    
 
     float changeInval = 0;
     int numOfcoord = 0;
 
-
     for (int k = 0; k < 4; k++)
     {
-        int c=0;
+        int c = 0;
         bool breaker = false;
         while (true)
-        {   
+        {
             c++;
-           // cout<<c<<endl;
+            // cout<<c<<endl;
             if (breaker)
             {
                 break;
@@ -488,60 +486,56 @@ void Cage::createGrid()
                     float coord_y = (min_y_coord + j * stepy);
                     if ((coord_x == max_x_coord && coord_y == max_y_coord) || (coord_x == max_x_coord && coord_y == min_y_coord) || (coord_x == min_x_coord && coord_y == max_y_coord) || (coord_x == min_x_coord && coord_y == min_y_coord))
                     {
-                      
- 
-                            harmonic[k][i][j] = 1.0f;
+
+                        harmonic[k][i][j] = 1.0f;
                     }
                     // else if (coord_y == max_y_coord || coord_y == min_y_coord)
                     // {
-                            
+
                     //         harmonic[k][i][j] = (100 - i) * 0.01;
                     // }
                     // else if(coord_x==max_x_coord || coord_x == min_x_coord)
                     // {
-                        
+
                     //     harmonic[k][i][j]= (100-j)*0.01;
                     // }
-               
 
-                        else if (coord_x == max_x_coord || coord_x == min_x_coord || coord_y == min_y_coord || coord_y == max_y_coord)
-                        {
-                            // Exterior/Boundary
-                            // harmonic[k][i][j] = 1.0f;
-                           
-                             handleEdge(k,i,j,coord_x,coord_y);
-                             
-                            
-                        }
-                        else
-                        {
-                            // Interior
-                            numOfcoord++;
-                            float prev = harmonic[k][i][j];
+                    else if (coord_x == max_x_coord || coord_x == min_x_coord || coord_y == min_y_coord || coord_y == max_y_coord)
+                    {
+                        // Exterior/Boundary
+                        // harmonic[k][i][j] = 1.0f;
 
-                            float check = 0;
-                            int neighbors = 0;
-                            if (i > 0)
-                            {
-                                check += harmonic[k][i - 1][j];
-                                neighbors++;
-                            }
-                            if (j > 0)
-                            {
-                                check += harmonic[k][i][j - 1];
-                                neighbors++;
-                            }
-                            check += (harmonic[k][i][j + 1] + harmonic[k][i + 1][j]);
-                            neighbors += 2;
-
-                            // grid[i][j] = (grid[i - 1][j] + grid[i][j - 1] + grid[i + 1][j] + grid[i][j + 1]) / 4;
-
-                            harmonic[k][i][j] = check / (float)neighbors;
-                            
-                            // std::cout<<grid[i][j]<<" ";
-                            changeInval += abs(harmonic[k][i][j] - prev);
-                        }
+                        handleEdge(k, i, j, coord_x, coord_y);
                     }
+                    else
+                    {
+                        // Interior
+                        numOfcoord++;
+                        float prev = harmonic[k][i][j];
+
+                        float check = 0;
+                        int neighbors = 0;
+                        if (i > 0)
+                        {
+                            check += harmonic[k][i - 1][j];
+                            neighbors++;
+                        }
+                        if (j > 0)
+                        {
+                            check += harmonic[k][i][j - 1];
+                            neighbors++;
+                        }
+                        check += (harmonic[k][i][j + 1] + harmonic[k][i + 1][j]);
+                        neighbors += 2;
+
+                        // grid[i][j] = (grid[i - 1][j] + grid[i][j - 1] + grid[i + 1][j] + grid[i][j + 1]) / 4;
+
+                        harmonic[k][i][j] = check / (float)neighbors;
+
+                        // std::cout<<grid[i][j]<<" ";
+                        changeInval += abs(harmonic[k][i][j] - prev);
+                    }
+                }
             }
             // std::cout<<changeInval<<" ";
             if (((changeInval) / (float)numOfcoord) < 0.001f)
@@ -554,9 +548,6 @@ void Cage::createGrid()
             }
         }
     }
-
-
-    
 }
 
 bool Cage::RecomputeVertex(vector<GLfloat> &mesh)
