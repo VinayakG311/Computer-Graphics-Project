@@ -62,10 +62,10 @@ public:
         for (int i = 0; i < 4; i++)
         {
             vector<float> temp;
-            for (int j = 0; j <= 100; j++)
+            for (int j = 0; j <= 128; j++)
             {
                 vector<float> temp;
-                for (int k = 0; k <= 100; k++)
+                for (int k = 0; k <= 128; k++)
                 {
                     temp.push_back(0);
                 }
@@ -73,6 +73,15 @@ public:
                 harmonic[i].push_back(temp);
             }
         }
+
+
+        // for(int i = 0;i<4;i++){
+        //     for(int j = 0;j<=100;j++){
+        //         for(int k = 0;k<=100;k++){
+        //             std::cout<<harmonic[i][j][k]<<"   ";
+        //         }
+        //     }
+        // }
     }
     int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &points);
 

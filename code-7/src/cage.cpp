@@ -182,14 +182,14 @@ void Cage::handleEdge(int currEdge, int i, int j, float x, float y)
         // previos edge
         if (x == min_x_coord && y < max_y_coord)
         {
-            harmonic[currEdge][i][j] = (100-i) * 0.01;
+            harmonic[currEdge][i][j] = (100-j) * 0.01;
         }
 
         // next edge
         if (y == min_y_coord && x < max_x_coord)
         {
             
-            harmonic[currEdge][i][j] = (100 - j) * 0.01;
+            harmonic[currEdge][i][j] = (100 - i) * 0.01;
         }
     }
 
@@ -198,13 +198,13 @@ void Cage::handleEdge(int currEdge, int i, int j, float x, float y)
 
         if (y == min_y_coord && x<max_x_coord)
         {
-            harmonic[currEdge][i][j] = (j) * 0.01;
+            harmonic[currEdge][i][j] = (i) * 0.01;
         }
 
         // next edge
         if (x == max_x_coord && y <max_y_coord)
         {
-            harmonic[currEdge][i][j] = (100 - i) * 0.01;
+            harmonic[currEdge][i][j] = (j) * 0.01;
         }
     }
 
@@ -214,13 +214,13 @@ void Cage::handleEdge(int currEdge, int i, int j, float x, float y)
     
         if (x == max_x_coord && y < max_y_coord)
         {
-            harmonic[currEdge][i][j] = (i) * 0.01;
+            harmonic[currEdge][i][j] = (100-j) * 0.01;
         }
 
         // next edge
         if (y == max_y_coord && x < max_x_coord)
         {
-            harmonic[currEdge][i][j] = (j) * 0.01;
+            harmonic[currEdge][i][j] = (i) * 0.01;
         }
     }
 
@@ -229,13 +229,13 @@ void Cage::handleEdge(int currEdge, int i, int j, float x, float y)
         // prev edge
         if (y == max_y_coord && x != min_x_coord && x != max_x_coord)
         {
-            harmonic[currEdge][i][j] = (100 - j) * 0.01;
+            harmonic[currEdge][i][j] = (100 - i) * 0.01;
         }
 
         // next edge
         if (x == min_x_coord && y != min_y_coord && y != max_y_coord)
         {
-            harmonic[currEdge][i][j] = (i) * 0.01;
+            harmonic[currEdge][i][j] = (j) * 0.01;
         }
     }
 
@@ -434,8 +434,8 @@ void Cage::createGrid()
             {
                 for (int j = 0; j <= 100; j++)
                 {
-                    float coord_x = (min_x_coord + j * stepx);
-                    float coord_y = (min_y_coord + i * stepy);
+                    float coord_x = (min_x_coord + i * stepx);
+                    float coord_y = (min_y_coord + j * stepy);
                     if ((coord_x == max_x_coord && coord_y == max_y_coord) || (coord_x == max_x_coord && coord_y == min_y_coord) || (coord_x == min_x_coord && coord_y == max_y_coord) || (coord_x == min_x_coord && coord_y == min_y_coord))
                     {
                       
@@ -487,6 +487,7 @@ void Cage::createGrid()
                             // grid[i][j] = (grid[i - 1][j] + grid[i][j - 1] + grid[i + 1][j] + grid[i][j + 1]) / 4;
 
                             harmonic[k][i][j] = check / (float)neighbors;
+                            
                             // std::cout<<grid[i][j]<<" ";
                             changeInval += abs(harmonic[k][i][j] - prev);
                         }
@@ -495,6 +496,9 @@ void Cage::createGrid()
             // std::cout<<changeInval<<" ";
             if (((changeInval) / (float)numOfcoord) < 0.001f)
             {
+                for(int i = 0;i<=100;i++){
+                    std::cout<<harmonic[0][i][0]<<" ";
+                }
                 breaker = true;
                 break;
             }
