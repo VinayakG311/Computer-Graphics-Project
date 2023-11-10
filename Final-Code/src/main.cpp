@@ -31,8 +31,6 @@ bool isDragging = false;
 bool rotater = true;
 bool editer = false;
 
-
-
 GLfloat max_x_coord = INT_MIN;
 GLfloat max_y_coord = INT_MIN;
 
@@ -48,7 +46,6 @@ int selectedControlPoint = 0;
 
 vector<float> controlPoints;
 
-
 // Storing mesh coordinates for each mesh
 vector<GLfloat> mesh1;
 vector<GLfloat> mesh2;
@@ -57,7 +54,7 @@ vector<GLfloat> mesh4;
 vector<GLfloat> mesh5;
 vector<GLfloat> mesh6;
 
-int LoadObj(char *, unsigned int &, unsigned int &,vector<GLfloat>&);
+int LoadObj(char *, unsigned int &, unsigned int &, vector<GLfloat> &);
 void editControlPoint(std::vector<float> &, float, float, int, int);
 bool searchNearestControlPoint(float, float);
 void mousemoved();
@@ -130,55 +127,47 @@ int main(int, char **)
 
     glGenBuffers(1, &VBO1);
     glGenVertexArrays(1, &VAO1);
+    char *file1 = "../Final-Code/data/body2d.obj";
+    char *file2 = "../Final-Code/data/lh2d.obj";
+    char *file3 = "../Final-Code/data/rh2d.obj";
+    char *file4 = "../Final-Code/data/head-new2d.obj";
+    char *file5 = "../Final-Code/data/rl2d.obj";
+    char *file6 = "../Final-Code/data/ll2d.obj";
 
-    // char *file1 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/data/body.obj";
-    // char *file2 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/data/lh.obj";
-    // char *file3 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/data/rh.obj";
-    // char *file4 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/data/head-new.obj";
-    // char *file5 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/data/rl.obj";
-    // char *file6 = "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/data/ll.obj";
-
-    char *file1 = "/Users/vinayakarora/Computer-Graphics-Project/Final-Code/data/body.obj";
-    char *file2 = "/Users/vinayakarora/Computer-Graphics-Project/Final-Code/data/lh.obj";
-    char *file3 = "/Users/vinayakarora/Computer-Graphics-Project/Final-Code/data/rh.obj";
-    char *file4 = "/Users/vinayakarora/Computer-Graphics-Project/Final-Code/data/head-new.obj";
-    char *file5 = "/Users/vinayakarora/Computer-Graphics-Project/Final-Code/data/rl.obj";
-    char *file6 = "/Users/vinayakarora/Computer-Graphics-Project/Final-Code/data/ll.obj";
-
-    int mesh1size = LoadObj(file1, shaderProgram, VAO,mesh1); // Loading and storing mesh 1
+    int mesh1size = LoadObj(file1, shaderProgram, VAO, mesh1);                                       // Loading and storing mesh 1
     Cage c1 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 0); // Initializing cage class for mesh 1
-    int cage1size = c1.createCage3d(shaderProgram, cage1_VAO, controlPoints); // Creating cage for mesh 1
+    int cage1size = c1.createCage3d(shaderProgram, cage1_VAO, controlPoints);                        // Creating cage for mesh 1
     setter();
     c1.createGrid(); // Creating grid for cage 1 of size 100 X 100 to compute harmonic coordinate values
 
     VertexData.clear();
-    int mesh2size = LoadObj(file2, shaderProgram, VAO2,mesh2); // Loading and storing mesh 2
+    int mesh2size = LoadObj(file2, shaderProgram, VAO2, mesh2);                                       // Loading and storing mesh 2
     Cage c2 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 12); // Initializing cage class for mesh 2
-    int cage2size = c2.createCage3d(shaderProgram, cage2_VAO, controlPoints); // Creating cage for mesh 2
+    int cage2size = c2.createCage3d(shaderProgram, cage2_VAO, controlPoints);                         // Creating cage for mesh 2
     setter();
     c2.createGrid(); // Creating grid for cage 2 of size 100 X 100 to compute harmonic coordinate values
-    
-    int mesh3size = LoadObj(file3, shaderProgram, VAO3,mesh3); // Loading and storing mesh 3
+
+    int mesh3size = LoadObj(file3, shaderProgram, VAO3, mesh3);                                       // Loading and storing mesh 3
     Cage c3 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 24); // Initializing cage class for mesh 3
-    int cage3size = c3.createCage3d(shaderProgram, cage3_VAO, controlPoints); // Creating cage for mesh 3
+    int cage3size = c3.createCage3d(shaderProgram, cage3_VAO, controlPoints);                         // Creating cage for mesh 3
     setter();
     c3.createGrid(); // Creating grid for cage 3 of size 100 X 100 to compute harmonic coordinate values
-   
-    int mesh4size = LoadObj(file4, shaderProgram, VAO4,mesh4); // Loading and storing mesh 4
+
+    int mesh4size = LoadObj(file4, shaderProgram, VAO4, mesh4);                                       // Loading and storing mesh 4
     Cage c4 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 36); // Initializing cage class for mesh 4
-    int cage4size = c4.createCage3d(shaderProgram, cage4_VAO, controlPoints); // Creating cage for mesh 4
+    int cage4size = c4.createCage3d(shaderProgram, cage4_VAO, controlPoints);                         // Creating cage for mesh 4
     setter();
     c4.createGrid(); // Creating grid for cage 4 of size 100 X 100 to compute harmonic coordinate values
-    
-    int mesh5size = LoadObj(file5, shaderProgram, VAO5,mesh5); // Loading and storing mesh 5
+
+    int mesh5size = LoadObj(file5, shaderProgram, VAO5, mesh5);                                       // Loading and storing mesh 5
     Cage c5 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 48); // Initializing cage class for mesh 5
-    int cage5size = c5.createCage3d(shaderProgram, cage5_VAO, controlPoints); // Creating cage for mesh 5
+    int cage5size = c5.createCage3d(shaderProgram, cage5_VAO, controlPoints);                         // Creating cage for mesh 5
     setter();
     c5.createGrid(); // Creating grid for cage 5 of size 100 X 100 to compute harmonic coordinate values
-    
-    int mesh6size = LoadObj(file6, shaderProgram, VAO6,mesh6); // Loading and storing mesh 6
+
+    int mesh6size = LoadObj(file6, shaderProgram, VAO6, mesh6);                                       // Loading and storing mesh 6
     Cage c6 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 60); // Initializing cage class for mesh 6
-    int cage6size = c6.createCage3d(shaderProgram, cage6_VAO, controlPoints); // Creating cage for mesh 6
+    int cage6size = c6.createCage3d(shaderProgram, cage6_VAO, controlPoints);                         // Creating cage for mesh 6
     setter();
     c6.createGrid(); // Creating grid for cage 6 of size 100 X 100 to compute harmonic coordinate values
 
@@ -263,10 +252,9 @@ int main(int, char **)
 
                 glBindVertexArray(VAO);
                 glBindBuffer(GL_ARRAY_BUFFER, VBO_controlPoints);
-                glBufferData(GL_ARRAY_BUFFER,mesh1.size() * sizeof(GLfloat), &mesh1[0], GL_DYNAMIC_DRAW);
+                glBufferData(GL_ARRAY_BUFFER, mesh1.size() * sizeof(GLfloat), &mesh1[0], GL_DYNAMIC_DRAW);
                 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
                 glEnableVertexAttribArray(0); // Enable first attribute buffer (ve
-              
             }
         }
 
@@ -331,7 +319,6 @@ int main(int, char **)
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
         glEnableVertexAttribArray(0);
 
-    
         // Rendering
         ImGui::Render();
         int display_w, display_h;
@@ -419,7 +406,7 @@ int main(int, char **)
 }
 
 // Updating minX,minY,minZ,maxX,maxY,maxZ coordinates for setting the values for the cage of next mesh
-void setter() 
+void setter()
 {
     min_x_coord = INT_MAX;
     min_y_coord = INT_MAX;
@@ -437,8 +424,7 @@ The vertices are sclaed by 2 to obtain a better result
 maxX,maxY,maxZ,minX,minY,minZ are computed
 */
 
-
-int LoadObj(char *path, unsigned int &program, unsigned int &obj_VAO,vector<GLfloat>& mesh)
+int LoadObj(char *path, unsigned int &program, unsigned int &obj_VAO, vector<GLfloat> &mesh)
 {
     FILE *ObjFile = fopen(path, "r");
     if (ObjFile == NULL)
@@ -508,9 +494,9 @@ int LoadObj(char *path, unsigned int &program, unsigned int &obj_VAO,vector<GLfl
         v[i * 3] = VertexDataTemp[FaceDataTemp[i] * 3];
         v[i * 3 + 1] = VertexDataTemp[FaceDataTemp[i] * 3 + 1];
         v[i * 3 + 2] = VertexDataTemp[FaceDataTemp[i] * 3 + 2];
-        mesh.push_back(v[i*3]);
-        mesh.push_back(v[i*3+1]);
-        mesh.push_back(v[i*3+2]);
+        mesh.push_back(v[i * 3]);
+        mesh.push_back(v[i * 3 + 1]);
+        mesh.push_back(v[i * 3 + 2]);
     }
     // cout << VertexDataTemp.size() << " " << FaceDataTemp.size() << endl;
 

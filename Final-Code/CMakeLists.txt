@@ -1,6 +1,6 @@
  cmake_minimum_required(VERSION 3.5)
 
-project(Assignment03)
+project(Harmonic)
 set(TARGET ${CMAKE_PROJECT_NAME})
 set(CMAKE_BUILD_TYPE Debug)
 

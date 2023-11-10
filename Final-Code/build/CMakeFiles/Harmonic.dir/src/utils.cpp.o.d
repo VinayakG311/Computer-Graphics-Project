@@ -1,5 +1,5 @@
-CMakeFiles/Assignment03.dir/src/main.cpp.o: \
-  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/main.cpp \
+CMakeFiles/Harmonic.dir/src/utils.cpp.o: \
+  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/utils.cpp \
   /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/utils.h \
   /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui.h \
   /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imconfig.h \
@@ -1054,33 +1054,4 @@ CMakeFiles/Assignment03.dir/src/main.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/OpenGLAvailability.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/os/availability.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl.h \
-  /opt/homebrew/include/GLFW/glfw3.h \
-  /opt/homebrew/include/glm/gtx/string_cast.hpp \
-  /opt/homebrew/include/glm/gtx/../glm.hpp \
-  /opt/homebrew/include/glm/gtx/../gtc/type_precision.hpp \
-  /opt/homebrew/include/glm/gtc/../ext/vector_int2_sized.hpp \
-  /opt/homebrew/include/glm/gtc/../ext/vector_int3_sized.hpp \
-  /opt/homebrew/include/glm/gtc/../ext/vector_int4_sized.hpp \
-  /opt/homebrew/include/glm/gtc/../ext/scalar_int_sized.hpp \
-  /opt/homebrew/include/glm/gtc/../ext/vector_uint2_sized.hpp \
-  /opt/homebrew/include/glm/gtc/../ext/vector_uint3_sized.hpp \
-  /opt/homebrew/include/glm/gtc/../ext/vector_uint4_sized.hpp \
-  /opt/homebrew/include/glm/gtc/../ext/scalar_uint_sized.hpp \
-  /opt/homebrew/include/glm/gtc/../detail/type_vec2.hpp \
-  /opt/homebrew/include/glm/gtc/../detail/type_mat2x2.hpp \
-  /opt/homebrew/include/glm/gtc/../detail/type_mat2x3.hpp \
-  /opt/homebrew/include/glm/gtc/../detail/type_mat2x4.hpp \
-  /opt/homebrew/include/glm/gtc/../detail/type_mat3x2.hpp \
-  /opt/homebrew/include/glm/gtc/../detail/type_mat3x4.hpp \
-  /opt/homebrew/include/glm/gtc/../detail/type_mat4x2.hpp \
-  /opt/homebrew/include/glm/gtc/../detail/type_mat4x3.hpp \
-  /opt/homebrew/include/glm/gtc/type_precision.inl \
-  /opt/homebrew/include/glm/gtx/../gtc/quaternion.hpp \
-  /opt/homebrew/include/glm/gtx/../gtx/dual_quaternion.hpp \
-  /opt/homebrew/include/glm/gtx/../gtc/constants.hpp \
-  /opt/homebrew/include/glm/gtx/dual_quaternion.inl \
-  /opt/homebrew/include/glm/gtx/../geometric.hpp \
-  /opt/homebrew/include/glm/gtx/string_cast.inl \
-  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/cage.hpp \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/map \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__tree
+  /opt/homebrew/include/GLFW/glfw3.h

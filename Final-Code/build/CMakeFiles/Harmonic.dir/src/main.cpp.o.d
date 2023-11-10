@@ -1,4 +1,4 @@
-CMakeFiles/Assignment03.dir/src/main.cpp.o: \
+CMakeFiles/Harmonic.dir/src/main.cpp.o: \
   /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/main.cpp \
   /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/utils.h \
   /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui.h \

@@ -53,10 +53,10 @@ RM = /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7
+CMAKE_SOURCE_DIR = /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/build
+CMAKE_BINARY_DIR = /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Assignment03.dir/depend.make
@@ -70,130 +70,130 @@ include CMakeFiles/Assignment03.dir/progress.make
 include CMakeFiles/Assignment03.dir/flags.make
 
 CMakeFiles/Assignment03.dir/src/main.cpp.o: CMakeFiles/Assignment03.dir/flags.make
-CMakeFiles/Assignment03.dir/src/main.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/main.cpp
+CMakeFiles/Assignment03.dir/src/main.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/main.cpp
 CMakeFiles/Assignment03.dir/src/main.cpp.o: CMakeFiles/Assignment03.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Assignment03.dir/src/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/src/main.cpp.o -MF CMakeFiles/Assignment03.dir/src/main.cpp.o.d -o CMakeFiles/Assignment03.dir/src/main.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Assignment03.dir/src/main.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/src/main.cpp.o -MF CMakeFiles/Assignment03.dir/src/main.cpp.o.d -o CMakeFiles/Assignment03.dir/src/main.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/main.cpp
 
 CMakeFiles/Assignment03.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Assignment03.dir/src/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/main.cpp > CMakeFiles/Assignment03.dir/src/main.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/main.cpp > CMakeFiles/Assignment03.dir/src/main.cpp.i
 
 CMakeFiles/Assignment03.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Assignment03.dir/src/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/main.cpp -o CMakeFiles/Assignment03.dir/src/main.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/main.cpp -o CMakeFiles/Assignment03.dir/src/main.cpp.s
 
 CMakeFiles/Assignment03.dir/src/utils.cpp.o: CMakeFiles/Assignment03.dir/flags.make
-CMakeFiles/Assignment03.dir/src/utils.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/utils.cpp
+CMakeFiles/Assignment03.dir/src/utils.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/utils.cpp
 CMakeFiles/Assignment03.dir/src/utils.cpp.o: CMakeFiles/Assignment03.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Assignment03.dir/src/utils.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/src/utils.cpp.o -MF CMakeFiles/Assignment03.dir/src/utils.cpp.o.d -o CMakeFiles/Assignment03.dir/src/utils.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/utils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Assignment03.dir/src/utils.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/src/utils.cpp.o -MF CMakeFiles/Assignment03.dir/src/utils.cpp.o.d -o CMakeFiles/Assignment03.dir/src/utils.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/utils.cpp
 
 CMakeFiles/Assignment03.dir/src/utils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Assignment03.dir/src/utils.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/utils.cpp > CMakeFiles/Assignment03.dir/src/utils.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/utils.cpp > CMakeFiles/Assignment03.dir/src/utils.cpp.i
 
 CMakeFiles/Assignment03.dir/src/utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Assignment03.dir/src/utils.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/utils.cpp -o CMakeFiles/Assignment03.dir/src/utils.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/utils.cpp -o CMakeFiles/Assignment03.dir/src/utils.cpp.s
 
 CMakeFiles/Assignment03.dir/src/cage.cpp.o: CMakeFiles/Assignment03.dir/flags.make
-CMakeFiles/Assignment03.dir/src/cage.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/cage.cpp
+CMakeFiles/Assignment03.dir/src/cage.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/cage.cpp
 CMakeFiles/Assignment03.dir/src/cage.cpp.o: CMakeFiles/Assignment03.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Assignment03.dir/src/cage.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/src/cage.cpp.o -MF CMakeFiles/Assignment03.dir/src/cage.cpp.o.d -o CMakeFiles/Assignment03.dir/src/cage.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/cage.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Assignment03.dir/src/cage.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/src/cage.cpp.o -MF CMakeFiles/Assignment03.dir/src/cage.cpp.o.d -o CMakeFiles/Assignment03.dir/src/cage.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/cage.cpp
 
 CMakeFiles/Assignment03.dir/src/cage.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Assignment03.dir/src/cage.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/cage.cpp > CMakeFiles/Assignment03.dir/src/cage.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/cage.cpp > CMakeFiles/Assignment03.dir/src/cage.cpp.i
 
 CMakeFiles/Assignment03.dir/src/cage.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Assignment03.dir/src/cage.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/src/cage.cpp -o CMakeFiles/Assignment03.dir/src/cage.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/cage.cpp -o CMakeFiles/Assignment03.dir/src/cage.cpp.s
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.o: CMakeFiles/Assignment03.dir/flags.make
-CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_impl_glfw.cpp
+CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_impl_glfw.cpp
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.o: CMakeFiles/Assignment03.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.o -MF CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.o.d -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_impl_glfw.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.o -MF CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.o.d -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_impl_glfw.cpp
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_impl_glfw.cpp > CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_impl_glfw.cpp > CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.i
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_impl_glfw.cpp -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_impl_glfw.cpp -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.s
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o: CMakeFiles/Assignment03.dir/flags.make
-CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_impl_opengl3.cpp
+CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_impl_opengl3.cpp
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o: CMakeFiles/Assignment03.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o -MF CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o.d -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_impl_opengl3.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o -MF CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o.d -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_impl_opengl3.cpp
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_impl_opengl3.cpp > CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_impl_opengl3.cpp > CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.i
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_impl_opengl3.cpp -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_impl_opengl3.cpp -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.s
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.o: CMakeFiles/Assignment03.dir/flags.make
-CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui.cpp
+CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui.cpp
 CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.o: CMakeFiles/Assignment03.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.o -MF CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.o.d -o CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.o -MF CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.o.d -o CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui.cpp
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui.cpp > CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui.cpp > CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.i
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui.cpp -o CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui.cpp -o CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.s
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.o: CMakeFiles/Assignment03.dir/flags.make
-CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_demo.cpp
+CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_demo.cpp
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.o: CMakeFiles/Assignment03.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.o -MF CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.o.d -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_demo.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.o -MF CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.o.d -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_demo.cpp
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_demo.cpp > CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_demo.cpp > CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.i
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_demo.cpp -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_demo.cpp -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.s
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.o: CMakeFiles/Assignment03.dir/flags.make
-CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_draw.cpp
+CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_draw.cpp
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.o: CMakeFiles/Assignment03.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.o -MF CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.o.d -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_draw.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.o -MF CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.o.d -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_draw.cpp
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_draw.cpp > CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_draw.cpp > CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.i
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_draw.cpp -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_draw.cpp -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.s
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o: CMakeFiles/Assignment03.dir/flags.make
-CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_widgets.cpp
+CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_widgets.cpp
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o: CMakeFiles/Assignment03.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o -MF CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o.d -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_widgets.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o -MF CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o.d -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_widgets.cpp
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_widgets.cpp > CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_widgets.cpp > CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.i
 
 CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/depends/imgui/imgui_widgets.cpp -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_widgets.cpp -o CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.s
 
 # Object files for target Assignment03
 Assignment03_OBJECTS = \
@@ -210,24 +210,24 @@ Assignment03_OBJECTS = \
 # External object files for target Assignment03
 Assignment03_EXTERNAL_OBJECTS =
 
-/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/Assignment03: CMakeFiles/Assignment03.dir/src/main.cpp.o
-/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/Assignment03: CMakeFiles/Assignment03.dir/src/utils.cpp.o
-/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/Assignment03: CMakeFiles/Assignment03.dir/src/cage.cpp.o
-/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/Assignment03: CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.o
-/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/Assignment03: CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o
-/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/Assignment03: CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.o
-/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/Assignment03: CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.o
-/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/Assignment03: CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.o
-/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/Assignment03: CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o
-/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/Assignment03: CMakeFiles/Assignment03.dir/build.make
-/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/Assignment03: /opt/homebrew/lib/libglfw.3.3.dylib
-/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/Assignment03: /opt/homebrew/lib/libGLEW.2.2.0.dylib
-/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/Assignment03: CMakeFiles/Assignment03.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/Assignment03"
+/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Assignment03: CMakeFiles/Assignment03.dir/src/main.cpp.o
+/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Assignment03: CMakeFiles/Assignment03.dir/src/utils.cpp.o
+/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Assignment03: CMakeFiles/Assignment03.dir/src/cage.cpp.o
+/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Assignment03: CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_glfw.cpp.o
+/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Assignment03: CMakeFiles/Assignment03.dir/depends/imgui/imgui_impl_opengl3.cpp.o
+/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Assignment03: CMakeFiles/Assignment03.dir/depends/imgui/imgui.cpp.o
+/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Assignment03: CMakeFiles/Assignment03.dir/depends/imgui/imgui_demo.cpp.o
+/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Assignment03: CMakeFiles/Assignment03.dir/depends/imgui/imgui_draw.cpp.o
+/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Assignment03: CMakeFiles/Assignment03.dir/depends/imgui/imgui_widgets.cpp.o
+/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Assignment03: CMakeFiles/Assignment03.dir/build.make
+/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Assignment03: /opt/homebrew/lib/libglfw.3.3.dylib
+/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Assignment03: /opt/homebrew/lib/libGLEW.2.2.0.dylib
+/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Assignment03: CMakeFiles/Assignment03.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Assignment03"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Assignment03.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/Assignment03.dir/build: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/Assignment03
+CMakeFiles/Assignment03.dir/build: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Assignment03
 .PHONY : CMakeFiles/Assignment03.dir/build
 
 CMakeFiles/Assignment03.dir/clean:
@@ -235,6 +235,6 @@ CMakeFiles/Assignment03.dir/clean:
 .PHONY : CMakeFiles/Assignment03.dir/clean
 
 CMakeFiles/Assignment03.dir/depend:
-	cd /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7 /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7 /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/build /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/build /Users/vinayakgoel/Desktop/Computer-Graphics-Project/code-7/build/CMakeFiles/Assignment03.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles/Assignment03.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/Assignment03.dir/depend
 
