@@ -2,7 +2,8 @@
 
 int Cage::createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &points)
 {
-    glUseProgram(program);
+
+     glUseProgram(program);
 
     // Bind shader variables
     int vVertex_attrib = glGetAttribLocation(program, "vVertex");
@@ -12,153 +13,202 @@ int Cage::createCage(unsigned int &program, unsigned int &obj_VAO, vector<float>
         exit(0);
     }
 
-    std::vector<float> v;
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(min_z_coord - 0.2);
 
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(min_z_coord - 0.2);
+    if(firstRender){
+       
+        std::vector<float> v;
+        cage.push_back(min_x_coord - 0.2);
+        cage.push_back(min_y_coord - 0.2);
+        cage.push_back(0.0);
 
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(min_z_coord - 0.2);
+        cage.push_back(min_x_coord - 0.2);
+        cage.push_back(max_y_coord + 0.2);
+        cage.push_back(0.0);
 
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(min_z_coord - 0.2);
+        cage.push_back(min_x_coord - 0.2);
+        cage.push_back(max_y_coord + 0.2);
+        cage.push_back(0.0);
 
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(min_z_coord - 0.2);
+        cage.push_back(max_x_coord + 0.2);
+        cage.push_back(max_y_coord + 0.2);
+        cage.push_back(0.0);
 
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(min_z_coord - 0.2);
+        cage.push_back(max_x_coord + 0.2);
+        cage.push_back(max_y_coord + 0.2);
+        cage.push_back(0.0);
 
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(min_z_coord - 0.2);
+        cage.push_back(max_x_coord + 0.2);
+        cage.push_back(min_y_coord - 0.2);
+        cage.push_back(0.0);
 
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(min_z_coord - 0.2);
+        cage.push_back(max_x_coord + 0.2);
+        cage.push_back(min_y_coord - 0.2);
+        cage.push_back(0.0);
 
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(max_z_coord + 0.2);
+        cage.push_back(min_x_coord - 0.2);
+        cage.push_back(min_y_coord - 0.2);
+        cage.push_back(0.0);
 
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(max_z_coord + 0.2);
+        cage.push_back(min_x_coord - 0.2);
+        cage.push_back(min_y_coord - 0.2);
+        cage.push_back(0.0);
 
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(max_z_coord + 0.2);
+        cage.push_back(min_x_coord - 0.2);
+        cage.push_back(max_y_coord + 0.2);
+        cage.push_back(0.0);
 
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(max_z_coord + 0.2);
+        cage.push_back(max_x_coord + 0.2);
+        cage.push_back(min_y_coord - 0.2);
+        cage.push_back(0.0);
+        std::vector<float> cubicBezier;
 
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(max_z_coord + 0.2);
+        bool first = true;
+        int sz = cage.size(); // Contains 3 points/vertex. Ignore Z
+        float x[4], y[4], z[4];
+        float delta_t = 1.0 / (100.0 - 1.0);
+        float t;
+        float prevX, prevY;
 
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(max_z_coord + 0.2);
+        for (int i = 0; i < (sz - 3); i += 3)
+        {
+            x[0] = cage[i];
+            y[0] = cage[i + 1];
+            z[0] = cage[i + 2];
+            x[3] = cage[i + 3];
+            y[3] = cage[i + 4];
+            z[3] = cage[i + 5];
+            cubicBezier.push_back(x[0]);
+            cubicBezier.push_back(y[0]);
+            cubicBezier.push_back(z[0]);
+            controlPoints.push_back(x[0]);
+            controlPoints.push_back(y[0]);
+            controlPoints.push_back(z[0]);
+        }
 
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(max_z_coord + 0.2);
+        cubicBezier.push_back(x[3]);
+        cubicBezier.push_back(y[3]);
+        cubicBezier.push_back(z[3]);
+        controlPoints.push_back(x[3]);
+        controlPoints.push_back(y[3]);
+        controlPoints.push_back(z[3]);
 
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(max_z_coord + 0.2);
+        glGenVertexArrays(1, &obj_VAO);
+        glBindVertexArray(obj_VAO);
+        GLuint vertex_VBO;
+        // cout << v.size() << endl;
 
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(min_z_coord - 0.2);
-
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(max_z_coord + 0.2);
-
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(min_z_coord - 0.2);
-
-    cage.push_back(min_x_coord - 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(max_z_coord + 0.2);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(min_z_coord - 0.2);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(min_y_coord - 0.2);
-    cage.push_back(max_z_coord + 0.2);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(min_z_coord - 0.2);
-
-    cage.push_back(max_x_coord + 0.2);
-    cage.push_back(max_y_coord + 0.2);
-    cage.push_back(max_z_coord + 0.2);
-
-    std::vector<float> cubicBezier;
-
-    bool first = true;
-    int sz = cage.size(); // Contains 3 points/vertex. Ignore Z
-    float x[4], y[4], z[4];
-    float delta_t = 1.0 / (100.0 - 1.0);
-    float t;
-    float prevX, prevY;
-
-    for (int i = 0; i < (sz - 3); i += 3)
-    {
-        x[0] = cage[i];
-        y[0] = cage[i + 1];
-        z[0] = cage[i + 2];
-        x[3] = cage[i + 3];
-        y[3] = cage[i + 4];
-        z[3] = cage[i + 5];
-        cubicBezier.push_back(x[0]);
-        cubicBezier.push_back(y[0]);
-        cubicBezier.push_back(z[0]);
-        controlPoints.push_back(x[0]);
-        controlPoints.push_back(y[0]);
-        controlPoints.push_back(z[0]);
+        glGenBuffers(1, &vertex_VBO);
+        glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
+        glBufferData(GL_ARRAY_BUFFER, cubicBezier.size() * sizeof(GLfloat), &cubicBezier[0], GL_STATIC_DRAW);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindVertexArray(0);
+        for (auto i : controlPoints)
+        {
+            points.push_back(i);
+        }
+        firstRender = false;
+        return cubicBezier.size();
     }
 
-    cubicBezier.push_back(x[3]);
-    cubicBezier.push_back(y[3]);
-    cubicBezier.push_back(z[3]);
-    controlPoints.push_back(x[3]);
-    controlPoints.push_back(y[3]);
-    controlPoints.push_back(z[3]);
+    else{
+        cage.clear();
+        cage.push_back(min_x_coord - 0.2);
+        cage.push_back(min_y_coord - 0.2);
+        cage.push_back(0.0);
 
-    glGenVertexArrays(1, &obj_VAO);
-    glBindVertexArray(obj_VAO);
-    GLuint vertex_VBO;
-    // cout << v.size() << endl;
+        cage.push_back(min_x_coord - 0.2);
+        cage.push_back(max_y_coord + 0.2);
+        cage.push_back(0.0);
 
-    glGenBuffers(1, &vertex_VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
-    glBufferData(GL_ARRAY_BUFFER, cubicBezier.size() * sizeof(GLfloat), &cubicBezier[0], GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
-    for (auto i : controlPoints)
-    {
-        points.push_back(i);
+        cage.push_back(min_x_coord - 0.2);
+        cage.push_back(max_y_coord + 0.2);
+        cage.push_back(0.0);
+
+        cage.push_back(max_x_coord + 0.2);
+        cage.push_back(max_y_coord + 0.2);
+        cage.push_back(0.0);
+
+        cage.push_back(max_x_coord + 0.2);
+        cage.push_back(max_y_coord + 0.2);
+        cage.push_back(0.0);
+
+        cage.push_back(max_x_coord + 0.2);
+        cage.push_back(min_y_coord - 0.2);
+        cage.push_back(0.0);
+
+        cage.push_back(max_x_coord + 0.2);
+        cage.push_back(min_y_coord - 0.2);
+        cage.push_back(0.0);
+
+        cage.push_back(min_x_coord - 0.2);
+        cage.push_back(min_y_coord - 0.2);
+        cage.push_back(0.0);
+
+        cage.push_back(min_x_coord - 0.2);
+        cage.push_back(min_y_coord - 0.2);
+        cage.push_back(0.0);
+
+        cage.push_back(min_x_coord - 0.2);
+        cage.push_back(max_y_coord + 0.2);
+        cage.push_back(0.0);
+
+        cage.push_back(max_x_coord + 0.2);
+        cage.push_back(min_y_coord - 0.2);
+        cage.push_back(0.0);
+        std::vector<float> cubicBezier;
+
+        bool first = true;
+        // int sz = ca.size(); // Contains 3 points/vertex. Ignore Z
+        float x[4], y[4], z[4];
+        float delta_t = 1.0 / (100.0 - 1.0);
+        float t;
+        float prevX, prevY;
+
+        for (int i = startInd; i < (startInd+12-3); i += 3)
+        {
+            x[0] = cage[i];
+            y[0] = cage[i + 1];
+            z[0] = cage[i + 2];
+            x[3] = cage[i + 3];
+            y[3] = cage[i + 4];
+            z[3] = cage[i + 5];
+            cubicBezier.push_back(x[0]);
+            cubicBezier.push_back(y[0]);
+            cubicBezier.push_back(z[0]);
+            // controlPoints.push_back(x[0]);
+            // controlPoints.push_back(y[0]);
+            // controlPoints.push_back(z[0]);
+        }
+
+        cubicBezier.push_back(x[3]);
+        cubicBezier.push_back(y[3]);
+        cubicBezier.push_back(z[3]);
+        // controlPoints.push_back(x[3]);
+        // controlPoints.push_back(y[3]);
+        // controlPoints.push_back(z[3]);
+
+        glGenVertexArrays(1, &obj_VAO);
+        glBindVertexArray(obj_VAO);
+        GLuint vertex_VBO;
+        // cout << v.size() << endl;
+
+        glGenBuffers(1, &vertex_VBO);
+        glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
+        glBufferData(GL_ARRAY_BUFFER, cubicBezier.size() * sizeof(GLfloat), &cubicBezier[0], GL_STATIC_DRAW);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindVertexArray(0);
+        // for (auto i : controlPoints)
+        // {
+        //     points.push_back(i);
+        // }
+        // firstRender = false;
+        return cubicBezier.size();
     }
-
-    return cubicBezier.size();
+    
 }
 
 // 3_________________2
@@ -496,9 +546,9 @@ void Cage::createGrid()
             // std::cout<<changeInval<<" ";
             if (((changeInval) / (float)numOfcoord) < 0.001f)
             {
-                for(int i = 0;i<=100;i++){
-                    std::cout<<harmonic[0][i][0]<<" ";
-                }
+                // for(int i = 0;i<=100;i++){
+                //     std::cout<<harmonic[0][i][0]<<" ";
+                // }
                 breaker = true;
                 break;
             }

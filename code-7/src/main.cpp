@@ -37,9 +37,9 @@ GLfloat min_y_coord = INT_MAX;
 GLfloat min_z_coord = INT_MAX;
 GLfloat max_z_coord = INT_MIN;
 vector<GLfloat> VertexData;
-bool controlPointsUpdated;
+bool controlPointsUpdated = false;
 bool controlPointsFinished;
-int selectedControlPoint;
+int selectedControlPoint = 0;
 
 float selectionThreshold = 3.0f; // Select any control point within 3 pixels of vicinity.
 std::vector<float> rawControlPoints;
@@ -129,34 +129,34 @@ int main(int, char **)
     char *file6 = "/Users/vinayakarora/Computer-Graphics-Project/code-7/data/ll2d.obj";
 
     int mesh1size = LoadObj(file1, shaderProgram, VAO);
-    Cage c1 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
+    Cage c1 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord,0);
     int cage1size = c1.createCage(shaderProgram, cage1_VAO, controlPoints);
     setter();
     c1.createGrid();
 
     VertexData.clear();
     int mesh2size = LoadObj(file2, shaderProgram, VAO2);
-    Cage c2 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
+    Cage c2 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord,12);
     int cage2size = c2.createCage(shaderProgram, cage2_VAO, controlPoints);
     setter();
     c2.createGrid();
     int mesh3size = LoadObj(file3, shaderProgram, VAO3);
-    Cage c3 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
+    Cage c3 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord,24);
     int cage3size = c3.createCage(shaderProgram, cage3_VAO, controlPoints);
     setter();
     // c3.createGrid();
     int mesh4size = LoadObj(file4, shaderProgram, VAO4);
-    Cage c4 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
+    Cage c4 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord,36);
     int cage4size = c4.createCage(shaderProgram, cage4_VAO, controlPoints);
     setter();
     // c4.createGrid();
     int mesh5size = LoadObj(file5, shaderProgram, VAO5);
-    Cage c5 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
+    Cage c5 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord,48);
     int cage5size = c5.createCage(shaderProgram, cage5_VAO, controlPoints);
     setter();
     // c5.createGrid();
     int mesh6size = LoadObj(file6, shaderProgram, VAO6);
-    Cage c6 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord);
+    Cage c6 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord,60);
     int cage6size = c6.createCage(shaderProgram, cage6_VAO, controlPoints);
     setter();
     // c6.createGrid();
@@ -187,52 +187,79 @@ int main(int, char **)
 
             editer = false;
         }
+
+
+
         if (editer)
         {
-            if (!ImGui::IsAnyItemActive())
+           
+
+            if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_RightArrow)))
             {
-
-                if (ImGui::IsMouseClicked(ImGuiMouseButton_Left))
+                selectedControlPoint++;
+                if (selectedControlPoint > controlPoints.size() / 3)
                 {
-                    x = io.MousePos.x;
-                    y = io.MousePos.y;
-                    searchNearestControlPoint(x, y);
-                    //  cout<<selectedControlPoint<<" ";
-                }
-
-                if (ImGui::IsMouseDragging(ImGuiMouseButton_Left))
-                {
-
-                    if (selectedControlPoint >= 0)
-                    {
-                        x = io.MousePos.x;
-                        y = io.MousePos.y;
-                        cout << x << " " << y << " ";
-                        editControlPoint(controlPoints, x, y, screen_width, screen_height);
-                        controlPointsUpdated = true;
-                    }
-                }
-
-                if (ImGui::IsMouseClicked(ImGuiMouseButton_Right))
-                { // Stop adding points
-                    controlPointsFinished = true;
+                    selectedControlPoint = 0;
                 }
             }
+            if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_LeftArrow)))
+            {
+                selectedControlPoint--;
+                if (selectedControlPoint < 0)
+                {
+                    selectedControlPoint = controlPoints.size() / 3;
+                }
+            }
+
+            if(ImGui::IsKeyPressed(GLFW_KEY_W)){
+                // controlPoints[0] = controlPoints[0]+2.5f;
+                controlPoints[1] = controlPoints[1]+2.5f;
+                controlPointsUpdated = true;
+                // c1.max_y_coord = max(c1.max_y_coord,controlPoints[1]);
+                c1.min_y_coord = controlPoints[1];
+            }
+
+            else if(ImGui::IsKeyPressed(GLFW_KEY_A)){
+                // controlPoints[0] = controlPoints[0]+2.5f;
+                controlPoints[0] = controlPoints[0]-2.5f;
+                controlPointsUpdated = true;
+                // c1.min_x_coord = max(c1.min_x_coord,controlPoints[1]);
+                c1.min_x_coord = controlPoints[0];
+            }
+
+             else if(ImGui::IsKeyPressed(GLFW_KEY_D)){
+                // controlPoints[0] = controlPoints[0]+2.5f;
+                controlPoints[0] = controlPoints[0]+2.5f;
+                controlPointsUpdated = true;
+                c1.min_x_coord = controlPoints[0];
+            }
+
+             else if(ImGui::IsKeyPressed(GLFW_KEY_S)){
+                // controlPoints[0] = controlPoints[0]+2.5f;
+                controlPoints[1] = controlPoints[1]-2.5f;
+                controlPointsUpdated = true;
+                c1.min_y_coord = controlPoints[1];
+            }
+
 
             if (controlPointsUpdated)
             {
-                glBindVertexArray(VAO_controlPoints);
-                glBindBuffer(GL_ARRAY_BUFFER, VBO_controlPoints);
-                glBufferData(GL_ARRAY_BUFFER, controlPoints.size() * sizeof(GLfloat), &controlPoints[0], GL_DYNAMIC_DRAW);
-                glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
-                glEnableVertexAttribArray(0); // Enable first attribute buffer (ve
+
+                c1.createCage(shaderProgram, cage1_VAO, controlPoints);
+
+                // glBindVertexArray(VAO_controlPoints);
+                // glBindBuffer(GL_ARRAY_BUFFER, VBO_controlPoints);
+                // glBufferData(GL_ARRAY_BUFFER, controlPoints.size() * sizeof(GLfloat), &controlPoints[0], GL_DYNAMIC_DRAW);
+                // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+                // glEnableVertexAttribArray(0); // Enable first attribute buffer (ve
                 // cout<<"Here"<<" ";
             }
-
-            // if(controlPointsUpdated){
-            //     computeCage();
-            // }
         }
+
+
+
+
+       
         if (rotater)
         {
 
@@ -351,7 +378,18 @@ int main(int, char **)
         glDrawArrays(GL_LINES, 0, cage6size / 3);
 
         glBindVertexArray(VAO_controlPoints);
-        glDrawArrays(GL_POINTS, 0, controlPoints.size() / 3);
+        for (int i = 0; i < controlPoints.size() / 3; i++)
+        {
+            if (i == selectedControlPoint)
+            {
+                glUniform3f(vColor_uniform, 0.3, 0.8, 0.5);
+            }
+            else
+            {
+                glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+            }
+            glDrawArrays(GL_POINTS, i * 3, 1);
+        }
         //
 
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

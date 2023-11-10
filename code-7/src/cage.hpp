@@ -13,6 +13,25 @@ using namespace std;
 class Cage
 {
 private:
+    // GLfloat max_x_coord = INT_MIN;
+    // GLfloat max_y_coord = INT_MIN;
+    // GLfloat max_z_coord = INT_MIN;
+    // GLfloat min_x_coord = INT_MAX;
+    // GLfloat min_y_coord = INT_MAX;
+    // GLfloat min_z_coord = INT_MAX;
+
+    GLfloat topboundayVertexX;
+    GLfloat topboundayVertexY;
+    GLfloat bottomboundayVertexX;
+    GLfloat bottomboundayVertexY;
+
+    int startInd;
+
+    bool firstRender;
+
+    map<int, vector<vector<float> > > harmonic;
+
+public:
     GLfloat max_x_coord = INT_MIN;
     GLfloat max_y_coord = INT_MIN;
     GLfloat max_z_coord = INT_MIN;
@@ -20,14 +39,6 @@ private:
     GLfloat min_y_coord = INT_MAX;
     GLfloat min_z_coord = INT_MAX;
 
-    GLfloat topboundayVertexX;
-    GLfloat topboundayVertexY;
-    GLfloat bottomboundayVertexX;
-    GLfloat bottomboundayVertexY;
-
-    map<int, vector<vector<float> > > harmonic;
-
-public:
     float grid[101][101];
     std::vector<float> cage;
     std::vector<float> controlPoints;
@@ -36,7 +47,7 @@ public:
          GLfloat min_x,
          GLfloat min_y,
          GLfloat min_z,
-         GLfloat max_z)
+         GLfloat max_z,int startInd)
     {
         max_x_coord = max_x;
         max_y_coord = max_y;
@@ -44,6 +55,9 @@ public:
         min_y_coord = min_y;
         min_z_coord = min_z;
         max_z_coord = max_z;
+
+        firstRender = true;
+        startInd = startInd;
 
         topboundayVertexX = max_x_coord + 0.2;
         topboundayVertexY = max_y_coord + 0.2;
