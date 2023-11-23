@@ -1,160 +1,149 @@
 #include "cage.hpp"
 // References - Assignment 1 -> Piecewise Cubic bezier curve
 
-
 /*To create a cage for 3d mesh
 The control points are set as corner vertices
 Piecewise cubic bezier is then calculated using the code in Assignment 1
 */
-int Cage::createCage3d(unsigned int &program, unsigned int &obj_VAO, vector<float> &points){
+int Cage::createCage3d(unsigned int &program, unsigned int &obj_VAO, vector<float> &points)
+{
+    controlPoints.clear();
+    cout << min_x_coord << endl;
+    cage.clear();
+    // cage.push_back(min_x_coord - 0.2);
+    //     cage.push_back(min_y_coord - 0.2);
+    //     cage.push_back(min_z_coord - 0.2);
+
+    //     cage.push_back(min_x_coord - 0.2);
+    //     cage.push_back(max_y_coord + 0.2);
+    //     cage.push_back(min_z_coord - 0.2);
+
+    //     cage.push_back(min_x_coord - 0.2);
+    //     cage.push_back(max_y_coord + 0.2);
+    //     cage.push_back(min_z_coord - 0.2);
+
+    //     cage.push_back(max_x_coord + 0.2);
+    //     cage.push_back(max_y_coord + 0.2);
+    //     cage.push_back(min_z_coord - 0.2);
+
+    //     cage.push_back(max_x_coord + 0.2);
+    //     cage.push_back(max_y_coord + 0.2);
+    //     cage.push_back(min_z_coord - 0.2);
+
+    //     cage.push_back(max_x_coord + 0.2);
+    //     cage.push_back(min_y_coord - 0.2);
+    //     cage.push_back(min_z_coord - 0.2);
+
+    //     cage.push_back(max_x_coord + 0.2);
+    //     cage.push_back(min_y_coord - 0.2);
+    //     cage.push_back(min_z_coord - 0.2);
+
+    //     cage.push_back(min_x_coord - 0.2);
+    //     cage.push_back(min_y_coord - 0.2);
+    //     cage.push_back(min_z_coord - 0.2);
+
     cage.push_back(min_x_coord - 0.2);
-        cage.push_back(min_y_coord - 0.2);
-        cage.push_back(min_z_coord - 0.2);
+    cage.push_back(min_y_coord - 0.2);
+    cage.push_back(max_z_coord + 0.2);
 
-        cage.push_back(min_x_coord - 0.2);
-        cage.push_back(max_y_coord + 0.2);
-        cage.push_back(min_z_coord - 0.2);
+    cage.push_back(min_x_coord - 0.2);
+    cage.push_back(max_y_coord + 0.2);
+    cage.push_back(max_z_coord + 0.2);
 
-        cage.push_back(min_x_coord - 0.2);
-        cage.push_back(max_y_coord + 0.2);
-        cage.push_back(min_z_coord - 0.2);
+    // cage.push_back(min_x_coord - 0.2);
+    // cage.push_back(max_y_coord + 0.2);
+    // cage.push_back(max_z_coord + 0.2);
 
-        cage.push_back(max_x_coord + 0.2);
-        cage.push_back(max_y_coord + 0.2);
-        cage.push_back(min_z_coord - 0.2);
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(max_y_coord + 0.2);
+    cage.push_back(max_z_coord + 0.2);
 
-        cage.push_back(max_x_coord + 0.2);
-        cage.push_back(max_y_coord + 0.2);
-        cage.push_back(min_z_coord - 0.2);
+    // cage.push_back(max_x_coord + 0.2);
+    // cage.push_back(max_y_coord + 0.2);
+    // cage.push_back(max_z_coord + 0.2);
 
-        cage.push_back(max_x_coord + 0.2);
-        cage.push_back(min_y_coord - 0.2);
-        cage.push_back(min_z_coord - 0.2);
+    cage.push_back(max_x_coord + 0.2);
+    cage.push_back(min_y_coord - 0.2);
+    cage.push_back(max_z_coord + 0.2);
 
-        cage.push_back(max_x_coord + 0.2);
-        cage.push_back(min_y_coord - 0.2);
-        cage.push_back(min_z_coord - 0.2);
+    // cage.push_back(max_x_coord + 0.2);
+    // cage.push_back(min_y_coord - 0.2);
+    // cage.push_back(max_z_coord + 0.2);
 
-        cage.push_back(min_x_coord - 0.2);
-        cage.push_back(min_y_coord - 0.2);
-        cage.push_back(min_z_coord - 0.2);
+    cage.push_back(min_x_coord - 0.2);
+    cage.push_back(min_y_coord - 0.2);
+    cage.push_back(max_z_coord + 0.2);
 
-        cage.push_back(min_x_coord - 0.2);
-        cage.push_back(min_y_coord - 0.2);
-        cage.push_back(max_z_coord + 0.2);
+    // // cage.push_back(min_x_coord - 0.2);
+    // // cage.push_back(min_y_coord - 0.2);
+    // // cage.push_back(min_z_coord - 0.2);
 
-        cage.push_back(min_x_coord - 0.2);
-        cage.push_back(max_y_coord + 0.2);
-        cage.push_back(max_z_coord + 0.2);
+    // cage.push_back(min_x_coord - 0.2);
+    // cage.push_back(min_y_coord - 0.2);
+    // cage.push_back(max_z_coord + 0.2);
 
-        cage.push_back(min_x_coord - 0.2);
-        cage.push_back(max_y_coord + 0.2);
-        cage.push_back(max_z_coord + 0.2);
+    // // cage.push_back(min_x_coord - 0.2);
+    // // cage.push_back(max_y_coord + 0.2);
+    // // cage.push_back(min_z_coord - 0.2);
 
-        cage.push_back(max_x_coord + 0.2);
-        cage.push_back(max_y_coord + 0.2);
-        cage.push_back(max_z_coord + 0.2);
+    // cage.push_back(min_x_coord - 0.2);
+    // cage.push_back(max_y_coord + 0.2);
+    // cage.push_back(max_z_coord + 0.2);
 
-        cage.push_back(max_x_coord + 0.2);
-        cage.push_back(max_y_coord + 0.2);
-        cage.push_back(max_z_coord + 0.2);
+    // // cage.push_back(max_x_coord + 0.2);
+    // // cage.push_back(min_y_coord - 0.2);
+    // // cage.push_back(min_z_coord - 0.2);
 
-        cage.push_back(max_x_coord + 0.2);
-        cage.push_back(min_y_coord - 0.2);
-        cage.push_back(max_z_coord + 0.2);
+    // cage.push_back(max_x_coord + 0.2);
+    // cage.push_back(min_y_coord - 0.2);
+    // cage.push_back(max_z_coord + 0.2);
 
-        cage.push_back(max_x_coord + 0.2);
-        cage.push_back(min_y_coord - 0.2);
-        cage.push_back(max_z_coord + 0.2);
+    // // cage.push_back(max_x_coord + 0.2);
+    // // cage.push_back(max_y_coord + 0.2);
+    // // cage.push_back(min_z_coord - 0.2);
 
-        cage.push_back(min_x_coord - 0.2);
-        cage.push_back(min_y_coord - 0.2);
-        cage.push_back(max_z_coord + 0.2);
+    // cage.push_back(max_x_coord + 0.2);
+    // cage.push_back(max_y_coord + 0.2);
+    // cage.push_back(max_z_coord + 0.2);
 
-        cage.push_back(min_x_coord - 0.2);
-        cage.push_back(min_y_coord - 0.2);
-        cage.push_back(min_z_coord - 0.2);
+    std::vector<float> cubicBezier;
 
-        cage.push_back(min_x_coord - 0.2);
-        cage.push_back(min_y_coord - 0.2);
-        cage.push_back(max_z_coord + 0.2);
+    bool first = true;
+    int sz = cage.size(); // Contains 3 points/vertex. Ignore Z
+    float x[4], y[4], z[4];
+    float delta_t = 1.0 / (100.0 - 1.0);
+    float t;
+    float prevX, prevY;
 
-        cage.push_back(min_x_coord - 0.2);
-        cage.push_back(max_y_coord + 0.2);
-        cage.push_back(min_z_coord - 0.2);
+    for (int i = 0; i < sz; i++)
+    {
 
-        cage.push_back(min_x_coord - 0.2);
-        cage.push_back(max_y_coord + 0.2);
-        cage.push_back(max_z_coord + 0.2);
+        cubicBezier.push_back(cage[i]);
+        controlPoints.push_back(cage[i]);
+    }
+    cout << controlPoints.size() << endl;
+    glGenVertexArrays(1, &obj_VAO);
+    glBindVertexArray(obj_VAO);
+    GLuint vertex_VBO;
+    // cout << v.size() << endl;
 
-        cage.push_back(max_x_coord + 0.2);
-        cage.push_back(min_y_coord - 0.2);
-        cage.push_back(min_z_coord - 0.2);
-
-        cage.push_back(max_x_coord + 0.2);
-        cage.push_back(min_y_coord - 0.2);
-        cage.push_back(max_z_coord + 0.2);
-
-        cage.push_back(max_x_coord + 0.2);
-        cage.push_back(max_y_coord + 0.2);
-        cage.push_back(min_z_coord - 0.2);
-
-        cage.push_back(max_x_coord + 0.2);
-        cage.push_back(max_y_coord + 0.2);
-        cage.push_back(max_z_coord + 0.2);
-
-        std::vector<float> cubicBezier;
-
-        bool first = true;
-        int sz = cage.size(); // Contains 3 points/vertex. Ignore Z
-        float x[4], y[4], z[4];
-        float delta_t = 1.0 / (100.0 - 1.0);
-        float t;
-        float prevX, prevY;
-
-        for (int i = 0; i < (sz - 3); i += 3)
-        {
-            x[0] = cage[i];
-            y[0] = cage[i + 1];
-            z[0] = cage[i + 2];
-            x[3] = cage[i + 3];
-            y[3] = cage[i + 4];
-            z[3] = cage[i + 5];
-            cubicBezier.push_back(x[0]);
-            cubicBezier.push_back(y[0]);
-            cubicBezier.push_back(z[0]);
-            controlPoints.push_back(x[0]);
-            controlPoints.push_back(y[0]);
-            controlPoints.push_back(z[0]);
-        }
-
-        cubicBezier.push_back(x[3]);
-        cubicBezier.push_back(y[3]);
-        cubicBezier.push_back(z[3]);
-        controlPoints.push_back(x[3]);
-        controlPoints.push_back(y[3]);
-        controlPoints.push_back(z[3]);
-
-        glGenVertexArrays(1, &obj_VAO);
-        glBindVertexArray(obj_VAO);
-        GLuint vertex_VBO;
-        // cout << v.size() << endl;
-
-        glGenBuffers(1, &vertex_VBO);
-        glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
-        glBufferData(GL_ARRAY_BUFFER, cubicBezier.size() * sizeof(GLfloat), &cubicBezier[0], GL_STATIC_DRAW);
-        glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        glBindVertexArray(0);
+    glGenBuffers(1, &vertex_VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
+    glBufferData(GL_ARRAY_BUFFER, cubicBezier.size() * sizeof(GLfloat), &cubicBezier[0], GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    if (firstRender)
+    {
         for (auto i : controlPoints)
         {
             points.push_back(i);
         }
-        firstRender = false;
-        return cubicBezier.size();
+    }
+    firstRender = false;
+    return cubicBezier.size();
 }
-
 
 /*To create a cage for 3d mesh
 The control points are set as corner vertices
@@ -411,13 +400,13 @@ void Cage::handleEdge(int currEdge, int i, int j, float x, float y)
 
         if (y == min_y_coord && x < max_x_coord)
         {
-            harmonic[currEdge][i][j] = (i)*0.01;
+            harmonic[currEdge][i][j] = (i) * 0.01;
         }
 
         // next edge
         if (x == max_x_coord && y < max_y_coord)
         {
-            harmonic[currEdge][i][j] = (j)*0.01;
+            harmonic[currEdge][i][j] = (j) * 0.01;
         }
     }
 
@@ -433,7 +422,7 @@ void Cage::handleEdge(int currEdge, int i, int j, float x, float y)
         // next edge
         if (y == max_y_coord && x < max_x_coord)
         {
-            harmonic[currEdge][i][j] = (i)*0.01;
+            harmonic[currEdge][i][j] = (i) * 0.01;
         }
     }
 
@@ -448,13 +437,12 @@ void Cage::handleEdge(int currEdge, int i, int j, float x, float y)
         // next edge
         if (x == min_x_coord && y != min_y_coord && y != max_y_coord)
         {
-            harmonic[currEdge][i][j] = (j)*0.01;
+            harmonic[currEdge][i][j] = (j) * 0.01;
         }
     }
 
     // cout<<harmonic[currEdge][x][y]<<endl;
 }
-
 
 /* To create a grid around each cage
 Harmonic coordinates are calculated with respect to each control point of the cage
@@ -575,17 +563,18 @@ bool Cage::RecomputeVertex(vector<GLfloat> &mesh)
         int map_x = (old_x - min_x_coord) / stepx;
         int map_y = (old_y - min_y_coord) / stepy;
 
-        if(map_x < 0 || map_x >= 128 || map_y < 0 ||  map_y >= 128){
+        if (map_x < 0 || map_x >= 128 || map_y < 0 || map_y >= 128)
+        {
             continue;
         }
         GLfloat new_x, new_y;
         for (int j = 0; j < controlPoints.size() / 3; j++)
         {
-            for(int i = 0;i<4;i++){
+            for (int i = 0; i < 4; i++)
+            {
                 new_x += harmonic[i][map_x][map_y] * (controlPoints[j * 3]);
                 new_y += harmonic[i][map_x][map_y] * (controlPoints[j * 3 + 1]);
             }
-            
         }
         mesh[i * 3] = new_x;
         mesh[i * 3 + 1] = new_y;
