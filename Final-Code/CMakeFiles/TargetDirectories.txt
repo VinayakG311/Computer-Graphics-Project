@@ -1,0 +1,3 @@
+/Users/vinayakarora/Computer-Graphics-Project/Final-Code/CMakeFiles/Harmonic.dir
+/Users/vinayakarora/Computer-Graphics-Project/Final-Code/CMakeFiles/edit_cache.dir
+/Users/vinayakarora/Computer-Graphics-Project/Final-Code/CMakeFiles/rebuild_cache.dir
