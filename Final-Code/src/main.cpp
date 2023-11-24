@@ -195,6 +195,7 @@ int main(int, char **)
 
         if (editer)
         {
+            float newx, newy, oldx, oldy;
             if (ImGui::IsMouseClicked(ImGuiMouseButton_Left))
             {
                 double xpos, ypos;
@@ -204,10 +205,10 @@ int main(int, char **)
                 glm::vec3 winPos = glm::vec3(xpos, screen_height - ypos, 0.0f);
                 glm::vec3 worldPos = glm::unProject(winPos, projectionT * viewT * modelT, glm::inverse(projectionT * viewT * modelT), viewport);
 
-                cout << worldPos[0] << " " << worldPos[1] << endl;
+                // cout << worldPos[0] << " " << worldPos[1] << endl;
                 glm::vec3 va = getTrackBallVector(xpos, ypos);
                 glm::vec4 w = glm::inverse(modelT) * glm::vec4(va, 1.0f);
-                cout << va[0] << " " << va[1] << " " << w[0] << " " << w[1] << endl;
+                // cout << va[0] << " " << va[1] << " " << w[0] << " " << w[1] << endl;
             }
             // Updating position of control points based on user input WASD
 
@@ -231,39 +232,62 @@ int main(int, char **)
             if (ImGui::IsKeyPressed(GLFW_KEY_W))
             {
                 // controlPoints[0] = controlPoints[0]+2.5f;
-                controlPoints[1] = controlPoints[1] + 2.5f;
+                oldy = controlPoints[1];
+                oldx = controlPoints[0];
+                newy = controlPoints[1] + 2.5f;
+                newx = controlPoints[0];
                 controlPointsUpdated = true;
                 // c1.max_y_coord = max(c1.max_y_coord,controlPoints[1]);
-                c1.min_y_coord = controlPoints[1];
+                c1.min_y_coord = newy;
             }
 
             else if (ImGui::IsKeyPressed(GLFW_KEY_A))
             {
                 // controlPoints[0] = controlPoints[0]+2.5f;
-                controlPoints[0] = controlPoints[0] - 2.5f;
+                oldx = controlPoints[0];
+                oldy = controlPoints[1];
+                newx = controlPoints[0] - 2.5f;
+                newy = controlPoints[1];
                 controlPointsUpdated = true;
                 // c1.min_x_coord = max(c1.min_x_coord,controlPoints[1]);
-                c1.min_x_coord = controlPoints[0];
+                c1.min_x_coord = newx;
             }
 
             else if (ImGui::IsKeyPressed(GLFW_KEY_D))
             {
                 // controlPoints[0] = controlPoints[0]+2.5f;
-                controlPoints[0] = controlPoints[0] + 2.5f;
+                oldx = controlPoints[0];
+                newx = controlPoints[0] + 2.5f;
+                oldy = controlPoints[1];
+                newy = controlPoints[1];
                 controlPointsUpdated = true;
-                c1.min_x_coord = controlPoints[0];
+                c1.min_x_coord = newx;
             }
 
             else if (ImGui::IsKeyPressed(GLFW_KEY_S))
             {
                 // controlPoints[0] = controlPoints[0]+2.5f;
-                controlPoints[1] = controlPoints[1] - 2.5f;
+                oldy = controlPoints[1];
+                newy = controlPoints[1] - 2.5f;
+                oldx = controlPoints[0];
+                newx = controlPoints[0];
                 controlPointsUpdated = true;
-                c1.min_y_coord = controlPoints[1];
+                c1.min_y_coord = newy;
             }
 
             if (controlPointsUpdated)
             {
+                cout << controlPoints[0] << " " << oldx << " " << newx << endl;
+                cout << controlPoints[1] << " " << oldy << " " << newy << endl;
+                for (int i = 0; i < controlPoints.size(); i += 3)
+                {
+                    if (controlPoints[i] == oldx && controlPoints[i + 1] == oldy)
+                    {
+                        cout << "hi" << endl;
+                        controlPoints[i] = newx;
+                        controlPoints[i + 1] = newy;
+                    }
+                }
 
                 cage1size = c1.createCage3d(shaderProgram, cage1_VAO, controlPoints); // Creating cage for mesh 1
                 setter();
@@ -401,11 +425,6 @@ int main(int, char **)
         // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
         // glDrawArrays(GL_LINES, 0, cage6size / 3);
 
-        for (auto i : controlPoints)
-        {
-            cout << i << " ";
-        }
-        cout << endl;
         glBindVertexArray(VAO1);
         glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
         for (int i = 0; i < controlPoints.size() / 3; i += 5)

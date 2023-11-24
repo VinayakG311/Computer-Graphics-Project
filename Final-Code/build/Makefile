@@ -321,6 +321,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Harmonic.dir/build.make CMakeFiles/Harmonic.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/points.o: src/points.cpp.o
+.PHONY : src/points.o
+
+# target to build an object file
+src/points.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Harmonic.dir/build.make CMakeFiles/Harmonic.dir/src/points.cpp.o
+.PHONY : src/points.cpp.o
+
+src/points.i: src/points.cpp.i
+.PHONY : src/points.i
+
+# target to preprocess a source file
+src/points.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Harmonic.dir/build.make CMakeFiles/Harmonic.dir/src/points.cpp.i
+.PHONY : src/points.cpp.i
+
+src/points.s: src/points.cpp.s
+.PHONY : src/points.s
+
+# target to generate assembly for a file
+src/points.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Harmonic.dir/build.make CMakeFiles/Harmonic.dir/src/points.cpp.s
+.PHONY : src/points.cpp.s
+
 src/utils.o: src/utils.cpp.o
 .PHONY : src/utils.o
 
@@ -378,6 +402,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/points.o"
+	@echo "... src/points.i"
+	@echo "... src/points.s"
 	@echo "... src/utils.o"
 	@echo "... src/utils.i"
 	@echo "... src/utils.s"

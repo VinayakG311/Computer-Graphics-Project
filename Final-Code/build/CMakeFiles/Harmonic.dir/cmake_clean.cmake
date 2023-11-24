@@ -17,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Harmonic.dir/src/cage.cpp.o.d"
   "CMakeFiles/Harmonic.dir/src/main.cpp.o"
   "CMakeFiles/Harmonic.dir/src/main.cpp.o.d"
+  "CMakeFiles/Harmonic.dir/src/points.cpp.o"
+  "CMakeFiles/Harmonic.dir/src/points.cpp.o.d"
   "CMakeFiles/Harmonic.dir/src/utils.cpp.o"
   "CMakeFiles/Harmonic.dir/src/utils.cpp.o.d"
 )

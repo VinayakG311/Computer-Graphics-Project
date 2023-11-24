@@ -111,10 +111,24 @@ CMakeFiles/Harmonic.dir/src/cage.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Harmonic.dir/src/cage.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/cage.cpp -o CMakeFiles/Harmonic.dir/src/cage.cpp.s
 
+CMakeFiles/Harmonic.dir/src/points.cpp.o: CMakeFiles/Harmonic.dir/flags.make
+CMakeFiles/Harmonic.dir/src/points.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/points.cpp
+CMakeFiles/Harmonic.dir/src/points.cpp.o: CMakeFiles/Harmonic.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Harmonic.dir/src/points.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Harmonic.dir/src/points.cpp.o -MF CMakeFiles/Harmonic.dir/src/points.cpp.o.d -o CMakeFiles/Harmonic.dir/src/points.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/points.cpp
+
+CMakeFiles/Harmonic.dir/src/points.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Harmonic.dir/src/points.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/points.cpp > CMakeFiles/Harmonic.dir/src/points.cpp.i
+
+CMakeFiles/Harmonic.dir/src/points.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Harmonic.dir/src/points.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/points.cpp -o CMakeFiles/Harmonic.dir/src/points.cpp.s
+
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_glfw.cpp.o: CMakeFiles/Harmonic.dir/flags.make
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_glfw.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_impl_glfw.cpp
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_glfw.cpp.o: CMakeFiles/Harmonic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_glfw.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_glfw.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_glfw.cpp.o -MF CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_glfw.cpp.o.d -o CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_glfw.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_impl_glfw.cpp
 
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_glfw.cpp.i: cmake_force
@@ -128,7 +142,7 @@ CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_glfw.cpp.s: cmake_force
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_opengl3.cpp.o: CMakeFiles/Harmonic.dir/flags.make
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_opengl3.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_impl_opengl3.cpp
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_opengl3.cpp.o: CMakeFiles/Harmonic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_opengl3.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_opengl3.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_opengl3.cpp.o -MF CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_opengl3.cpp.o.d -o CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_opengl3.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_impl_opengl3.cpp
 
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_opengl3.cpp.i: cmake_force
@@ -142,7 +156,7 @@ CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_opengl3.cpp.s: cmake_force
 CMakeFiles/Harmonic.dir/depends/imgui/imgui.cpp.o: CMakeFiles/Harmonic.dir/flags.make
 CMakeFiles/Harmonic.dir/depends/imgui/imgui.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui.cpp
 CMakeFiles/Harmonic.dir/depends/imgui/imgui.cpp.o: CMakeFiles/Harmonic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Harmonic.dir/depends/imgui/imgui.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Harmonic.dir/depends/imgui/imgui.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Harmonic.dir/depends/imgui/imgui.cpp.o -MF CMakeFiles/Harmonic.dir/depends/imgui/imgui.cpp.o.d -o CMakeFiles/Harmonic.dir/depends/imgui/imgui.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui.cpp
 
 CMakeFiles/Harmonic.dir/depends/imgui/imgui.cpp.i: cmake_force
@@ -156,7 +170,7 @@ CMakeFiles/Harmonic.dir/depends/imgui/imgui.cpp.s: cmake_force
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_demo.cpp.o: CMakeFiles/Harmonic.dir/flags.make
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_demo.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_demo.cpp
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_demo.cpp.o: CMakeFiles/Harmonic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Harmonic.dir/depends/imgui/imgui_demo.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Harmonic.dir/depends/imgui/imgui_demo.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Harmonic.dir/depends/imgui/imgui_demo.cpp.o -MF CMakeFiles/Harmonic.dir/depends/imgui/imgui_demo.cpp.o.d -o CMakeFiles/Harmonic.dir/depends/imgui/imgui_demo.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_demo.cpp
 
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_demo.cpp.i: cmake_force
@@ -170,7 +184,7 @@ CMakeFiles/Harmonic.dir/depends/imgui/imgui_demo.cpp.s: cmake_force
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_draw.cpp.o: CMakeFiles/Harmonic.dir/flags.make
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_draw.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_draw.cpp
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_draw.cpp.o: CMakeFiles/Harmonic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Harmonic.dir/depends/imgui/imgui_draw.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Harmonic.dir/depends/imgui/imgui_draw.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Harmonic.dir/depends/imgui/imgui_draw.cpp.o -MF CMakeFiles/Harmonic.dir/depends/imgui/imgui_draw.cpp.o.d -o CMakeFiles/Harmonic.dir/depends/imgui/imgui_draw.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_draw.cpp
 
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_draw.cpp.i: cmake_force
@@ -184,7 +198,7 @@ CMakeFiles/Harmonic.dir/depends/imgui/imgui_draw.cpp.s: cmake_force
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_widgets.cpp.o: CMakeFiles/Harmonic.dir/flags.make
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_widgets.cpp.o: /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_widgets.cpp
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_widgets.cpp.o: CMakeFiles/Harmonic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Harmonic.dir/depends/imgui/imgui_widgets.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Harmonic.dir/depends/imgui/imgui_widgets.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Harmonic.dir/depends/imgui/imgui_widgets.cpp.o -MF CMakeFiles/Harmonic.dir/depends/imgui/imgui_widgets.cpp.o.d -o CMakeFiles/Harmonic.dir/depends/imgui/imgui_widgets.cpp.o -c /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_widgets.cpp
 
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_widgets.cpp.i: cmake_force
@@ -200,6 +214,7 @@ Harmonic_OBJECTS = \
 "CMakeFiles/Harmonic.dir/src/main.cpp.o" \
 "CMakeFiles/Harmonic.dir/src/utils.cpp.o" \
 "CMakeFiles/Harmonic.dir/src/cage.cpp.o" \
+"CMakeFiles/Harmonic.dir/src/points.cpp.o" \
 "CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_glfw.cpp.o" \
 "CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_opengl3.cpp.o" \
 "CMakeFiles/Harmonic.dir/depends/imgui/imgui.cpp.o" \
@@ -213,6 +228,7 @@ Harmonic_EXTERNAL_OBJECTS =
 /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Harmonic: CMakeFiles/Harmonic.dir/src/main.cpp.o
 /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Harmonic: CMakeFiles/Harmonic.dir/src/utils.cpp.o
 /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Harmonic: CMakeFiles/Harmonic.dir/src/cage.cpp.o
+/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Harmonic: CMakeFiles/Harmonic.dir/src/points.cpp.o
 /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Harmonic: CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_glfw.cpp.o
 /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Harmonic: CMakeFiles/Harmonic.dir/depends/imgui/imgui_impl_opengl3.cpp.o
 /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Harmonic: CMakeFiles/Harmonic.dir/depends/imgui/imgui.cpp.o
@@ -223,7 +239,7 @@ Harmonic_EXTERNAL_OBJECTS =
 /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Harmonic: /opt/homebrew/lib/libglfw.3.3.dylib
 /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Harmonic: /opt/homebrew/lib/libGLEW.2.2.0.dylib
 /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Harmonic: CMakeFiles/Harmonic.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Harmonic"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Harmonic"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Harmonic.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

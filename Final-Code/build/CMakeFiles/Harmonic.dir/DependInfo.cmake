@@ -16,6 +16,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_widgets.cpp" "CMakeFiles/Harmonic.dir/depends/imgui/imgui_widgets.cpp.o" "gcc" "CMakeFiles/Harmonic.dir/depends/imgui/imgui_widgets.cpp.o.d"
   "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/cage.cpp" "CMakeFiles/Harmonic.dir/src/cage.cpp.o" "gcc" "CMakeFiles/Harmonic.dir/src/cage.cpp.o.d"
   "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/main.cpp" "CMakeFiles/Harmonic.dir/src/main.cpp.o" "gcc" "CMakeFiles/Harmonic.dir/src/main.cpp.o.d"
+  "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/points.cpp" "CMakeFiles/Harmonic.dir/src/points.cpp.o" "gcc" "CMakeFiles/Harmonic.dir/src/points.cpp.o.d"
   "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/src/utils.cpp" "CMakeFiles/Harmonic.dir/src/utils.cpp.o" "gcc" "CMakeFiles/Harmonic.dir/src/utils.cpp.o.d"
   )
 

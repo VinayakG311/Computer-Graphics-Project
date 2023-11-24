@@ -8,7 +8,7 @@ Piecewise cubic bezier is then calculated using the code in Assignment 1
 int Cage::createCage3d(unsigned int &program, unsigned int &obj_VAO, vector<float> &points)
 {
     controlPoints.clear();
-    cout << min_x_coord << endl;
+    // cout << min_x_coord << endl;
     cage.clear();
     // cage.push_back(min_x_coord - 0.2);
     //     cage.push_back(min_y_coord - 0.2);
@@ -121,7 +121,7 @@ int Cage::createCage3d(unsigned int &program, unsigned int &obj_VAO, vector<floa
         cubicBezier.push_back(cage[i]);
         controlPoints.push_back(cage[i]);
     }
-    cout << controlPoints.size() << endl;
+    // cout << controlPoints.size() << endl;
     glGenVertexArrays(1, &obj_VAO);
     glBindVertexArray(obj_VAO);
     GLuint vertex_VBO;
