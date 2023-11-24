@@ -58,6 +58,7 @@ int LoadObj(char *, unsigned int &, unsigned int &, vector<GLfloat> &);
 void editControlPoint(std::vector<float> &, float, float, int, int);
 bool searchNearestControlPoint(float, float);
 void mousemoved();
+void getcageandupdate(Cage, float, float, float, float, float, unsigned int &, unsigned int &);
 void setupModelTransformation(unsigned int &);
 void setupViewTransformation(unsigned int &);
 void setupProjectionTransformation(unsigned int &);
@@ -141,36 +142,36 @@ int main(int, char **)
     c1.createGrid(); // Creating grid for cage 1 of size 100 X 100 to compute harmonic coordinate values
 
     VertexData.clear();
-    // int mesh2size = LoadObj(file2, shaderProgram, VAO2, mesh2);                                       // Loading and storing mesh 2
-    // Cage c2 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 12); // Initializing cage class for mesh 2
-    // int cage2size = c2.createCage3d(shaderProgram, cage2_VAO, controlPoints);                         // Creating cage for mesh 2
-    // setter();
-    // c2.createGrid(); // Creating grid for cage 2 of size 100 X 100 to compute harmonic coordinate values
+    int mesh2size = LoadObj(file2, shaderProgram, VAO2, mesh2);                                       // Loading and storing mesh 2
+    Cage c2 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 12); // Initializing cage class for mesh 2
+    int cage2size = c2.createCage3d(shaderProgram, cage2_VAO, controlPoints);                         // Creating cage for mesh 2
+    setter();
+    c2.createGrid(); // Creating grid for cage 2 of size 100 X 100 to compute harmonic coordinate values
 
-    // int mesh3size = LoadObj(file3, shaderProgram, VAO3, mesh3);                                       // Loading and storing mesh 3
-    // Cage c3 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 24); // Initializing cage class for mesh 3
-    // int cage3size = c3.createCage3d(shaderProgram, cage3_VAO, controlPoints);                         // Creating cage for mesh 3
-    // setter();
-    // cout << c3.max_x_coord << " " << c3.max_y_coord << endl;
-    // c3.createGrid(); // Creating grid for cage 3 of size 100 X 100 to compute harmonic coordinate values
+    int mesh3size = LoadObj(file3, shaderProgram, VAO3, mesh3);                                       // Loading and storing mesh 3
+    Cage c3 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 24); // Initializing cage class for mesh 3
+    int cage3size = c3.createCage3d(shaderProgram, cage3_VAO, controlPoints);                         // Creating cage for mesh 3
+    setter();
+    cout << c3.max_x_coord << " " << c3.max_y_coord << endl;
+    c3.createGrid(); // Creating grid for cage 3 of size 100 X 100 to compute harmonic coordinate values
 
-    // int mesh4size = LoadObj(file4, shaderProgram, VAO4, mesh4);                                       // Loading and storing mesh 4
-    // Cage c4 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 36); // Initializing cage class for mesh 4
-    // int cage4size = c4.createCage3d(shaderProgram, cage4_VAO, controlPoints);                         // Creating cage for mesh 4
-    // setter();
-    // c4.createGrid(); // Creating grid for cage 4 of size 100 X 100 to compute harmonic coordinate values
+    int mesh4size = LoadObj(file4, shaderProgram, VAO4, mesh4);                                       // Loading and storing mesh 4
+    Cage c4 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 36); // Initializing cage class for mesh 4
+    int cage4size = c4.createCage3d(shaderProgram, cage4_VAO, controlPoints);                         // Creating cage for mesh 4
+    setter();
+    c4.createGrid(); // Creating grid for cage 4 of size 100 X 100 to compute harmonic coordinate values
 
-    // int mesh5size = LoadObj(file5, shaderProgram, VAO5, mesh5);                                       // Loading and storing mesh 5
-    // Cage c5 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 48); // Initializing cage class for mesh 5
-    // int cage5size = c5.createCage3d(shaderProgram, cage5_VAO, controlPoints);                         // Creating cage for mesh 5
-    // setter();
-    // c5.createGrid(); // Creating grid for cage 5 of size 100 X 100 to compute harmonic coordinate values
+    int mesh5size = LoadObj(file5, shaderProgram, VAO5, mesh5);                                       // Loading and storing mesh 5
+    Cage c5 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 48); // Initializing cage class for mesh 5
+    int cage5size = c5.createCage3d(shaderProgram, cage5_VAO, controlPoints);                         // Creating cage for mesh 5
+    setter();
+    c5.createGrid(); // Creating grid for cage 5 of size 100 X 100 to compute harmonic coordinate values
 
-    // int mesh6size = LoadObj(file6, shaderProgram, VAO6, mesh6);                                       // Loading and storing mesh 6
-    // Cage c6 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 60); // Initializing cage class for mesh 6
-    // int cage6size = c6.createCage3d(shaderProgram, cage6_VAO, controlPoints);                         // Creating cage for mesh 6
-    // setter();
-    // c6.createGrid(); // Creating grid for cage 6 of size 100 X 100 to compute harmonic coordinate values
+    int mesh6size = LoadObj(file6, shaderProgram, VAO6, mesh6);                                       // Loading and storing mesh 6
+    Cage c6 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 60); // Initializing cage class for mesh 6
+    int cage6size = c6.createCage3d(shaderProgram, cage6_VAO, controlPoints);                         // Creating cage for mesh 6
+    setter();
+    c6.createGrid(); // Creating grid for cage 6 of size 100 X 100 to compute harmonic coordinate values
 
     oldX = oldY = currentX = currentY = 0.0;
     int prevLeftButtonState = GLFW_RELEASE;
@@ -195,7 +196,7 @@ int main(int, char **)
 
         if (editer)
         {
-            cout << selectedControlPoint << endl;
+
             float newx, newy, oldx, oldy;
             if (ImGui::IsMouseClicked(ImGuiMouseButton_Left))
             {
@@ -233,66 +234,80 @@ int main(int, char **)
             if (ImGui::IsKeyPressed(GLFW_KEY_W))
             {
                 // controlPoints[0] = controlPoints[0]+2.5f;
-                oldy = controlPoints[1];
-                oldx = controlPoints[0];
-                newy = controlPoints[1] + 2.5f;
-                newx = controlPoints[0];
+                oldy = controlPoints[3 * selectedControlPoint + 1];
+                oldx = controlPoints[3 * selectedControlPoint];
+                newy = controlPoints[3 * selectedControlPoint + 1] + 2.5f;
+                newx = controlPoints[3 * selectedControlPoint];
                 controlPointsUpdated = true;
                 // c1.max_y_coord = max(c1.max_y_coord,controlPoints[1]);
-                c1.min_y_coord = newy;
             }
 
             else if (ImGui::IsKeyPressed(GLFW_KEY_A))
             {
                 // controlPoints[0] = controlPoints[0]+2.5f;
-                oldx = controlPoints[0];
-                oldy = controlPoints[1];
-                newx = controlPoints[0] - 2.5f;
-                newy = controlPoints[1];
+                oldx = controlPoints[3 * selectedControlPoint];
+                oldy = controlPoints[3 * selectedControlPoint + 1];
+                newx = controlPoints[3 * selectedControlPoint] - 2.5f;
+                newy = controlPoints[3 * selectedControlPoint + 1];
                 controlPointsUpdated = true;
                 // c1.min_x_coord = max(c1.min_x_coord,controlPoints[1]);
-                c1.min_x_coord = newx;
             }
 
             else if (ImGui::IsKeyPressed(GLFW_KEY_D))
             {
                 // controlPoints[0] = controlPoints[0]+2.5f;
-                oldx = controlPoints[0];
-                newx = controlPoints[0] + 2.5f;
-                oldy = controlPoints[1];
-                newy = controlPoints[1];
+                oldx = controlPoints[3 * selectedControlPoint];
+                newx = controlPoints[3 * selectedControlPoint] + 2.5f;
+                oldy = controlPoints[3 * selectedControlPoint + 1];
+                newy = controlPoints[3 * selectedControlPoint + 1];
                 controlPointsUpdated = true;
-                c1.min_x_coord = newx;
             }
 
             else if (ImGui::IsKeyPressed(GLFW_KEY_S))
             {
                 // controlPoints[0] = controlPoints[0]+2.5f;
-                oldy = controlPoints[1];
-                newy = controlPoints[1] - 2.5f;
-                oldx = controlPoints[0];
-                newx = controlPoints[0];
+                oldy = controlPoints[3 * selectedControlPoint + 1];
+                newy = controlPoints[3 * selectedControlPoint + 1] - 2.5f;
+                oldx = controlPoints[3 * selectedControlPoint];
+                newx = controlPoints[3 * selectedControlPoint];
                 controlPointsUpdated = true;
-                c1.min_y_coord = newy;
             }
 
             if (controlPointsUpdated)
             {
-                cout << controlPoints[0] << " " << oldx << " " << newx << endl;
-                cout << controlPoints[1] << " " << oldy << " " << newy << endl;
+
                 for (int i = 0; i < controlPoints.size(); i += 3)
                 {
                     if (controlPoints[i] == oldx && controlPoints[i + 1] == oldy)
                     {
-                        cout << "hi" << endl;
                         controlPoints[i] = newx;
                         controlPoints[i + 1] = newy;
                     }
                 }
-
-                cage1size = c1.createCage3d(shaderProgram, cage1_VAO, controlPoints); // Creating cage for mesh 1
-                setter();
-                c1.createGrid();
+                if (selectedControlPoint < 5)
+                {
+                    getcageandupdate(c1, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO);
+                }
+                else if (selectedControlPoint >= 5 && selectedControlPoint < 10)
+                {
+                    getcageandupdate(c2, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO2);
+                }
+                else if (selectedControlPoint >= 10 && selectedControlPoint < 15)
+                {
+                    getcageandupdate(c3, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO3);
+                }
+                else if (selectedControlPoint >= 15 && selectedControlPoint < 20)
+                {
+                    getcageandupdate(c4, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO4);
+                }
+                else if (selectedControlPoint >= 20 && selectedControlPoint < 25)
+                {
+                    getcageandupdate(c5, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO5);
+                }
+                else
+                {
+                    getcageandupdate(c6, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO6);
+                }
                 controlPointsUpdated = false;
 
                 // glBindVertexArray(VAO);
@@ -639,4 +654,16 @@ void mousemoved()
     // use recompute for that cage
 
     // and edit the meshes so that new mesh is rendered
+}
+
+void getcageandupdate(Cage c, float oldx, float oldy, float newx, float newy, float updatedindex, unsigned int &program, unsigned int &obj_VAO)
+{
+
+    c.min_x_coord = min(c.min_x_coord, newx);
+    c.max_x_coord = max(c.max_x_coord, newx);
+    c.min_y_coord = min(c.min_y_coord, newy);
+    c.max_y_coord = max(c.max_y_coord, newy);
+    c.createCage3d(program, obj_VAO, controlPoints);
+    setter();
+    c.createGrid();
 }
