@@ -195,6 +195,7 @@ int main(int, char **)
 
         if (editer)
         {
+            cout << selectedControlPoint << endl;
             float newx, newy, oldx, oldy;
             if (ImGui::IsMouseClicked(ImGuiMouseButton_Left))
             {
@@ -225,7 +226,7 @@ int main(int, char **)
                 selectedControlPoint--;
                 if (selectedControlPoint < 0)
                 {
-                    selectedControlPoint = controlPoints.size() / 3;
+                    selectedControlPoint = controlPoints.size() / 3 - 1;
                 }
             }
 
@@ -433,21 +434,18 @@ int main(int, char **)
         }
 
         glBindVertexArray(VAO_controlPoints);
-        glUniform3f(vColor_uniform, 0.3, 0.8, 0.5);
-        glDrawArrays(GL_POINTS, 0, controlPoints.size() / 3);
-        // for (int i = 0; i < controlPoints.size() / 3; i++)
-        // {
-        //     if (i == selectedControlPoint)
-        //     {
-        //         glUniform3f(vColor_uniform, 0.3, 0.8, 0.5);
-        //     }
-        //     else
-        //     {
-        //         glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        //     }
-        //     glDrawArrays(GL_POINTS, i * 3, 1);
-        // }
-        //
+        for (int i = 0; i < controlPoints.size() / 3; i++)
+        {
+            if (i == selectedControlPoint)
+            {
+                glUniform3f(vColor_uniform, 0.3, 0.8, 0.5);
+            }
+            else
+            {
+                glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+            }
+            glDrawArrays(GL_POINTS, i, 1);
+        }
 
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
