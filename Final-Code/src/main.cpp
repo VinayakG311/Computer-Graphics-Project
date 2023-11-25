@@ -309,12 +309,9 @@ int main(int, char **)
                     getcageandupdate(c6, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO6);
                 }
                 controlPointsUpdated = false;
+                c1.RecomputeVertex(mesh1,shaderProgram,VAO);
 
-                // glBindVertexArray(VAO);
-                // glBindBuffer(GL_ARRAY_BUFFER, VBO_controlPoints);
-                // glBufferData(GL_ARRAY_BUFFER, controlPoints.size() * sizeof(GLfloat), &controlPoints[0], GL_DYNAMIC_DRAW);
-                // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
-                // glEnableVertexAttribArray(0); // Enable first attribute buffer (ve
+                
             }
         }
 
@@ -393,29 +390,29 @@ int main(int, char **)
         glClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // glBindVertexArray(VAO);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_TRIANGLES, 0, mesh1size);
+        glBindVertexArray(VAO);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh1size);
 
-        // glBindVertexArray(VAO2);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_TRIANGLES, 0, mesh2size);
+        glBindVertexArray(VAO2);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh2size);
 
-        // glBindVertexArray(VAO3);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_TRIANGLES, 0, mesh3size);
+        glBindVertexArray(VAO3);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh3size);
 
-        // glBindVertexArray(VAO4);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_TRIANGLES, 0, mesh4size);
+        glBindVertexArray(VAO4);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh4size);
 
-        // glBindVertexArray(VAO5);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_TRIANGLES, 0, mesh5size);
+        glBindVertexArray(VAO5);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh5size);
 
-        // glBindVertexArray(VAO6);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_TRIANGLES, 0, mesh6size);
+        glBindVertexArray(VAO6);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh6size);
 
         // glBindVertexArray(cage1_VAO);
         // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);

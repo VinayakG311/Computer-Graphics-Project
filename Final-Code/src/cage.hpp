@@ -100,7 +100,7 @@ public:
     int createCage3d(unsigned int &program, unsigned int &obj_VAO, vector<float> &points);
     void createGrid();
 
-    bool RecomputeVertex(vector<GLfloat> &mesh);
+    bool RecomputeVertex(vector<GLfloat> &mesh,unsigned int &program, unsigned int &obj_VAO);
 
     void handleEdge(int curr, int i, int j, float x, float y);
 };

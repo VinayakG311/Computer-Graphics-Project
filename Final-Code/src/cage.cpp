@@ -122,18 +122,18 @@ int Cage::createCage3d(unsigned int &program, unsigned int &obj_VAO, vector<floa
         controlPoints.push_back(cage[i]);
     }
     // cout << controlPoints.size() << endl;
-    glGenVertexArrays(1, &obj_VAO);
-    glBindVertexArray(obj_VAO);
-    GLuint vertex_VBO;
-    // cout << v.size() << endl;
+    // glGenVertexArrays(1, &obj_VAO);
+    // glBindVertexArray(obj_VAO);
+    // GLuint vertex_VBO;
+    // // cout << v.size() << endl;
 
-    glGenBuffers(1, &vertex_VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
-    glBufferData(GL_ARRAY_BUFFER, cubicBezier.size() * sizeof(GLfloat), &cubicBezier[0], GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
+    // glGenBuffers(1, &vertex_VBO);
+    // glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
+    // glBufferData(GL_ARRAY_BUFFER, cubicBezier.size() * sizeof(GLfloat), &cubicBezier[0], GL_STATIC_DRAW);
+    // glEnableVertexAttribArray(0);
+    // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    // glBindBuffer(GL_ARRAY_BUFFER, 0);
+    // glBindVertexArray(0);
     if (firstRender)
     {
         for (auto i : controlPoints)
@@ -241,18 +241,18 @@ int Cage::createCage(unsigned int &program, unsigned int &obj_VAO, vector<float>
         controlPoints.push_back(y[3]);
         controlPoints.push_back(z[3]);
 
-        glGenVertexArrays(1, &obj_VAO);
-        glBindVertexArray(obj_VAO);
-        GLuint vertex_VBO;
-        // cout << v.size() << endl;
+        // glGenVertexArrays(1, &obj_VAO);
+        // glBindVertexArray(obj_VAO);
+        // GLuint vertex_VBO;
+        // // cout << v.size() << endl;
 
-        glGenBuffers(1, &vertex_VBO);
-        glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
-        glBufferData(GL_ARRAY_BUFFER, cubicBezier.size() * sizeof(GLfloat), &cubicBezier[0], GL_STATIC_DRAW);
-        glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        glBindVertexArray(0);
+        // glGenBuffers(1, &vertex_VBO);
+        // glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
+        // glBufferData(GL_ARRAY_BUFFER, cubicBezier.size() * sizeof(GLfloat), &cubicBezier[0], GL_STATIC_DRAW);
+        // glEnableVertexAttribArray(0);
+        // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+        // glBindBuffer(GL_ARRAY_BUFFER, 0);
+        // glBindVertexArray(0);
         for (auto i : controlPoints)
         {
             points.push_back(i);
@@ -340,18 +340,18 @@ int Cage::createCage(unsigned int &program, unsigned int &obj_VAO, vector<float>
         // controlPoints.push_back(y[3]);
         // controlPoints.push_back(z[3]);
 
-        glGenVertexArrays(1, &obj_VAO);
-        glBindVertexArray(obj_VAO);
-        GLuint vertex_VBO;
-        // cout << v.size() << endl;
+        // glGenVertexArrays(1, &obj_VAO);
+        // glBindVertexArray(obj_VAO);
+        // GLuint vertex_VBO;
+        // // cout << v.size() << endl;
 
-        glGenBuffers(1, &vertex_VBO);
-        glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
-        glBufferData(GL_ARRAY_BUFFER, cubicBezier.size() * sizeof(GLfloat), &cubicBezier[0], GL_STATIC_DRAW);
-        glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        glBindVertexArray(0);
+        // glGenBuffers(1, &vertex_VBO);
+        // glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
+        // glBufferData(GL_ARRAY_BUFFER, cubicBezier.size() * sizeof(GLfloat), &cubicBezier[0], GL_STATIC_DRAW);
+        // glEnableVertexAttribArray(0);
+        // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+        // glBindBuffer(GL_ARRAY_BUFFER, 0);
+        // glBindVertexArray(0);
         // for (auto i : controlPoints)
         // {
         //     points.push_back(i);
@@ -550,8 +550,19 @@ Then using the formula in the paper, new coordinates are calculated
 
 */
 
-bool Cage::RecomputeVertex(vector<GLfloat> &mesh)
+bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigned int &obj_VAO)
 {
+
+    glUseProgram(program);
+
+    // Bind shader variables
+    int vVertex_attrib = glGetAttribLocation(program, "vVertex");
+    if (vVertex_attrib == -1)
+    {
+        fprintf(stderr, "Could not bind location: vVertex\n");
+        exit(0);
+    }
+
     int sz = mesh.size();
     for (int i = 0; i < mesh.size() / 3; i++)
     {
@@ -579,5 +590,24 @@ bool Cage::RecomputeVertex(vector<GLfloat> &mesh)
         mesh[i * 3] = new_x;
         mesh[i * 3 + 1] = new_y;
     }
+
+    for(int i = 0;i<mesh.size()/3;i+=3){
+        std::cout<<mesh[i*3]<<" "<<mesh[i*3+1]<<" "<<mesh[i*3+2]<<"\n";
+    }
+
+    glGenVertexArrays(1, &obj_VAO);
+    glBindVertexArray(obj_VAO);
+
+    GLuint vertex_VBO;
+    glGenBuffers(1, &vertex_VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
+    glBufferData(GL_ARRAY_BUFFER, mesh.size()*sizeof(GLfloat), &mesh[0], GL_STATIC_DRAW);
+    glEnableVertexAttribArray(vVertex_attrib);
+    glVertexAttribPointer(vVertex_attrib, 3, GL_FLOAT, GL_FALSE, 0, 0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0); // Unbind the VAO to disabl
+
+
     return true;
 }
