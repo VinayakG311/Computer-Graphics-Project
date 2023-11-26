@@ -15,11 +15,9 @@ using namespace std;
 Grid is created for each cage to compute harmonic coordinates with respect to each cornet vertex
 */
 
-
 class Cage
 {
 private:
-    
     GLfloat topboundayVertexX;
     GLfloat topboundayVertexY;
     GLfloat bottomboundayVertexX;
@@ -100,7 +98,7 @@ public:
     int createCage3d(unsigned int &program, unsigned int &obj_VAO, vector<float> &points);
     void createGrid();
 
-    bool RecomputeVertex(vector<GLfloat> &mesh,unsigned int &program, unsigned int &obj_VAO);
+    bool RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigned int &obj_VAO, int index);
 
     void handleEdge(int curr, int i, int j, float x, float y);
 };

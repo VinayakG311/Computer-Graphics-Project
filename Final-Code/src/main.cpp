@@ -58,7 +58,7 @@ int LoadObj(char *, unsigned int &, unsigned int &, vector<GLfloat> &);
 void editControlPoint(std::vector<float> &, float, float, int, int);
 bool searchNearestControlPoint(float, float);
 void mousemoved();
-void getcageandupdate(Cage, float, float, float, float, float, unsigned int &, unsigned int &);
+void getcageandupdate(Cage, float, float, float, float, float, unsigned int &, unsigned int &, vector<GLfloat> &, int);
 void setupModelTransformation(unsigned int &);
 void setupViewTransformation(unsigned int &);
 void setupProjectionTransformation(unsigned int &);
@@ -286,32 +286,29 @@ int main(int, char **)
                 }
                 if (selectedControlPoint < 5)
                 {
-                    getcageandupdate(c1, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO);
+                    getcageandupdate(c1, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO, mesh1, selectedControlPoint);
                 }
                 else if (selectedControlPoint >= 5 && selectedControlPoint < 10)
                 {
-                    getcageandupdate(c2, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO2);
+                    getcageandupdate(c2, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO2, mesh2, selectedControlPoint);
                 }
                 else if (selectedControlPoint >= 10 && selectedControlPoint < 15)
                 {
-                    getcageandupdate(c3, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO3);
+                    getcageandupdate(c3, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO3, mesh3, selectedControlPoint);
                 }
                 else if (selectedControlPoint >= 15 && selectedControlPoint < 20)
                 {
-                    getcageandupdate(c4, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO4);
+                    getcageandupdate(c4, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO4, mesh4, selectedControlPoint);
                 }
                 else if (selectedControlPoint >= 20 && selectedControlPoint < 25)
                 {
-                    getcageandupdate(c5, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO5);
+                    getcageandupdate(c5, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO5, mesh5, selectedControlPoint);
                 }
                 else
                 {
-                    getcageandupdate(c6, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO6);
+                    getcageandupdate(c6, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO6, mesh6, selectedControlPoint);
                 }
                 controlPointsUpdated = false;
-                c1.RecomputeVertex(mesh1,shaderProgram,VAO);
-
-                
             }
         }
 
@@ -394,25 +391,25 @@ int main(int, char **)
         glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
         glDrawArrays(GL_TRIANGLES, 0, mesh1size);
 
-        glBindVertexArray(VAO2);
-        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_TRIANGLES, 0, mesh2size);
+        // glBindVertexArray(VAO2);
+        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        // glDrawArrays(GL_TRIANGLES, 0, mesh2size);
 
-        glBindVertexArray(VAO3);
-        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_TRIANGLES, 0, mesh3size);
+        // glBindVertexArray(VAO3);
+        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        // glDrawArrays(GL_TRIANGLES, 0, mesh3size);
 
-        glBindVertexArray(VAO4);
-        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_TRIANGLES, 0, mesh4size);
+        // glBindVertexArray(VAO4);
+        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        // glDrawArrays(GL_TRIANGLES, 0, mesh4size);
 
-        glBindVertexArray(VAO5);
-        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_TRIANGLES, 0, mesh5size);
+        // glBindVertexArray(VAO5);
+        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        // glDrawArrays(GL_TRIANGLES, 0, mesh5size);
 
-        glBindVertexArray(VAO6);
-        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        glDrawArrays(GL_TRIANGLES, 0, mesh6size);
+        // glBindVertexArray(VAO6);
+        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        // glDrawArrays(GL_TRIANGLES, 0, mesh6size);
 
         // glBindVertexArray(cage1_VAO);
         // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
@@ -653,7 +650,7 @@ void mousemoved()
     // and edit the meshes so that new mesh is rendered
 }
 
-void getcageandupdate(Cage c, float oldx, float oldy, float newx, float newy, float updatedindex, unsigned int &program, unsigned int &obj_VAO)
+void getcageandupdate(Cage c, float oldx, float oldy, float newx, float newy, float updatedindex, unsigned int &program, unsigned int &obj_VAO, vector<GLfloat> &mesh, int index)
 {
 
     c.min_x_coord = min(c.min_x_coord, newx);
@@ -663,4 +660,5 @@ void getcageandupdate(Cage c, float oldx, float oldy, float newx, float newy, fl
     c.createCage3d(program, obj_VAO, controlPoints);
     setter();
     c.createGrid();
+    c.RecomputeVertex(mesh, program, obj_VAO, index % 5);
 }

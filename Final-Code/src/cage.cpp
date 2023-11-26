@@ -456,6 +456,26 @@ void Cage::createGrid()
 
     float changeInval = 0;
     int numOfcoord = 0;
+    for (int k = 0; k < 4; k++)
+    {
+        for (int i = 0; i <= 100; i++)
+        {
+            for (int j = 0; j <= 100; j++)
+            {
+                float coord_x = (min_x_coord + i * stepx);
+                float coord_y = (min_y_coord + j * stepy);
+                if ((coord_x == max_x_coord && coord_y == max_y_coord && k == 0) || (coord_x == max_x_coord && coord_y == min_y_coord && k == 1) || (coord_x == min_x_coord && coord_y == max_y_coord && k == 2) || (coord_x == min_x_coord && coord_y == min_y_coord && k == 3))
+                {
+
+                    harmonic[k][i][j] = 1.0f;
+                }
+                else if (coord_x == max_x_coord || coord_x == min_x_coord || coord_y == min_y_coord || coord_y == max_y_coord)
+                {
+                    handleEdge(k, i, j, coord_x, coord_y);
+                }
+            }
+        }
+    }
 
     for (int k = 0; k < 4; k++)
     {
@@ -477,28 +497,14 @@ void Cage::createGrid()
                 {
                     float coord_x = (min_x_coord + i * stepx);
                     float coord_y = (min_y_coord + j * stepy);
-                    if ((coord_x == max_x_coord && coord_y == max_y_coord) || (coord_x == max_x_coord && coord_y == min_y_coord) || (coord_x == min_x_coord && coord_y == max_y_coord) || (coord_x == min_x_coord && coord_y == min_y_coord))
+                    if ((coord_x == max_x_coord && coord_y == max_y_coord && k == 0) || (coord_x == max_x_coord && coord_y == min_y_coord && k == 1) || (coord_x == min_x_coord && coord_y == max_y_coord && k == 2) || (coord_x == min_x_coord && coord_y == min_y_coord && k == 3))
                     {
 
-                        harmonic[k][i][j] = 1.0f;
+                        continue;
                     }
-                    // else if (coord_y == max_y_coord || coord_y == min_y_coord)
-                    // {
-
-                    //         harmonic[k][i][j] = (100 - i) * 0.01;
-                    // }
-                    // else if(coord_x==max_x_coord || coord_x == min_x_coord)
-                    // {
-
-                    //     harmonic[k][i][j]= (100-j)*0.01;
-                    // }
-
                     else if (coord_x == max_x_coord || coord_x == min_x_coord || coord_y == min_y_coord || coord_y == max_y_coord)
                     {
-                        // Exterior/Boundary
-                        // harmonic[k][i][j] = 1.0f;
-
-                        handleEdge(k, i, j, coord_x, coord_y);
+                        continue;
                     }
                     else
                     {
@@ -550,7 +556,7 @@ Then using the formula in the paper, new coordinates are calculated
 
 */
 
-bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigned int &obj_VAO)
+bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigned int &obj_VAO, int index)
 {
 
     glUseProgram(program);
@@ -566,34 +572,37 @@ bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigne
     int sz = mesh.size();
     for (int i = 0; i < mesh.size() / 3; i++)
     {
-        float stepx = (max_x_coord - min_x_coord) / 100;
-        float stepy = (max_y_coord - min_y_coord) / 100;
+        float stepx = 1 / (max_x_coord - min_x_coord);
+        float stepy = 1 / (max_y_coord - min_y_coord);
         GLfloat old_x = mesh[i * 3];
         GLfloat old_y = mesh[i * 3 + 1];
 
         int map_x = (old_x - min_x_coord) / stepx;
         int map_y = (old_y - min_y_coord) / stepy;
 
-        if (map_x < 0 || map_x >= 128 || map_y < 0 || map_y >= 128)
+        if (map_x < 0 || map_x >= 100 || map_y < 0 || map_y >= 100)
         {
             continue;
         }
-        GLfloat new_x, new_y;
-        for (int j = 0; j < controlPoints.size() / 3; j++)
+        GLfloat new_x = old_x, new_y = old_y;
+        // for (int j = 0; j < controlPoints.size() / 3; j++)
+        // {
+        for (int k = 0; k < 4; k++)
         {
-            for (int i = 0; i < 4; i++)
-            {
-                new_x += harmonic[i][map_x][map_y] * (controlPoints[j * 3]);
-                new_y += harmonic[i][map_x][map_y] * (controlPoints[j * 3 + 1]);
-            }
+
+            new_x += harmonic[k][map_x][map_y] * (controlPoints[index * 3]);
+            new_y += harmonic[k][map_x][map_y] * (controlPoints[index * 3 + 1]);
+            cout << old_x << " " << new_x << endl;
         }
+        //  }
         mesh[i * 3] = new_x;
         mesh[i * 3 + 1] = new_y;
     }
 
-    for(int i = 0;i<mesh.size()/3;i+=3){
-        std::cout<<mesh[i*3]<<" "<<mesh[i*3+1]<<" "<<mesh[i*3+2]<<"\n";
-    }
+    // for (int i = 0; i < mesh.size() / 3; i += 3)
+    // {
+    //     std::cout << mesh[i * 3] << " " << mesh[i * 3 + 1] << " " << mesh[i * 3 + 2] << "\n";
+    // }
 
     glGenVertexArrays(1, &obj_VAO);
     glBindVertexArray(obj_VAO);
@@ -601,13 +610,12 @@ bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigne
     GLuint vertex_VBO;
     glGenBuffers(1, &vertex_VBO);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
-    glBufferData(GL_ARRAY_BUFFER, mesh.size()*sizeof(GLfloat), &mesh[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, mesh.size() * sizeof(GLfloat), &mesh[0], GL_STATIC_DRAW);
     glEnableVertexAttribArray(vVertex_attrib);
     glVertexAttribPointer(vVertex_attrib, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0); // Unbind the VAO to disabl
-
 
     return true;
 }
