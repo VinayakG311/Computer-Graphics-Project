@@ -589,15 +589,18 @@ bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigne
     }
 
     int sz = mesh.size();
-    for (int i = 0; i < mesh.size() / 3; i++)
+
+    for (int i = 0; i < mesh.size() / 3; i += 3)
     {
-        float stepx = 1 / (max_x_coord - min_x_coord);
-        float stepy = 1 / (max_y_coord - min_y_coord);
+        float stepx = 100 / (max_x_coord - min_x_coord);
+        float stepy = 100 / (max_y_coord - min_y_coord);
         GLfloat old_x = mesh[i * 3];
         GLfloat old_y = mesh[i * 3 + 1];
 
         int map_x = (old_x - min_x_coord) / stepx;
         int map_y = (old_y - min_y_coord) / stepy;
+        float ox = min_x_coord + 0.1;
+        int mx = (ox - min_x_coord) / stepx;
         cout << map_x << " " << map_y << endl;
         if (map_x < 0 || map_x >= 100 || map_y < 0 || map_y >= 100)
         {

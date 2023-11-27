@@ -146,32 +146,32 @@ int main(int, char **)
     Cage c2 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 12); // Initializing cage class for mesh 2
     int cage2size = c2.createCage3d(shaderProgram, cage2_VAO, controlPoints);                         // Creating cage for mesh 2
     setter();
- //   c2.createGrid(); // Creating grid for cage 2 of size 100 X 100 to compute harmonic coordinate values
+    c2.createGrid(); // Creating grid for cage 2 of size 100 X 100 to compute harmonic coordinate values
 
     int mesh3size = LoadObj(file3, shaderProgram, VAO3, mesh3);                                       // Loading and storing mesh 3
     Cage c3 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 24); // Initializing cage class for mesh 3
     int cage3size = c3.createCage3d(shaderProgram, cage3_VAO, controlPoints);                         // Creating cage for mesh 3
     setter();
-   // cout << c3.max_x_coord << " " << c3.max_y_coord << endl;
-  //  c3.createGrid(); // Creating grid for cage 3 of size 100 X 100 to compute harmonic coordinate values
+    // cout << c3.max_x_coord << " " << c3.max_y_coord << endl;
+    c3.createGrid(); // Creating grid for cage 3 of size 100 X 100 to compute harmonic coordinate values
 
     int mesh4size = LoadObj(file4, shaderProgram, VAO4, mesh4);                                       // Loading and storing mesh 4
     Cage c4 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 36); // Initializing cage class for mesh 4
     int cage4size = c4.createCage3d(shaderProgram, cage4_VAO, controlPoints);                         // Creating cage for mesh 4
     setter();
-  //  c4.createGrid(); // Creating grid for cage 4 of size 100 X 100 to compute harmonic coordinate values
+    c4.createGrid(); // Creating grid for cage 4 of size 100 X 100 to compute harmonic coordinate values
 
     int mesh5size = LoadObj(file5, shaderProgram, VAO5, mesh5);                                       // Loading and storing mesh 5
     Cage c5 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 48); // Initializing cage class for mesh 5
     int cage5size = c5.createCage3d(shaderProgram, cage5_VAO, controlPoints);                         // Creating cage for mesh 5
     setter();
- //   c5.createGrid(); // Creating grid for cage 5 of size 100 X 100 to compute harmonic coordinate values
+    c5.createGrid(); // Creating grid for cage 5 of size 100 X 100 to compute harmonic coordinate values
 
     int mesh6size = LoadObj(file6, shaderProgram, VAO6, mesh6);                                       // Loading and storing mesh 6
     Cage c6 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 60); // Initializing cage class for mesh 6
     int cage6size = c6.createCage3d(shaderProgram, cage6_VAO, controlPoints);                         // Creating cage for mesh 6
     setter();
- //   c6.createGrid(); // Creating grid for cage 6 of size 100 X 100 to compute harmonic coordinate values
+    c6.createGrid(); // Creating grid for cage 6 of size 100 X 100 to compute harmonic coordinate values
 
     oldX = oldY = currentX = currentY = 0.0;
     int prevLeftButtonState = GLFW_RELEASE;
@@ -391,25 +391,25 @@ int main(int, char **)
         glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
         glDrawArrays(GL_TRIANGLES, 0, mesh1size);
 
-        // glBindVertexArray(VAO2);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_TRIANGLES, 0, mesh2size);
+        glBindVertexArray(VAO2);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh2size);
 
-        // glBindVertexArray(VAO3);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_TRIANGLES, 0, mesh3size);
+        glBindVertexArray(VAO3);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh3size);
 
-        // glBindVertexArray(VAO4);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_TRIANGLES, 0, mesh4size);
+        glBindVertexArray(VAO4);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh4size);
 
-        // glBindVertexArray(VAO5);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_TRIANGLES, 0, mesh5size);
+        glBindVertexArray(VAO5);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh5size);
 
-        // glBindVertexArray(VAO6);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_TRIANGLES, 0, mesh6size);
+        glBindVertexArray(VAO6);
+        glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh6size);
 
         // glBindVertexArray(cage1_VAO);
         // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
