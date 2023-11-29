@@ -58,7 +58,7 @@ int LoadObj(char *, unsigned int &, unsigned int &, vector<GLfloat> &);
 void editControlPoint(std::vector<float> &, float, float, int, int);
 bool searchNearestControlPoint(float, float);
 void mousemoved();
-void getcageandupdate(Cage, float, float, float, float, float, unsigned int &, unsigned int &, vector<GLfloat> &, int);
+void getcageandupdate(Cage& , float, float, float, float, float, unsigned int &, unsigned int &, vector<GLfloat> &, int);
 void setupModelTransformation(unsigned int &);
 void setupViewTransformation(unsigned int &);
 void setupProjectionTransformation(unsigned int &);
@@ -650,15 +650,40 @@ void mousemoved()
     // and edit the meshes so that new mesh is rendered
 }
 
-void getcageandupdate(Cage c, float oldx, float oldy, float newx, float newy, float updatedindex, unsigned int &program, unsigned int &obj_VAO, vector<GLfloat> &mesh, int index)
+void getcageandupdate(Cage& c, float oldx, float oldy, float newx, float newy, float updatedindex, unsigned int &program, unsigned int &obj_VAO, vector<GLfloat> &mesh, int index)
 {
+    cout<<oldx<<" "<<oldy<<" "<<newx<<" "<<newy<<" hehe  ";
+    cout << c.min_x_coord << " " << c.max_x_coord << " " << c.min_y_coord << " " << c.max_y_coord << " ";
 
-    c.min_x_coord = min(c.min_x_coord, newx);
-    c.max_x_coord = max(c.max_x_coord, newx);
-    c.min_y_coord = min(c.min_y_coord, newy);
-    c.max_y_coord = max(c.max_y_coord, newy);
+   
+    int val = index%5;
+    cout << val<<" "<<index << endl;
+    if(val==0)
+    {
+        cout<<"hi"<<endl;
+        c.min_x_coord=newx;
+        c.min_y_coord=newy;
+    }
+    else if (val == 1)
+    {
+        c.min_x_coord = newx;
+        c.max_y_coord = newy;
+    }
+    else if (val == 2)
+    {
+        c.max_x_coord = newx;
+        c.max_y_coord = newy;
+    }
+    else if (val == 3)
+    {
+        c.max_x_coord = newx;
+        c.min_y_coord = newy;
+    }
+
+    cout<<c.min_x_coord<<" "<<c.max_x_coord<<" "<<c.min_y_coord<<" "<<c.max_y_coord<<endl;
     c.createCage3d(program, obj_VAO, controlPoints);
+    c.RecomputeVertex(mesh, program, obj_VAO, index % 5);
     setter();
     c.createGrid();
-    c.RecomputeVertex(mesh, program, obj_VAO, index % 5);
+    
 }

@@ -697,7 +697,7 @@ bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigne
         mesh[i * 3] = new_x;
         mesh[i * 3 + 1] = new_y;
     }
-
+   
     glGenVertexArrays(1, &obj_VAO);
     glBindVertexArray(obj_VAO);
 

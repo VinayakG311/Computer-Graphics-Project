@@ -48,10 +48,10 @@ public:
          GLfloat min_z,
          GLfloat max_z, int startInd)
     {
-        max_x_coord = max_x + 0.2f;
-        max_y_coord = max_y + 0.2f;
-        min_x_coord = min_x - 0.2f;
-        min_y_coord = min_y - 0.2f;
+        max_x_coord = max_x ;
+        max_y_coord = max_y ;
+        min_x_coord = min_x;
+        min_y_coord = min_y ;
         min_z_coord = min_z;
         max_z_coord = max_z;
         vector<GLfloat> temp(3);
