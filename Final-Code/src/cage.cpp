@@ -8,7 +8,7 @@ Piecewise cubic bezier is then calculated using the code in Assignment 1
 */
 bool equal(float x, float y)
 {
-    if (abs(x - y) < pow(10, -4))
+    if (abs(x - y) < pow(10, -1))
         return true;
     return false;
 }
@@ -456,6 +456,83 @@ void Cage::handleEdge(int currEdge, int i, int j, float x, float y)
 // Computation stratergy defined in the paper according to boundary, interior, exterior points
 // */
 
+// void Cage::handleEdge(int currEdge, int i, int j, float x, float y)
+// {
+//     float valy, valx;
+//     float dfx = max_x_coord - min_x_coord;
+//     float dfy = max_y_coord - min_y_coord;
+
+//     if (currEdge == 0)
+//     {
+
+//         // previos edge
+//         if (x == min_x_coord && y < max_y_coord)
+//         {
+//             harmonic[currEdge][i][j] = (100 - j) * 0.01;
+//         }
+
+//         // next edge
+//         if (y == min_y_coord && x < max_x_coord)
+//         {
+
+//             harmonic[currEdge][i][j] = (100 - i) * 0.01;
+//         }
+//     }
+
+//     else if (currEdge == 1)
+//     {
+
+//         if (y == min_y_coord && x < max_x_coord)
+//         {
+//             harmonic[currEdge][i][j] = (i) * 0.01;
+//         }
+
+//         // next edge
+//         if (x == max_x_coord && y < max_y_coord)
+//         {
+//             harmonic[currEdge][i][j] = (100 - j) * 0.01;
+//         }
+//     }
+
+//     else if (currEdge == 2)
+//     {
+//         // prev edge
+
+//         if (x == max_x_coord && y < max_y_coord)
+//         {
+//             harmonic[currEdge][i][j] = (j) * 0.01;
+//         }
+
+//         // next edge
+//         if (equal(y, max_y_coord) && x < max_x_coord)
+//         {
+//             harmonic[currEdge][i][j] = (i) * 0.01;
+//         }
+//     }
+
+//     else if (currEdge == 3)
+//     {
+//         // prev edge
+//         if (equal(y, max_y_coord) && x != min_x_coord && x != max_x_coord)
+//         {
+//             harmonic[currEdge][i][j] = (100 - i) * 0.01;
+//         }
+
+//         // next edge
+//         if (x == min_x_coord && y != min_y_coord && y != max_y_coord)
+//         {
+//             harmonic[currEdge][i][j] = (j) * 0.01;
+//         }
+//     }
+
+//     // cout<<harmonic[currEdge][x][y]<<endl;
+// }
+
+// /* To create a grid around each cage
+// Harmonic coordinates are calculated with respect to each control point of the cage
+// Computation stratergy defined in the paper according to boundary, interior, exterior points
+// */
+
 void Cage::createGrid()
 {
     float stepx = (max_x_coord - min_x_coord) / 100;
@@ -601,8 +678,8 @@ bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigne
         int map_y = (old_y - min_y_coord) / stepy;
         float ox = min_x_coord + 0.1;
         int mx = (ox - min_x_coord) / stepx;
-        cout << map_x << " " << map_y << endl;
-        if (map_x < 0 || map_x >= 100 || map_y < 0 || map_y >= 100)
+        // cout << map_x << " " << map_y << endl;
+        if (map_x < 0 || map_x >= 128 || map_y < 0 || map_y >= 128)
         {
             continue;
         }
@@ -637,279 +714,3 @@ bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigne
     return true;
 }
 
-// bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigned int &obj_VAO, int index)
-// {
-
-//     glUseProgram(program);
-
-//     // Bind shader variables
-//     int vVertex_attrib = glGetAttribLocation(program, "vVertex");
-//     if (vVertex_attrib == -1)
-//     {
-//         fprintf(stderr, "Could not bind location: vVertex\n");
-//         exit(0);
-//     }
-
-//     int sz = mesh.size();
-//     for (int i = 0; i < mesh.size() / 3; i++)
-//     {
-//         float stepx = 1 / (max_x_coord - min_x_coord);
-//         float stepy = 1 / (max_y_coord - min_y_coord);
-//         GLfloat old_x = mesh[i * 3];
-//         GLfloat old_y = mesh[i * 3 + 1];
-
-//         int map_x = (old_x - min_x_coord) / stepx;
-//         int map_y = (old_y - min_y_coord) / stepy;
-
-//         if (map_x < 0 || map_x >= 100 || map_y < 0 || map_y >= 100)
-//         {
-//             continue;
-//         }
-//         GLfloat new_x = old_x, new_y = old_y;
-//         // for (int j = 0; j < controlPoints.size() / 3; j++)
-//         // {
-//         for (int k = 0; k < 4; k++)
-//         {
-
-//             new_x += harmonic[k][map_x][map_y] * (controlPoints[index * 3]);
-//             new_y += harmonic[k][map_x][map_y] * (controlPoints[index * 3 + 1]);
-//             cout << old_x << " " << new_x << endl;
-//         }
-//         //  }
-//         mesh[i * 3] = new_x;
-//         mesh[i * 3 + 1] = new_y;
-//     }
-
-//     // for (int i = 0; i < mesh.size() / 3; i += 3)
-//     // {
-//     //     std::cout << mesh[i * 3] << " " << mesh[i * 3 + 1] << " " << mesh[i * 3 + 2] << "\n";
-//     // }
-
-//     glGenVertexArrays(1, &obj_VAO);
-//     glBindVertexArray(obj_VAO);
-
-//     GLuint vertex_VBO;
-//     glGenBuffers(1, &vertex_VBO);
-//     glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
-//     glBufferData(GL_ARRAY_BUFFER, mesh.size() * sizeof(GLfloat), &mesh[0], GL_STATIC_DRAW);
-//     glEnableVertexAttribArray(vVertex_attrib);
-//     glVertexAttribPointer(vVertex_attrib, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-//     glBindBuffer(GL_ARRAY_BUFFER, 0);
-//     glBindVertexArray(0); // Unbind the VAO to disabl
-
-//     return true;
-// }
-
-// void Cage::handleEdge(int currEdge, int i, int j, float x, float y)
-// {
-//     float valy, valx;
-//     float dfx = max_x_coord - min_x_coord;
-//     float dfy = max_y_coord - min_y_coord;
-
-//     if (currEdge == 0)
-//     {
-
-//         // previos edge
-//         if (x == min_x_coord && y < max_y_coord)
-
-//         {
-//             float dist = max_y_coord - min_y_coord;
-//             float currDist = y - min_y_coord;
-//             harmonic[currEdge][i][j] = 1 - (currDist / dist);
-//         }
-
-//         // next edge
-//         if (y == min_y_coord && x < max_x_coord)
-//         {
-//             float dist = max_x_coord - min_x_coord;
-//             float currDist = x - min_x_coord;
-//             harmonic[currEdge][i][j] = 1 - (currDist / dist);
-//         }
-//     }
-
-//     else if (currEdge == 1)
-//     {
-
-//         if (y == min_y_coord && x < max_x_coord)
-//         {
-//             float dist = max_x_coord - min_x_coord;
-//             float currDist = x - min_x_coord;
-//             harmonic[currEdge][i][j] = (currDist / dist);
-//         }
-
-//         // next edge
-//         if (x == max_x_coord && y < max_y_coord)
-//         {
-//             float dist = max_y_coord - min_y_coord;
-//             float currDist = y - min_y_coord;
-//             harmonic[currEdge][i][j] = 1 - (currDist / dist);
-//         }
-//     }
-
-//     else if (currEdge == 2)
-//     {
-//         // prev edge
-
-//         if (x == max_x_coord && y < max_y_coord)
-//         {
-//             float dist = max_y_coord - min_y_coord;
-//             float currDist = y - min_y_coord;
-//             harmonic[currEdge][i][j] = currDist / dist;
-//         }
-
-//         // next edge
-//         if (y == max_y_coord && x < max_x_coord)
-//         {
-//             float dist = max_x_coord - min_x_coord;
-//             float currDist = x - min_x_coord;
-//             harmonic[currEdge][i][j] = currDist / dist;
-//         }
-//     }
-
-//     else if (currEdge == 3)
-//     {
-//         // prev edge
-//         if (y == max_y_coord && x != min_x_coord && x != max_x_coord)
-//         {
-//             float dist = max_x_coord - min_x_coord;
-//             float currDist = x - min_x_coord;
-//             harmonic[currEdge][i][j] = 1 - (currDist / dist);
-//         }
-
-//         // next edge
-//         if (x == min_x_coord && y != min_y_coord && y != max_y_coord)
-//         {
-//             float dist = max_y_coord - min_y_coord;
-//             float currDist = y - min_y_coord;
-//             harmonic[currEdge][i][j] = currDist / dist;
-//         }
-//     }
-// }
-
-/* To create a grid around each cage
-Harmonic coordinates are calculated with respect to each control point of the cage
-Computation stratergy defined in the paper according to boundary, interior, exterior points
-*/
-
-// void Cage::createGrid()
-// {
-//     float stepx = 1.0f / (max_x_coord - min_x_coord);
-//     float stepy = 1.0f / (max_y_coord - min_y_coord);
-
-//     float changeInval = 0;
-//     int numOfcoord = 0;
-//     for (int k = 0; k < 4; k++)
-//     {
-//         float currX = Boundary[k][0];
-//         float currY = Boundary[k][1];
-
-//         for (int i = 0; i <= 127; i++)
-//         {
-//             for (int j = 0; j <= 127; j++)
-//             {
-//                 float coord_x = (min_x_coord + i * stepx);
-//                 float coord_y = (min_y_coord + j * stepy);
-//                 if ((coord_x == max_x_coord && coord_y == max_y_coord && k == 0) || (coord_x == max_x_coord && coord_y == min_y_coord && k == 1) || (coord_x == min_x_coord && coord_y == max_y_coord && k == 2) || (coord_x == min_x_coord && coord_y == min_y_coord && k == 3))
-//                 {
-
-//                         harmonic[k][i][j] = 1.0f;
-
-//                 }
-//                 else if (coord_x == max_x_coord || coord_x == min_x_coord || coord_y == min_y_coord || coord_y == max_y_coord)
-//                 {
-//                     handleEdge(k, i, j, coord_x, coord_y);
-//                 }
-//             }
-//         }
-//     }
-
-//     for (int k = 0; k < 4; k++)
-//     {
-//         int c = 0;
-//         bool breaker = false;
-//         while (true)
-//         {
-//             c++;
-//             // cout<<c<<endl;
-//             if (breaker)
-//             {
-//                 break;
-//             }
-//             changeInval = 0.0f;
-//             numOfcoord = 0;
-//             for (int i = 0; i <= 126; i++)
-//             {
-//                 for (int j = 0; j <= 126; j++)
-//                 {
-//                     float coord_x = (min_x_coord + i * stepx);
-//                     float coord_y = (min_y_coord + j * stepy);
-
-//                     if (coord_x > max_x_coord || coord_y > max_y_coord)
-//                     {
-//                         continue;
-//                     }
-
-//                     if ((coord_x == max_x_coord && coord_y == max_y_coord) || (coord_x == max_x_coord && coord_y == min_y_coord) || (coord_x == min_x_coord && coord_y == max_y_coord) || (coord_x == min_x_coord && coord_y == min_y_coord))
-//                     {
-
-//                         continue;
-//                     }
-
-//                     else if (coord_x == max_x_coord || coord_x == min_x_coord || coord_y == min_y_coord || coord_y == max_y_coord)
-//                     {
-//                         continue;
-//                     }
-//                     else
-//                     {
-//                         // Interior
-//                         numOfcoord++;
-//                         float prev = harmonic[k][i][j];
-
-//                         float check = 0;
-//                         int neighbors = 0;
-//                         if (i > 0)
-//                         {
-//                             check += harmonic[k][i - 1][j];
-//                             neighbors++;
-//                         }
-//                         if (j > 0)
-//                         {
-//                             check += harmonic[k][i][j - 1];
-//                             neighbors++;
-//                         }
-//                         check += (harmonic[k][i][j + 1] + harmonic[k][i + 1][j]);
-//                         neighbors += 2;
-
-//                         // grid[i][j] = (grid[i - 1][j] + grid[i][j - 1] + grid[i + 1][j] + grid[i][j + 1]) / 4;
-
-//                         harmonic[k][i][j] = check / (float)neighbors;
-
-//                         // std::cout<<grid[i][j]<<" ";
-//                         changeInval += abs(harmonic[k][i][j] - prev);
-//                     }
-//                 }
-//             }
-//             // std::cout<<changeInval<<" ";
-//             if (((changeInval) / (float)numOfcoord) < 0.001f)
-//             {
-//                 // for(int i = 0;i<=100;i++){
-//                 //     std::cout<<harmonic[0][i][0]<<" ";
-//                 // }
-//                 breaker = true;
-//                 break;
-//             }
-//         }
-//     }
-//         ofstream Myfile("Data.txt");
-
-//         for (int i = 0; i <= 127; i++)
-//         {
-//             for (int j = 0; j <= 127; j++)
-//             {
-//                 Myfile << harmonic[3][i][j];
-//                 Myfile << " ";
-//             }
-//             Myfile << "\n";
-//         }
-// }
