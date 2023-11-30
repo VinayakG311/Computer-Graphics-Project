@@ -554,7 +554,7 @@ void Cage::createGrid()
 
                     harmonic[k][i][j] = 1.0f;
                 }
-                else if (equal(coord_x, max_x_coord) || equal(coord_x, min_x_coord) || equal(coord_y, min_y_coord) || equal(coord_y, max_y_coord))
+                else if ((equal(coord_x, max_x_coord) && (k == 2 || k == 1)) || (equal(coord_x, min_x_coord) && (k == 0 || k == 3)) || (equal(coord_y, min_y_coord) && (k == 0 || k == 1)) || (equal(coord_y, max_y_coord) && (k == 2 || k == 3)))
                 {
                     handleEdge(k, i, j, coord_x, coord_y);
                 }

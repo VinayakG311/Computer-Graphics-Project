@@ -45,6 +45,7 @@ bool controlPointsUpdated = false;
 int selectedControlPoint = 0;
 
 vector<float> controlPoints;
+vector<float> MovePoints;
 
 // Storing mesh coordinates for each mesh
 vector<GLfloat> mesh1;
@@ -64,7 +65,7 @@ void setupViewTransformation(unsigned int &);
 void setupProjectionTransformation(unsigned int &);
 glm::vec3 getTrackBallVector(double x, double y);
 void setter();
-
+void pushpoints(Cage &) ;
 void computeCage();
 
 // Storing cage coordinates for each cage
@@ -106,8 +107,8 @@ int main(int, char **)
     glGenVertexArrays(1, &VAO6);
 
     // Vertex array objects for each cage of the mesh
-    unsigned int cage1_VAO, cage2_VAO, cage3_VAO, cage4_VAO, cage5_VAO, cage6_VAO, VAO_controlPoints, VAO1;
-    unsigned int VBO_controlPoints, VBO1;
+    unsigned int cage1_VAO, cage2_VAO, cage3_VAO, cage4_VAO, cage5_VAO, cage6_VAO, VAO_controlPoints, VAO1,VAO_move;
+    unsigned int VBO_controlPoints, VBO1,VBO_move;
 
     glGenVertexArrays(1, &cage1_VAO);
     glGenVertexArrays(1, &cage2_VAO);
@@ -115,6 +116,9 @@ int main(int, char **)
     glGenVertexArrays(1, &cage4_VAO);
     glGenVertexArrays(1, &cage5_VAO);
     glGenVertexArrays(1, &cage6_VAO);
+    glGenVertexArrays(1, &VAO_move);
+    glGenBuffers(1, &VBO_move);
+
     // glGenVertexArrays(1,&controlPoints_VAO);
 
     setupModelTransformation(shaderProgram);
@@ -140,18 +144,20 @@ int main(int, char **)
     int cage1size = c1.createCage3d(shaderProgram, cage1_VAO, controlPoints);                        // Creating cage for mesh 1
     setter();
     c1.createGrid(); // Creating grid for cage 1 of size 100 X 100 to compute harmonic coordinate values
-
+    pushpoints(c1);
     VertexData.clear();
     int mesh2size = LoadObj(file2, shaderProgram, VAO2, mesh2);                                       // Loading and storing mesh 2
     Cage c2 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 12); // Initializing cage class for mesh 2
     int cage2size = c2.createCage3d(shaderProgram, cage2_VAO, controlPoints);                         // Creating cage for mesh 2
     setter();
+    pushpoints(c2);
     // c2.createGrid(); // Creating grid for cage 2 of size 100 X 100 to compute harmonic coordinate values
 
     int mesh3size = LoadObj(file3, shaderProgram, VAO3, mesh3);                                       // Loading and storing mesh 3
     Cage c3 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 24); // Initializing cage class for mesh 3
     int cage3size = c3.createCage3d(shaderProgram, cage3_VAO, controlPoints);                         // Creating cage for mesh 3
     setter();
+    pushpoints(c3);
     // cout << c3.max_x_coord << " " << c3.max_y_coord << endl;
     // c3.createGrid(); // Creating grid for cage 3 of size 100 X 100 to compute harmonic coordinate values
 
@@ -159,18 +165,21 @@ int main(int, char **)
     Cage c4 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 36); // Initializing cage class for mesh 4
     int cage4size = c4.createCage3d(shaderProgram, cage4_VAO, controlPoints);                         // Creating cage for mesh 4
     setter();
+    pushpoints(c4);
     // c4.createGrid(); // Creating grid for cage 4 of size 100 X 100 to compute harmonic coordinate values
 
     int mesh5size = LoadObj(file5, shaderProgram, VAO5, mesh5);                                       // Loading and storing mesh 5
     Cage c5 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 48); // Initializing cage class for mesh 5
     int cage5size = c5.createCage3d(shaderProgram, cage5_VAO, controlPoints);                         // Creating cage for mesh 5
     setter();
+    pushpoints(c5);
     // c5.createGrid(); // Creating grid for cage 5 of size 100 X 100 to compute harmonic coordinate values
 
     int mesh6size = LoadObj(file6, shaderProgram, VAO6, mesh6);                                       // Loading and storing mesh 6
     Cage c6 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 60); // Initializing cage class for mesh 6
     int cage6size = c6.createCage3d(shaderProgram, cage6_VAO, controlPoints);                         // Creating cage for mesh 6
     setter();
+    pushpoints(c6);
     // c6.createGrid(); // Creating grid for cage 6 of size 100 X 100 to compute harmonic coordinate values
 
     oldX = oldY = currentX = currentY = 0.0;
@@ -373,6 +382,12 @@ int main(int, char **)
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
         glEnableVertexAttribArray(0);
 
+        glBindVertexArray(VAO_move);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO_move);
+        glBufferData(GL_ARRAY_BUFFER, MovePoints.size() * sizeof(GLfloat), &MovePoints[0], GL_DYNAMIC_DRAW);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+        glEnableVertexAttribArray(0);
+
         glBindVertexArray(VAO1);
         glBindBuffer(GL_ARRAY_BUFFER, VBO1);
         glBufferData(GL_ARRAY_BUFFER, controlPoints.size() * sizeof(GLfloat), &controlPoints[0], GL_DYNAMIC_DRAW);
@@ -435,8 +450,14 @@ int main(int, char **)
         // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
         // glDrawArrays(GL_LINES, 0, cage6size / 3);
 
+      //  cout<<MovePoints.size()<<endl;
+        glBindVertexArray(VAO_move);
+        glUniform3f(vColor_uniform, 0.3, 0.8, 0.5);
+        glDrawArrays(GL_POINTS,0,MovePoints.size()/3);
         glBindVertexArray(VAO1);
         glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
+
+
         for (int i = 0; i < controlPoints.size() / 3; i += 5)
         {
             glDrawArrays(GL_LINE_STRIP, i, 5);
@@ -652,15 +673,15 @@ void mousemoved()
 
 void getcageandupdate(Cage& c, float oldx, float oldy, float newx, float newy, float updatedindex, unsigned int &program, unsigned int &obj_VAO, vector<GLfloat> &mesh, int index)
 {
-    cout<<oldx<<" "<<oldy<<" "<<newx<<" "<<newy<<" hehe  ";
-    cout << c.min_x_coord << " " << c.max_x_coord << " " << c.min_y_coord << " " << c.max_y_coord << " ";
+//    cout<<oldx<<" "<<oldy<<" "<<newx<<" "<<newy<<" hehe  ";
+//    cout << c.min_x_coord << " " << c.max_x_coord << " " << c.min_y_coord << " " << c.max_y_coord << " ";
 
    
     int val = index%5;
-    cout << val<<" "<<index << endl;
+ //   cout << val<<" "<<index << endl;
     if(val==0)
     {
-        cout<<"hi"<<endl;
+  //      cout<<"hi"<<endl;
         c.min_x_coord=newx;
         c.min_y_coord=newy;
     }
@@ -680,10 +701,16 @@ void getcageandupdate(Cage& c, float oldx, float oldy, float newx, float newy, f
         c.min_y_coord = newy;
     }
 
-    cout<<c.min_x_coord<<" "<<c.max_x_coord<<" "<<c.min_y_coord<<" "<<c.max_y_coord<<endl;
+   // cout<<c.min_x_coord<<" "<<c.max_x_coord<<" "<<c.min_y_coord<<" "<<c.max_y_coord<<endl;
     c.createCage3d(program, obj_VAO, controlPoints);
     c.RecomputeVertex(mesh, program, obj_VAO, index % 5);
     setter();
     c.createGrid();
     
+}
+
+void pushpoints(Cage& c){
+    MovePoints.push_back((c.min_x_coord + c.max_x_coord) / 2.0f);
+    MovePoints.push_back((c.min_y_coord + c.max_y_coord) / 2.0f);
+    MovePoints.push_back(0.2);
 }
