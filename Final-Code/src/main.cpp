@@ -31,6 +31,8 @@ bool isDragging = false;
 bool rotater = true;
 bool editer = false;
 
+bool movement = false;
+
 GLfloat max_x_coord = INT_MIN;
 GLfloat max_y_coord = INT_MIN;
 
@@ -192,14 +194,21 @@ int main(int, char **)
         glfwPollEvents();
         if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_Z)))
         { // Stop adding points
-
+            movement = false;
             rotater = false;
             editer = true;
         }
         if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_X)))
         { // Stop adding points
+            movement = false;
             rotater = true;
+            editer = false;
+        }
+        if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_Y)))
+        { // Stop adding points
 
+            movement = true;
+            rotater = false;
             editer = false;
         }
 
@@ -360,6 +369,141 @@ int main(int, char **)
 
                 oldX = currentX;
                 oldY = currentY;
+            }
+        }
+
+        if(movement){
+            float newx, newy, oldx, oldy;
+            float oldNextx = INT_MAX;
+            float oldNexty = INT_MAX;
+            float newNextx, newNexty;
+            if (ImGui::IsMouseClicked(ImGuiMouseButton_Left))
+            {
+                double xpos, ypos;
+                glfwGetCursorPos(glfwGetCurrentContext(), &xpos, &ypos);
+
+                glm::vec4 viewport = glm::vec4(0.0f, 0.0f, screen_width, screen_height);
+                glm::vec3 winPos = glm::vec3(xpos, screen_height - ypos, 0.0f);
+                glm::vec3 worldPos = glm::unProject(winPos, projectionT * viewT * modelT, glm::inverse(projectionT * viewT * modelT), viewport);
+
+                // cout << worldPos[0] << " " << worldPos[1] << endl;
+                glm::vec3 va = getTrackBallVector(xpos, ypos);
+                glm::vec4 w = glm::inverse(modelT) * glm::vec4(va, 1.0f);
+                // cout << va[0] << " " << va[1] << " " << w[0] << " " << w[1] << endl;
+            }
+            // Updating position of control points based on user input WASD
+
+            if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_RightArrow)))
+            {
+                selectedControlPoint++;
+                if (selectedControlPoint > controlPoints.size() / 3)
+                {
+                    selectedControlPoint = 0;
+                }
+            }
+            if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_LeftArrow)))
+            {
+                selectedControlPoint--;
+                if (selectedControlPoint < 0)
+                {
+                    selectedControlPoint = controlPoints.size() / 3 - 1;
+                }
+            }
+
+            if (ImGui::IsKeyPressed(GLFW_KEY_W))
+            {
+                // controlPoints[0] = controlPoints[0]+2.5f;
+                oldy = controlPoints[3 * selectedControlPoint + 1];
+                oldx = controlPoints[3 * selectedControlPoint];
+                newy = controlPoints[3 * selectedControlPoint + 1] + 2.5f;
+                newx = controlPoints[3 * selectedControlPoint];
+
+                oldNexty = controlPoints[3 * (selectedControlPoint-1) + 1];
+                oldNextx = controlPoints[3 * (selectedControlPoint-1)];
+                newNexty = controlPoints[3 * (selectedControlPoint-1) + 1]+2.5f;
+                newNextx = controlPoints[3 * (selectedControlPoint-1)];
+                controlPointsUpdated = true;
+                // c1.max_y_coord = max(c1.max_y_coord,controlPoints[1]);
+            }
+
+            else if (ImGui::IsKeyPressed(GLFW_KEY_A))
+            {
+                // controlPoints[0] = controlPoints[0]+2.5f;
+                oldx = controlPoints[3 * selectedControlPoint];
+                oldy = controlPoints[3 * selectedControlPoint + 1];
+                newx = controlPoints[3 * selectedControlPoint] - 2.5f;
+                newy = controlPoints[3 * selectedControlPoint + 1];
+                controlPointsUpdated = true;
+                // c1.min_x_coord = max(c1.min_x_coord,controlPoints[1]);
+            }
+
+            else if (ImGui::IsKeyPressed(GLFW_KEY_D))
+            {
+                // controlPoints[0] = controlPoints[0]+2.5f;
+                oldx = controlPoints[3 * selectedControlPoint];
+                newx = controlPoints[3 * selectedControlPoint] + 2.5f;
+                oldy = controlPoints[3 * selectedControlPoint + 1];
+                newy = controlPoints[3 * selectedControlPoint + 1];
+                controlPointsUpdated = true;
+            }
+
+            else if (ImGui::IsKeyPressed(GLFW_KEY_S))
+            {
+                // controlPoints[0] = controlPoints[0]+2.5f;
+                oldy = controlPoints[3 * selectedControlPoint + 1];
+                newy = controlPoints[3 * selectedControlPoint + 1] - 2.5f;
+                oldx = controlPoints[3 * selectedControlPoint];
+                newx = controlPoints[3 * selectedControlPoint];
+
+                oldNexty = controlPoints[3 * (selectedControlPoint+1) + 1];
+                oldNextx = controlPoints[3 * (selectedControlPoint+1)];
+                newNexty = controlPoints[3 * (selectedControlPoint+1) + 1]-2.5f;
+                newNextx = controlPoints[3 * (selectedControlPoint+1)];
+                controlPointsUpdated = true;
+            }
+
+            if (controlPointsUpdated)
+            {
+
+                for (int i = 0; i < controlPoints.size(); i += 3)
+                {
+                    if(controlPoints[i]==oldNextx && controlPoints[i+1]==oldNexty){
+                        controlPoints[i] = newNextx;
+                        controlPoints[i] = newNexty;
+                        cout<<oldNextx<<"  "<<oldNexty<<endl;
+                    }
+                    
+                    if (controlPoints[i] == oldx && controlPoints[i + 1] == oldy)
+                    {
+                        controlPoints[i] = newx;
+                        controlPoints[i + 1] = newy;
+                    }
+                }
+                if (selectedControlPoint < 5)
+                {
+                    getcageandupdate(c1, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO, mesh1, selectedControlPoint);
+                }
+                else if (selectedControlPoint >= 5 && selectedControlPoint < 10)
+                {
+                    getcageandupdate(c2, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO2, mesh2, selectedControlPoint);
+                }
+                else if (selectedControlPoint >= 10 && selectedControlPoint < 15)
+                {
+                    getcageandupdate(c3, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO3, mesh3, selectedControlPoint);
+                }
+                else if (selectedControlPoint >= 15 && selectedControlPoint < 20)
+                {
+                    getcageandupdate(c4, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO4, mesh4, selectedControlPoint);
+                }
+                else if (selectedControlPoint >= 20 && selectedControlPoint < 25)
+                {
+                    getcageandupdate(c5, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO5, mesh5, selectedControlPoint);
+                }
+                else
+                {
+                    getcageandupdate(c6, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO6, mesh6, selectedControlPoint);
+                }
+                controlPointsUpdated = false;
             }
         }
 
@@ -703,9 +847,10 @@ void getcageandupdate(Cage& c, float oldx, float oldy, float newx, float newy, f
 
    // cout<<c.min_x_coord<<" "<<c.max_x_coord<<" "<<c.min_y_coord<<" "<<c.max_y_coord<<endl;
     c.createCage3d(program, obj_VAO, controlPoints);
-    c.RecomputeVertex(mesh, program, obj_VAO, index % 5);
     setter();
     c.createGrid();
+    c.RecomputeVertex(mesh, program, obj_VAO, index % 5);
+    
     
 }
 
