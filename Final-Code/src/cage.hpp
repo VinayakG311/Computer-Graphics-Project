@@ -41,6 +41,7 @@ public:
     float grid[101][101];
     std::vector<float> cage;
     std::vector<float> controlPoints;
+    Cage(){};
     Cage(GLfloat max_x,
          GLfloat max_y,
          GLfloat min_x,
