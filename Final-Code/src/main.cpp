@@ -57,6 +57,8 @@ vector<GLfloat> mesh3;
 vector<GLfloat> mesh4;
 vector<GLfloat> mesh5;
 vector<GLfloat> mesh6;
+vector<GLfloat> mesh7;
+vector<GLfloat> mesh8;
 
 int LoadObj(char *, unsigned int &, unsigned int &, vector<GLfloat> &);
 void editControlPoint(std::vector<float> &, float, float, int, int);
@@ -79,6 +81,8 @@ vector<float> cage3;
 vector<float> cage4;
 vector<float> cage5;
 vector<float> cage6;
+vector<float> cage7;
+vector<float> cage8;
 
 int main(int, char **)
 {
@@ -102,16 +106,18 @@ int main(int, char **)
     glUseProgram(shaderProgram);
 
     // Vertex array objects for each mesh
-    unsigned int VAO, VAO2, VAO3, VAO4, VAO5, VAO6;
+    unsigned int VAO, VAO2, VAO3, VAO4, VAO5, VAO6,VAO7,VAO8;
     glGenVertexArrays(1, &VAO);
     glGenVertexArrays(1, &VAO2);
     glGenVertexArrays(1, &VAO3);
     glGenVertexArrays(1, &VAO4);
     glGenVertexArrays(1, &VAO5);
     glGenVertexArrays(1, &VAO6);
+    glGenVertexArrays(1, &VAO7);
+    glGenVertexArrays(1, &VAO8);
 
     // Vertex array objects for each cage of the mesh
-    unsigned int cage1_VAO, cage2_VAO, cage3_VAO, cage4_VAO, cage5_VAO, cage6_VAO, VAO_controlPoints, VAO1, VAO_move;
+    unsigned int cage1_VAO, cage2_VAO, cage3_VAO, cage4_VAO, cage5_VAO, cage6_VAO, VAO_controlPoints, VAO1, VAO_move,cage7_VAO,cage8_VAO;
     unsigned int VBO_controlPoints, VBO1, VBO_move;
 
     glGenVertexArrays(1, &cage1_VAO);
@@ -120,6 +126,8 @@ int main(int, char **)
     glGenVertexArrays(1, &cage4_VAO);
     glGenVertexArrays(1, &cage5_VAO);
     glGenVertexArrays(1, &cage6_VAO);
+    glGenVertexArrays(1, &cage7_VAO);
+    glGenVertexArrays(1, &cage8_VAO);
     glGenVertexArrays(1, &VAO_move);
     glGenBuffers(1, &VBO_move);
 
@@ -142,6 +150,8 @@ int main(int, char **)
     char *file4 = "../Final-Code/data-new/head.obj";
     char *file5 = "../Final-Code/data-new/rl.obj";
     char *file6 = "../Final-Code/data-new/ll.obj";
+    char *file7 = "../Final-Code/data-new/er.obj";
+    char *file8 = "../Final-Code/data-new/el.obj";
     controlPoints.clear();
 
     int mesh1size = LoadObj(file1, shaderProgram, VAO, mesh1);                                       // Loading and storing mesh 1
@@ -185,6 +195,20 @@ int main(int, char **)
     int cage6size = c6.createCage3d(shaderProgram, cage6_VAO, controlPoints);                         // Creating cage for mesh 6
     setter();
     pushpoints(c6);
+    c6.createGrid(); // Creating grid for cage 6 of size 100 X 100 to compute harmonic coordinate values
+
+    int mesh7size = LoadObj(file7, shaderProgram, VAO7, mesh7);
+    Cage c7 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 60); // Initializing cage class for mesh 6
+    int cage7size = c7.createCage3d(shaderProgram, cage7_VAO, controlPoints);                         // Creating cage for mesh 6
+    setter();
+    pushpoints(c7);
+    c7.createGrid(); // Creating grid for cage 6 of size 100 X 100 to compute harmonic coordinate values
+
+    int mesh8size = LoadObj(file8, shaderProgram, VAO8, mesh8);
+    Cage c8 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 60); // Initializing cage class for mesh 6
+    int cage8size = c6.createCage3d(shaderProgram, cage8_VAO, controlPoints);                         // Creating cage for mesh 6
+    setter();
+    pushpoints(c8);
     c6.createGrid(); // Creating grid for cage 6 of size 100 X 100 to compute harmonic coordinate values
 
     oldX = oldY = currentX = currentY = 0.0;
@@ -664,6 +688,14 @@ int main(int, char **)
         glBindVertexArray(VAO6);
         glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
         glDrawArrays(GL_TRIANGLES, 0, mesh6size);
+
+        glBindVertexArray(VAO7);
+        glUniform3f(vColor_uniform, 0.3, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh7size);
+
+        glBindVertexArray(VAO8);
+        glUniform3f(vColor_uniform, 0.3, 0.5, 0.5);
+        glDrawArrays(GL_TRIANGLES, 0, mesh8size);
 
         // glBindVertexArray(cage1_VAO);
         // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
