@@ -1,7 +1,7 @@
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_draw.cpp.o: \
-  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_draw.cpp \
-  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui.h \
-  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imconfig.h \
+  /Users/vinayakgoel/Downloads/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_draw.cpp \
+  /Users/vinayakgoel/Downloads/Computer-Graphics-Project/Final-Code/depends/imgui/imgui.h \
+  /Users/vinayakgoel/Downloads/Computer-Graphics-Project/Final-Code/depends/imgui/imconfig.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/float.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__config \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__config_site \
@@ -86,7 +86,7 @@ CMakeFiles/Harmonic.dir/depends/imgui/imgui_draw.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/malloc/_malloc_type.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_dev_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_mode_t.h \
-  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_internal.h \
+  /Users/vinayakgoel/Downloads/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_internal.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/stdio.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/stdio.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/_stdio.h \
@@ -239,6 +239,6 @@ CMakeFiles/Harmonic.dir/depends/imgui/imgui_draw.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/arm/limits.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/arm/_limits.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/sys/syslimits.h \
-  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imstb_textedit.h \
-  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imstb_rectpack.h \
-  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imstb_truetype.h
+  /Users/vinayakgoel/Downloads/Computer-Graphics-Project/Final-Code/depends/imgui/imstb_textedit.h \
+  /Users/vinayakgoel/Downloads/Computer-Graphics-Project/Final-Code/depends/imgui/imstb_rectpack.h \
+  /Users/vinayakgoel/Downloads/Computer-Graphics-Project/Final-Code/depends/imgui/imstb_truetype.h

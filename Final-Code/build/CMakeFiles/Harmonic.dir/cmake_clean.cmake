@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Harmonic"
-  "/Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/Harmonic.pdb"
+  "/Users/vinayakgoel/Downloads/Computer-Graphics-Project/Final-Code/Harmonic"
+  "/Users/vinayakgoel/Downloads/Computer-Graphics-Project/Final-Code/Harmonic.pdb"
   "CMakeFiles/Harmonic.dir/depends/imgui/imgui.cpp.o"
   "CMakeFiles/Harmonic.dir/depends/imgui/imgui.cpp.o.d"
   "CMakeFiles/Harmonic.dir/depends/imgui/imgui_demo.cpp.o"

@@ -1,7 +1,7 @@
 CMakeFiles/Harmonic.dir/depends/imgui/imgui_demo.cpp.o: \
-  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_demo.cpp \
-  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imgui.h \
-  /Users/vinayakgoel/Desktop/Computer-Graphics-Project/Final-Code/depends/imgui/imconfig.h \
+  /Users/vinayakgoel/Downloads/Computer-Graphics-Project/Final-Code/depends/imgui/imgui_demo.cpp \
+  /Users/vinayakgoel/Downloads/Computer-Graphics-Project/Final-Code/depends/imgui/imgui.h \
+  /Users/vinayakgoel/Downloads/Computer-Graphics-Project/Final-Code/depends/imgui/imconfig.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/float.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__config \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__config_site \

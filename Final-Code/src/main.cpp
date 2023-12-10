@@ -63,6 +63,7 @@ void editControlPoint(std::vector<float> &, float, float, int, int);
 bool searchNearestControlPoint(float, float);
 void mousemoved();
 void getcageandupdate(Cage &, float, float, float, float, float, unsigned int &, unsigned int &, vector<GLfloat> &, int);
+void getcageandupdate2(Cage &, float, float, float, float, float, unsigned int &, unsigned int &, vector<GLfloat> &, int);
 void setupModelTransformation(unsigned int &);
 void setupViewTransformation(unsigned int &);
 void setupProjectionTransformation(unsigned int &);
@@ -135,12 +136,12 @@ int main(int, char **)
 
     glGenBuffers(1, &VBO1);
     glGenVertexArrays(1, &VAO1);
-    char *file1 = "../Final-Code/data/body2d.obj";
-    char *file2 = "../Final-Code/data/lh2d.obj";
-    char *file3 = "../Final-Code/data/rh2d.obj";
-    char *file4 = "../Final-Code/data/head-new2d.obj";
-    char *file5 = "../Final-Code/data/rl2d.obj";
-    char *file6 = "../Final-Code/data/ll2d.obj";
+    char *file1 = "../Final-Code/data-new/body.obj";
+    char *file2 = "../Final-Code/data-new/lh.obj";
+    char *file3 = "../Final-Code/data-new/rh.obj";
+    char *file4 = "../Final-Code/data-new/head.obj";
+    char *file5 = "../Final-Code/data-new/rl.obj";
+    char *file6 = "../Final-Code/data-new/ll.obj";
     controlPoints.clear();
 
     int mesh1size = LoadObj(file1, shaderProgram, VAO, mesh1);                                       // Loading and storing mesh 1
@@ -570,32 +571,32 @@ int main(int, char **)
                         controlPoints[i + 1] = newy;
                     }
                 }
-                cout << selectedMovePoint << " " << click << endl;
+            
 
                 if (selectedMovePoint == 0)
                 {
-                    getcageandupdate(c1, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO, mesh1, click);
+                    getcageandupdate2(c1, newNextx, newNexty, newx, newy, selectedMovePoint, shaderProgram, VAO, mesh1, click);
                 }
                 else if (selectedMovePoint == 1)
                 {
-                    getcageandupdate(c2, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO2, mesh2, click);
+                    getcageandupdate2(c2, newNextx, newNexty, newx, newy, selectedMovePoint, shaderProgram, VAO2, mesh2, click);
                 }
                 else if (selectedMovePoint == 2)
                 {
 
-                    getcageandupdate(c3, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO3, mesh3, click);
+                    getcageandupdate2(c3, newNextx, newNexty, newx, newy, selectedControlPoint, shaderProgram, VAO3, mesh3, click);
                 }
                 else if (selectedMovePoint == 3)
                 {
-                    getcageandupdate(c4, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO4, mesh4, click);
+                    getcageandupdate2(c4, newNextx, newNexty, newx, newy, selectedMovePoint, shaderProgram, VAO4, mesh4, click);
                 }
                 else if (selectedMovePoint == 4)
                 {
-                    getcageandupdate(c5, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO5, mesh5, click);
+                    getcageandupdate2(c5, newNextx, newNexty, newx, newy, selectedMovePoint, shaderProgram, VAO5, mesh5, click);
                 }
                 else
                 {
-                    getcageandupdate(c6, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO6, mesh6, click);
+                    getcageandupdate2(c6, newNextx, newNexty, newx, newy, selectedMovePoint, shaderProgram, VAO6, mesh6, click);
                 }
                 controlPointsUpdated = false;
             }
@@ -922,14 +923,13 @@ void mousemoved()
 
 void getcageandupdate(Cage &c, float oldx, float oldy, float newx, float newy, float updatedindex, unsigned int &program, unsigned int &obj_VAO, vector<GLfloat> &mesh, int index)
 {
-    //    cout<<oldx<<" "<<oldy<<" "<<newx<<" "<<newy<<" hehe  ";
-    //    cout << c.min_x_coord << " " << c.max_x_coord << " " << c.min_y_coord << " " << c.max_y_coord << " ";
+
 
     int val = index % 5;
-    //   cout << val<<" "<<index << endl;
+  
     if (val == 0)
     {
-        //      cout<<"hi"<<endl;
+   
         c.min_x_coord = newx;
         c.min_y_coord = newy;
     }
@@ -956,9 +956,44 @@ void getcageandupdate(Cage &c, float oldx, float oldy, float newx, float newy, f
     c.RecomputeVertex(mesh, program, obj_VAO, index % 5);
 }
 
+void getcageandupdate2(Cage &c, float newNextx, float newNexty, float newx, float newy, float updatedindex, unsigned int &program, unsigned int &obj_VAO, vector<GLfloat> &mesh, int index)
+{
+
+
+    int val = index % 5;
+    if (val == 0)
+    {
+        c.min_x_coord = newx;
+        c.min_y_coord = newy;
+       
+    }
+    else if (val == 1)
+    {
+        c.min_x_coord = newx;
+        c.max_y_coord = newy;
+        
+    }
+    else if (val == 2)
+    {
+        c.max_x_coord = newx;
+        c.max_y_coord = newy;
+    }
+    else if (val == 3)
+    {
+        c.max_x_coord = newx;
+        c.min_y_coord = newy;
+    }
+
+    // cout<<c.min_x_coord<<" "<<c.max_x_coord<<" "<<c.min_y_coord<<" "<<c.max_y_coord<<endl;
+    c.createCage3d(program, obj_VAO, controlPoints);
+    setter();
+    c.createGrid();
+    c.RecomputeVertex(mesh, program, obj_VAO, index % 5);
+}
+
 void pushpoints(Cage &c)
 {
     MovePoints.push_back((c.min_x_coord + c.max_x_coord) / 2.0f);
     MovePoints.push_back((c.min_y_coord + c.max_y_coord) / 2.0f);
-    MovePoints.push_back(0.2);
+    MovePoints.push_back(c.max_z_coord+0.2);
 }
