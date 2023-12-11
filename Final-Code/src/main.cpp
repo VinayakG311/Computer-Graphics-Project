@@ -65,7 +65,7 @@ void editControlPoint(std::vector<float> &, float, float, int, int);
 bool searchNearestControlPoint(float, float);
 void mousemoved();
 void getcageandupdate(Cage &, float, float, float, float, float, unsigned int &, unsigned int &, vector<GLfloat> &, int);
-void getcageandupdate2(Cage &, float, float, float, float, float, unsigned int &, unsigned int &, vector<GLfloat> &, int);
+void getcageandupdate2(Cage &, float, float, float, float, float, unsigned int &, unsigned int &, vector<GLfloat> &, int,bool,bool);
 void setupModelTransformation(unsigned int &);
 void setupViewTransformation(unsigned int &);
 void setupProjectionTransformation(unsigned int &);
@@ -206,10 +206,10 @@ int main(int, char **)
 
     int mesh8size = LoadObj(file8, shaderProgram, VAO8, mesh8);
     Cage c8 = Cage(max_x_coord, max_y_coord, min_x_coord, min_y_coord, min_z_coord, max_z_coord, 60); // Initializing cage class for mesh 6
-    int cage8size = c6.createCage3d(shaderProgram, cage8_VAO, controlPoints);                         // Creating cage for mesh 6
+    int cage8size = c8.createCage3d(shaderProgram, cage8_VAO, controlPoints);                         // Creating cage for mesh 6
     setter();
     pushpoints(c8);
-    c6.createGrid(); // Creating grid for cage 6 of size 100 X 100 to compute harmonic coordinate values
+    c8.createGrid(); // Creating grid for cage 6 of size 100 X 100 to compute harmonic coordinate values
 
     oldX = oldY = currentX = currentY = 0.0;
     int prevLeftButtonState = GLFW_RELEASE;
@@ -251,6 +251,7 @@ int main(int, char **)
                 glm::vec4 viewport = glm::vec4(0.0f, 0.0f, screen_width, screen_height);
                 glm::vec3 winPos = glm::vec3(xpos, screen_height - ypos, 0.0f);
                 glm::vec3 worldPos = glm::unProject(winPos, projectionT * viewT * modelT, glm::inverse(projectionT * viewT * modelT), viewport);
+
 
                 // cout << worldPos[0] << " " << worldPos[1] << endl;
                 glm::vec3 va = getTrackBallVector(xpos, ypos);
@@ -329,7 +330,7 @@ int main(int, char **)
                         controlPoints[i + 1] = newy;
                     }
                 }
-                cout << selectedControlPoint << endl;
+     
                 if (selectedControlPoint < 5)
                 {
                     getcageandupdate(c1, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO, mesh1, selectedControlPoint);
@@ -350,9 +351,17 @@ int main(int, char **)
                 {
                     getcageandupdate(c5, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO5, mesh5, selectedControlPoint);
                 }
-                else
+                else if (selectedControlPoint >= 25 && selectedControlPoint < 30)
                 {
                     getcageandupdate(c6, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO6, mesh6, selectedControlPoint);
+                }
+                else if (selectedControlPoint >= 30 && selectedControlPoint < 35)
+                {
+                    getcageandupdate(c7, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO7, mesh7, selectedControlPoint);
+                }
+                else
+                {
+                    getcageandupdate(c8, oldx, oldy, newx, newy, selectedControlPoint, shaderProgram, VAO8, mesh8, selectedControlPoint);
                 }
                 controlPointsUpdated = false;
             }
@@ -407,7 +416,7 @@ int main(int, char **)
             float oldNextx = INT_MAX;
             float oldNexty = INT_MAX;
             float newNextx, newNexty;
-            // cout << selectedMovePoint << endl;
+ 
             int click = 0;
 
             // Updating position of control points based on user input WASD
@@ -432,7 +441,7 @@ int main(int, char **)
             if (ImGui::IsKeyPressed(GLFW_KEY_W))
             {
                 int p1, p2, p3, p4;
-
+               
                 if (selectedMovePoint == 2)
                 {
                     p1 = selectedMovePoint * 15;
@@ -525,6 +534,7 @@ int main(int, char **)
                 int p1, p2, p3, p4;
                 if (selectedMovePoint == 4 || selectedMovePoint == 5)
                 {
+                   
                     p1 = selectedMovePoint * 15;
                     p2 = selectedMovePoint * 15 + 1;
                     p3 = selectedMovePoint * 15 + 9;
@@ -537,7 +547,8 @@ int main(int, char **)
                     oldNextx = controlPoints[p3];
                     oldNexty = controlPoints[p4];
                     newNextx = oldNextx - 2.5;
-                    newNexty = newNexty;
+                    newNexty = oldNexty;
+                   // cout<<oldx<<" "<<oldy<<" "<<newx<<" "<<newy<<" "<<oldNextx<<" "<<oldNexty<<" "<<newNextx<<" "<<newNexty<<endl;
                     click = 0;
                     controlPointsUpdated = true;
                 }
@@ -550,9 +561,11 @@ int main(int, char **)
 
             else if (ImGui::IsKeyPressed(GLFW_KEY_D))
             {
+                
                 int p1, p2, p3, p4;
                 if (selectedMovePoint == 4 || selectedMovePoint == 5)
                 {
+                   
                     p1 = selectedMovePoint * 15;
                     p2 = selectedMovePoint * 15 + 1;
                     p3 = selectedMovePoint * 15 + 9;
@@ -565,20 +578,21 @@ int main(int, char **)
                     oldNextx = controlPoints[p1];
                     oldNexty = controlPoints[p2];
                     newNextx = oldNextx + 2.5;
-                    newNexty = newNexty;
+                    newNexty = oldNexty;
                     click = 3;
                     controlPointsUpdated = true;
                 }
 
                 else
                 {
+                   
                     continue;
                 }
             }
 
             if (controlPointsUpdated)
             {
-
+                
                 for (int i = 0; i < controlPoints.size(); i += 3)
                 {
                     if (controlPoints[i] == oldNextx && controlPoints[i + 1] == oldNexty)
@@ -599,28 +613,28 @@ int main(int, char **)
 
                 if (selectedMovePoint == 0)
                 {
-                    getcageandupdate2(c1, newNextx, newNexty, newx, newy, selectedMovePoint, shaderProgram, VAO, mesh1, click);
+                    getcageandupdate2(c1, newNextx, newNexty, newx, newy, selectedMovePoint, shaderProgram, VAO, mesh1, click,false,false);
                 }
                 else if (selectedMovePoint == 1)
                 {
-                    getcageandupdate2(c2, newNextx, newNexty, newx, newy, selectedMovePoint, shaderProgram, VAO2, mesh2, click);
+                    getcageandupdate2(c2, newNextx, newNexty, newx, newy, selectedMovePoint, shaderProgram, VAO2, mesh2, click,false,true);
                 }
                 else if (selectedMovePoint == 2)
                 {
 
-                    getcageandupdate2(c3, newNextx, newNexty, newx, newy, selectedControlPoint, shaderProgram, VAO3, mesh3, click);
+                    getcageandupdate2(c3, newNextx, newNexty, newx, newy, selectedControlPoint, shaderProgram, VAO3, mesh3, click,false,true);
                 }
                 else if (selectedMovePoint == 3)
                 {
-                    getcageandupdate2(c4, newNextx, newNexty, newx, newy, selectedMovePoint, shaderProgram, VAO4, mesh4, click);
+                    getcageandupdate2(c4, newNextx, newNexty, newx, newy, selectedMovePoint, shaderProgram, VAO4, mesh4, click,false,false);
                 }
                 else if (selectedMovePoint == 4)
                 {
-                    getcageandupdate2(c5, newNextx, newNexty, newx, newy, selectedMovePoint, shaderProgram, VAO5, mesh5, click);
+                    getcageandupdate2(c5, newNextx, newNexty, newx, newy, selectedMovePoint, shaderProgram, VAO5, mesh5, click,true,false);
                 }
                 else
                 {
-                    getcageandupdate2(c6, newNextx, newNexty, newx, newy, selectedMovePoint, shaderProgram, VAO6, mesh6, click);
+                    getcageandupdate2(c6, newNextx, newNexty, newx, newy, selectedMovePoint, shaderProgram, VAO6, mesh6, click,true,false);
                 }
                 controlPointsUpdated = false;
             }
@@ -697,31 +711,6 @@ int main(int, char **)
         glUniform3f(vColor_uniform, 0.3, 0.5, 0.5);
         glDrawArrays(GL_TRIANGLES, 0, mesh8size);
 
-        // glBindVertexArray(cage1_VAO);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_LINE_STRIP, 0, cage1size / 3);
-
-        // glBindVertexArray(cage2_VAO);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_LINES, 0, cage2size / 3);
-
-        // glBindVertexArray(cage3_VAO);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_LINES, 0, cage3size / 3);
-
-        // glBindVertexArray(cage4_VAO);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_LINES, 0, cage4size / 3);
-
-        // glBindVertexArray(cage5_VAO);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_LINES, 0, cage5size / 3);
-
-        // glBindVertexArray(cage6_VAO);
-        // glUniform3f(vColor_uniform, 0.5, 0.5, 0.5);
-        // glDrawArrays(GL_LINES, 0, cage6size / 3);
-
-        //  cout<<MovePoints.size()<<endl;
         glBindVertexArray(VAO_move);
         glUniform3f(vColor_uniform, 0.3, 0.8, 0.5);
 
@@ -900,7 +889,7 @@ void setupViewTransformation(unsigned int &program)
 {
     // Viewing transformations (World -> Camera coordinates
     // Camera at (0, 0, 100) looking down the negative Z-axis in a right handed coordinate system
-    viewT = glm::lookAt(glm::vec3(40.0, -40.0, 40.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+    viewT = glm::lookAt(glm::vec3(0.0, 0.0, 40.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
 
     // Pass-on the viewing matrix to the vertex shader
     glUseProgram(program);
@@ -981,14 +970,15 @@ void getcageandupdate(Cage &c, float oldx, float oldy, float newx, float newy, f
         c.min_y_coord = newy;
     }
 
-    // cout<<c.min_x_coord<<" "<<c.max_x_coord<<" "<<c.min_y_coord<<" "<<c.max_y_coord<<endl;
+ 
     c.createCage3d(program, obj_VAO, controlPoints);
     setter();
     c.createGrid();
+
     c.RecomputeVertex(mesh, program, obj_VAO, index % 5);
 }
 
-void getcageandupdate2(Cage &c, float newNextx, float newNexty, float newx, float newy, float updatedindex, unsigned int &program, unsigned int &obj_VAO, vector<GLfloat> &mesh, int index)
+void getcageandupdate2(Cage &c, float newNextx, float newNexty, float newx, float newy, float updatedindex, unsigned int &program, unsigned int &obj_VAO, vector<GLfloat> &mesh, int index,bool hor,bool ver)
 {
 
 
@@ -997,26 +987,58 @@ void getcageandupdate2(Cage &c, float newNextx, float newNexty, float newx, floa
     {
         c.min_x_coord = newx;
         c.min_y_coord = newy;
+        if(ver){
+        c.max_y_coord = newNexty;
+        }
+       
+        if(hor)
+        {
+            cout<<c.max_x_coord<<" ";
+            c.max_x_coord = newNextx;
+            cout << c.max_x_coord <<endl;
+        }
+
        
     }
     else if (val == 1)
     {
         c.min_x_coord = newx;
         c.max_y_coord = newy;
-        
+        if (ver)
+        {
+            c.min_y_coord = newNexty;
+        }
+        // if (hor)
+        // {
+        //     c.min_x_coord = newNextx;
+        // }
     }
     else if (val == 2)
     {
         c.max_x_coord = newx;
         c.max_y_coord = newy;
+        if (ver)
+        {
+            c.min_y_coord = newNexty;
+        }
     }
+
     else if (val == 3)
     {
         c.max_x_coord = newx;
         c.min_y_coord = newy;
+        if (ver)
+        {
+            c.max_y_coord = newNexty;
+        }
+
+        if (hor)
+        {
+            c.min_x_coord = newNextx;
+        }
     }
 
-    // cout<<c.min_x_coord<<" "<<c.max_x_coord<<" "<<c.min_y_coord<<" "<<c.max_y_coord<<endl;
+
     c.createCage3d(program, obj_VAO, controlPoints);
     setter();
     c.createGrid();

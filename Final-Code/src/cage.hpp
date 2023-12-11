@@ -22,6 +22,7 @@ private:
     GLfloat topboundayVertexY;
     GLfloat bottomboundayVertexX;
     GLfloat bottomboundayVertexY;
+    bool toggle = true;
 
     int startInd;
 

@@ -155,7 +155,28 @@ void Cage::handleEdge(int currEdge, int i, int j, float x, float y)
     // cout<<harmonic[currEdge][x][y]<<endl;
 }
 
+bool f(float xo, float yo, float x1, float y1, float x, float y)
+{
 
+    return ((yo - y1) * x) + ((x1 - xo) * y) + (xo * y1) - (x1 * yo) == 0;
+    // return xo*y1;
+}
+bool checkEdge(vector<vector<GLfloat> > &bound, float coord_x, float coord_y)
+{
+    for (int i = 0; i < bound.size() - 1; i++)
+    {
+        float currX = bound[i][0];
+        float currY = bound[i][1];
+
+        float nexX = bound[i + 1][0];
+        float nexY = bound[i + 1][1];
+        if (f(currX, currY, nexX, nexY, coord_x, coord_y) == 0.0f)
+        {
+            return true;
+        }
+    }
+    return false;
+}
 // /* To create a grid around each cage
 // Harmonic coordinates are calculated with respect to each control point of the cage
 // Computation stratergy defined in the paper according to boundary, interior, exterior points
@@ -177,13 +198,15 @@ void Cage::createGrid()
             {
                 float coord_x = (min_x_coord + i * stepx);
                 float coord_y = (min_y_coord + j * stepy);
+               
                 if ((equal(coord_x, max_x_coord) && equal(coord_y, max_y_coord) && k == 2) || (equal(coord_x, max_x_coord) && equal(coord_y, min_y_coord) && k == 1) || (equal(coord_x, min_x_coord) && equal(coord_y, max_y_coord) && k == 3) || (equal(coord_x, min_x_coord) && equal(coord_y, min_y_coord) && k == 0))
                 {
 
                     harmonic[k][i][j] = 1.0f;
                 }
-                else if (equal(coord_x, max_x_coord) || equal(coord_x, min_x_coord) || equal(coord_y, min_y_coord) || equal(coord_y, max_y_coord))
+                else if (checkEdge(Boundary,coord_x,coord_y))
                 {
+                   // cout<<f(min_x_coord,min_y_coord,max_x_coord,max_y_coord,coord_x,coord_y)<<endl;
                     handleEdge(k, i, j, coord_x, coord_y);
                 }
             }
@@ -282,6 +305,11 @@ void Cage::createGrid()
 
 bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigned int &obj_VAO, int index)
 {
+    for (int i = 0; i < controlPoints.size() / 3 -1; i++)
+    {
+        Boundary[i][0] = controlPoints[i * 3];
+        Boundary[i][1] = controlPoints[i * 3 + 1];
+    }
 
     glUseProgram(program);
 
@@ -295,7 +323,7 @@ bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigne
 
     int sz = mesh.size();
 
-    for (int i = 0; i < mesh.size() / 3; i += 3)
+    for (int i = 0; i < mesh.size() / 3; i ++)
     {
         float stepx = 100 / (max_x_coord - min_x_coord);
         float stepy = 100 / (max_y_coord - min_y_coord);
@@ -322,10 +350,31 @@ bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigne
             // cout << old_x << " " << new_x << endl;
         }
         //  }
+      
+        if(abs(old_x - new_x)/abs(old_x) > 0.30 && abs(old_y - new_y)/(abs(old_y) > 0.30)){
+            continue;
+        }
+        
+        // if (abs(old_x - new_x) / abs(old_x) > 0.05 && toggle)
+        // {
+        //     toggle=false;
+        //     continue;
+        // }
+        // if (abs(old_x - new_x) / abs(old_x) > 0.05 && !toggle)
+        // {
+           
+        //     toggle = true;
+        //     continue;
+        // }
+        // else{
+        //     cout << abs(old_x - new_x) / abs(old_x)<<endl;
+        // }
+        
         mesh[i * 3] = new_x;
         mesh[i * 3 + 1] = new_y;
     }
    
+
     glGenVertexArrays(1, &obj_VAO);
     glBindVertexArray(obj_VAO);
 
