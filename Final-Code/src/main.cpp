@@ -975,7 +975,7 @@ void getcageandupdate(Cage &c, float oldx, float oldy, float newx, float newy, f
     setter();
     c.createGrid();
 
-    c.RecomputeVertex(mesh, program, obj_VAO, index % 5);
+    c.RecomputeVertex(mesh, program, obj_VAO, index % 5,false);
 }
 
 void getcageandupdate2(Cage &c, float newNextx, float newNexty, float newx, float newy, float updatedindex, unsigned int &program, unsigned int &obj_VAO, vector<GLfloat> &mesh, int index,bool hor,bool ver)
@@ -990,12 +990,11 @@ void getcageandupdate2(Cage &c, float newNextx, float newNexty, float newx, floa
         if(ver){
         c.max_y_coord = newNexty;
         }
-       
         if(hor)
         {
-            cout<<c.max_x_coord<<" ";
+            
             c.max_x_coord = newNextx;
-            cout << c.max_x_coord <<endl;
+           
         }
 
        
@@ -1008,10 +1007,7 @@ void getcageandupdate2(Cage &c, float newNextx, float newNexty, float newx, floa
         {
             c.min_y_coord = newNexty;
         }
-        // if (hor)
-        // {
-        //     c.min_x_coord = newNextx;
-        // }
+    
     }
     else if (val == 2)
     {
@@ -1042,7 +1038,7 @@ void getcageandupdate2(Cage &c, float newNextx, float newNexty, float newx, floa
     c.createCage3d(program, obj_VAO, controlPoints);
     setter();
     c.createGrid();
-    c.RecomputeVertex(mesh, program, obj_VAO, index % 5);
+    c.RecomputeVertex(mesh, program, obj_VAO, index % 5,true);
 }
 
 void pushpoints(Cage &c)

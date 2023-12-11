@@ -303,7 +303,7 @@ void Cage::createGrid()
 
 // */
 
-bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigned int &obj_VAO, int index)
+bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigned int &obj_VAO, int index,bool isin)
 {
     for (int i = 0; i < controlPoints.size() / 3 -1; i++)
     {
@@ -322,7 +322,7 @@ bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigne
     }
 
     int sz = mesh.size();
-
+    if(isin){
     for (int i = 0; i < mesh.size() / 3; i ++)
     {
         float stepx = 100 / (max_x_coord - min_x_coord);
@@ -355,24 +355,44 @@ bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigne
             continue;
         }
         
-        // if (abs(old_x - new_x) / abs(old_x) > 0.05 && toggle)
-        // {
-        //     toggle=false;
-        //     continue;
-        // }
-        // if (abs(old_x - new_x) / abs(old_x) > 0.05 && !toggle)
-        // {
-           
-        //     toggle = true;
-        //     continue;
-        // }
-        // else{
-        //     cout << abs(old_x - new_x) / abs(old_x)<<endl;
-        // }
+   
         
         mesh[i * 3] = new_x;
         mesh[i * 3 + 1] = new_y;
     }
+    }
+    else{
+        for (int i = 0; i < mesh.size() / 3; i+=3)
+        {
+            float stepx = 100 / (max_x_coord - min_x_coord);
+            float stepy = 100 / (max_y_coord - min_y_coord);
+            GLfloat old_x = mesh[i * 3];
+            GLfloat old_y = mesh[i * 3 + 1];
+
+            int map_x = (old_x - min_x_coord) / stepx;
+            int map_y = (old_y - min_y_coord) / stepy;
+         
+            if (map_x < 0 || map_x >= 128 || map_y < 0 || map_y >= 128)
+            {
+                continue;
+            }
+            GLfloat new_x = 0, new_y = 0;
+           
+            for (int k = 0; k < 4; k++)
+            {
+
+                new_x += (harmonic[k][map_x][map_y]) * (controlPoints[index * 3]);
+                new_y += (harmonic[k][map_x][map_y]) * (controlPoints[index * 3 + 1]);
+              
+            }
+        
+
+          
+
+            mesh[i * 3] = new_x;
+            mesh[i * 3 + 1] = new_y;
+        }
+        }
    
 
     glGenVertexArrays(1, &obj_VAO);
