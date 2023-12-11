@@ -23,7 +23,7 @@ GLint vModel_uniform, vView_uniform, vProjection_uniform;
 GLint vColor_uniform;
 glm::mat4 modelT, viewT, projectionT;
 int val, val2; // The model, view and projection transformations
-// vector<float> v;
+
 
 // For camera rotation
 double oldX, oldY, currentX, currentY;
@@ -173,7 +173,7 @@ int main(int, char **)
     int cage3size = c3.createCage3d(shaderProgram, cage3_VAO, controlPoints);                         // Creating cage for mesh 3
     setter();
     pushpoints(c3);
-    // // cout << c3.max_x_coord << " " << c3.max_y_coord << endl;
+  
     c3.createGrid(); // Creating grid for cage 3 of size 100 X 100 to compute harmonic coordinate values
 
     int mesh4size = LoadObj(file4, shaderProgram, VAO4, mesh4);                                       // Loading and storing mesh 4
@@ -253,10 +253,10 @@ int main(int, char **)
                 glm::vec3 worldPos = glm::unProject(winPos, projectionT * viewT * modelT, glm::inverse(projectionT * viewT * modelT), viewport);
 
 
-                // cout << worldPos[0] << " " << worldPos[1] << endl;
+       
                 glm::vec3 va = getTrackBallVector(xpos, ypos);
                 glm::vec4 w = glm::inverse(modelT) * glm::vec4(va, 1.0f);
-                // cout << va[0] << " " << va[1] << " " << w[0] << " " << w[1] << endl;
+                
             }
             // Updating position of control points based on user input WASD
 
@@ -279,29 +279,29 @@ int main(int, char **)
 
             if (ImGui::IsKeyPressed(GLFW_KEY_W))
             {
-                // controlPoints[0] = controlPoints[0]+2.5f;
+             
                 oldy = controlPoints[3 * selectedControlPoint + 1];
                 oldx = controlPoints[3 * selectedControlPoint];
                 newy = controlPoints[3 * selectedControlPoint + 1] + 2.5f;
                 newx = controlPoints[3 * selectedControlPoint];
                 controlPointsUpdated = true;
-                // c1.max_y_coord = max(c1.max_y_coord,controlPoints[1]);
+            
             }
 
             else if (ImGui::IsKeyPressed(GLFW_KEY_A))
             {
-                // controlPoints[0] = controlPoints[0]+2.5f;
+          
                 oldx = controlPoints[3 * selectedControlPoint];
                 oldy = controlPoints[3 * selectedControlPoint + 1];
                 newx = controlPoints[3 * selectedControlPoint] - 2.5f;
                 newy = controlPoints[3 * selectedControlPoint + 1];
                 controlPointsUpdated = true;
-                // c1.min_x_coord = max(c1.min_x_coord,controlPoints[1]);
+              
             }
 
             else if (ImGui::IsKeyPressed(GLFW_KEY_D))
             {
-                // controlPoints[0] = controlPoints[0]+2.5f;
+            
                 oldx = controlPoints[3 * selectedControlPoint];
                 newx = controlPoints[3 * selectedControlPoint] + 2.5f;
                 oldy = controlPoints[3 * selectedControlPoint + 1];
@@ -311,7 +311,7 @@ int main(int, char **)
 
             else if (ImGui::IsKeyPressed(GLFW_KEY_S))
             {
-                // controlPoints[0] = controlPoints[0]+2.5f;
+               
                 oldy = controlPoints[3 * selectedControlPoint + 1];
                 newy = controlPoints[3 * selectedControlPoint + 1] - 2.5f;
                 oldx = controlPoints[3 * selectedControlPoint];
@@ -548,7 +548,6 @@ int main(int, char **)
                     oldNexty = controlPoints[p4];
                     newNextx = oldNextx - 2.5;
                     newNexty = oldNexty;
-                   // cout<<oldx<<" "<<oldy<<" "<<newx<<" "<<newy<<" "<<oldNextx<<" "<<oldNexty<<" "<<newNextx<<" "<<newNexty<<endl;
                     click = 0;
                     controlPointsUpdated = true;
                 }
@@ -853,7 +852,7 @@ int LoadObj(char *path, unsigned int &program, unsigned int &obj_VAO, vector<GLf
         mesh.push_back(v[i * 3 + 1]);
         mesh.push_back(v[i * 3 + 2]);
     }
-    // cout << VertexDataTemp.size() << " " << FaceDataTemp.size() << endl;
+
 
     // Binding the mesh vertices to vertex buffer
     GLuint vertex_VBO;
@@ -931,16 +930,7 @@ glm::vec3 getTrackBallVector(double x, double y)
     return p;
 }
 
-void mousemoved()
-{
-    // Get the control point that was edited using edit and search from below
 
-    // get the cage whose control point was edited
-
-    // use recompute for that cage
-
-    // and edit the meshes so that new mesh is rendered
-}
 
 void getcageandupdate(Cage &c, float oldx, float oldy, float newx, float newy, float updatedindex, unsigned int &program, unsigned int &obj_VAO, vector<GLfloat> &mesh, int index)
 {

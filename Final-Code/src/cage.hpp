@@ -113,13 +113,7 @@ public:
             }
         }
 
-        // for(int i = 0;i<4;i++){
-        //     for(int j = 0;j<=100;j++){
-        //         for(int k = 0;k<=100;k++){
-        //             std::cout<<harmonic[i][j][k]<<"   ";
-        //         }
-        //     }
-        // }
+  
     }
     int createCage(unsigned int &program, unsigned int &obj_VAO, vector<float> &points);
     int createCage3d(unsigned int &program, unsigned int &obj_VAO, vector<float> &points);

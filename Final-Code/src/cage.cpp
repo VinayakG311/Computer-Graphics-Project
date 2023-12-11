@@ -152,14 +152,13 @@ void Cage::handleEdge(int currEdge, int i, int j, float x, float y)
         }
     }
 
-    // cout<<harmonic[currEdge][x][y]<<endl;
 }
 
 bool f(float xo, float yo, float x1, float y1, float x, float y)
 {
 
     return ((yo - y1) * x) + ((x1 - xo) * y) + (xo * y1) - (x1 * yo) == 0;
-    // return xo*y1;
+   
 }
 bool checkEdge(vector<vector<GLfloat> > &bound, float coord_x, float coord_y)
 {
@@ -206,7 +205,7 @@ void Cage::createGrid()
                 }
                 else if (checkEdge(Boundary,coord_x,coord_y))
                 {
-                   // cout<<f(min_x_coord,min_y_coord,max_x_coord,max_y_coord,coord_x,coord_y)<<endl;
+         
                     handleEdge(k, i, j, coord_x, coord_y);
                 }
             }
@@ -220,7 +219,7 @@ void Cage::createGrid()
         while (true)
         {
             c++;
-            // cout<<c<<endl;
+   
             if (breaker)
             {
                 break;
@@ -263,21 +262,18 @@ void Cage::createGrid()
                         check += (harmonic[k][i][j + 1] + harmonic[k][i + 1][j]);
                         neighbors += 2;
 
-                        // grid[i][j] = (grid[i - 1][j] + grid[i][j - 1] + grid[i + 1][j] + grid[i][j + 1]) / 4;
-
+                      
                         harmonic[k][i][j] = check / (float)neighbors;
 
-                        // std::cout<<grid[i][j]<<" ";
+                      
                         changeInval += abs(harmonic[k][i][j] - prev);
                     }
                 }
             }
-            // std::cout<<changeInval<<" ";
+     
             if (((changeInval) / (float)numOfcoord) < 0.001f)
             {
-                // for(int i = 0;i<=100;i++){
-                //     std::cout<<harmonic[0][i][0]<<" ";
-                // }
+               
                 breaker = true;
                 break;
             }
@@ -332,24 +328,21 @@ bool Cage::RecomputeVertex(vector<GLfloat> &mesh, unsigned int &program, unsigne
 
         int map_x = (old_x - min_x_coord) / stepx;
         int map_y = (old_y - min_y_coord) / stepy;
-        float ox = min_x_coord + 0.1;
-        int mx = (ox - min_x_coord) / stepx;
-        // cout << map_x << " " << map_y << endl;
+    
         if (map_x < 0 || map_x >= 128 || map_y < 0 || map_y >= 128)
         {
             continue;
         }
         GLfloat new_x = 0, new_y = 0;
-        // for (int j = 0; j < controlPoints.size() / 3; j++)
-        // {
+     
         for (int k = 0; k < 4; k++)
         {
 
             new_x += (harmonic[k][map_x][map_y]) * (controlPoints[index * 3]);
             new_y += (harmonic[k][map_x][map_y]) * (controlPoints[index * 3 + 1]);
-            // cout << old_x << " " << new_x << endl;
+          
         }
-        //  }
+     
       
         if(abs(old_x - new_x)/abs(old_x) > 0.30 && abs(old_y - new_y)/(abs(old_y) > 0.30)){
             continue;
